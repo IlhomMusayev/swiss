@@ -5,12 +5,48 @@ const {
     updateOneBlogModel,
     deleteOneById,
 } = require('../models/BlogModel')
+const AdminAuthMiddleware = require('../middlewares/adminAuth')
+const { addUser, allUsers } = require('../models/AdminModel')
 
 const expressFileUpload = require('express-fileupload');
 const path = require('path');
 const router = require('express').Router()
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectId
+
+
+const Joi = require('joi')
+const { genereteCrypt } = require('../modules/bcrypt')
+const { genereteToken } = require('../modules/jwt')
+
+router.use(AdminAuthMiddleware)
+
+const RegisterValidation = Joi.object({
+    full_name: Joi.string()
+        .required()
+        .trim()
+        .min(3)
+        .max(20)
+        .error(new Error("Ismda xato bor")),
+    phone_number: Joi.number()
+        .required()
+        .min(998710000000)
+        .max(1000000000000)
+        .error(new Error("Raqamda error")),
+    email: Joi.string()
+        .required()
+        .email()
+        .trim()
+        .min(3)
+        .max(40)
+        .error(new Error("Emailda xato bor")),
+    password: Joi.string()
+        .required()
+        .trim()
+        .min(4)
+        .max(50)
+        .error(new Error("Parolda xato bor")),
+})
 
 
 
@@ -21,6 +57,38 @@ router.get('/', async (req, res) => {
         courses
     })
 })
+
+router.get('/register', async (req, res) => {
+    const admins = await allUsers()
+    if (admins.length > 0) {
+        res.redirect('/')
+    }
+    res.render('adminRegister')
+})
+
+router.post('/register', async (req, res) => {
+    const admins = await allUsers()
+    if(admins.length == 0){
+        try {
+            // convert phone num to Numbers
+            req.body.phone_number = Number(req.body.phone_number.replace(/\D/g,''))
+            const { phone_number, email, full_name, password} = await RegisterValidation.validateAsync(req.body)
+            const user = await addUser(full_name, phone_number, email, genereteCrypt(password))
+            const token = genereteToken({ name: full_name, email: email })
+            res.cookie('token', token).redirect('/')
+        }
+        catch (e){
+            if(String(e).includes("duplicate key")){
+                e = "Email or Phone already exists"
+            }
+            res.render('register', {
+                error: e + ""
+            })
+        }
+    }
+    res.redirect('/')
+})
+
 
 router.post('/add', expressFileUpload(), async (req, res) => {
     try {
