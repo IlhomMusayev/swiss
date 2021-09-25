@@ -1,0 +1,42 @@
+//==============FONTS==================
+@font-face {
+   font-family: 'Futura';
+   font-style: normal;
+   font-weight: 400;
+   font-display: swap;
+   src: url('../fonts/futura_normal.eot');
+   src: local(''),
+   url('../fonts/futura_normal.eot?#iefix') format('embedded-opentype'),
+   url('../fonts/futura_normal.woff2') format('woff2'),
+   url('../fonts/futura_normal.woff') format('woff'),
+   url('../fonts/futura_normal.ttf') format('truetype'),
+   url('../fonts/futura_normal.svg#Montserrat') format('svg');
+}
+
+@font-face {
+   font-family: 'Futura';
+   font-style: normal;
+   font-weight: 500;
+   font-display: swap;
+   src: url('../fonts/futura_medium.eot');
+   src: local(''),
+   url('../fonts/futura_medium.eot?#iefix') format('embedded-opentype'),
+   url('../fonts/futura_medium.woff2') format('woff2'),
+   url('../fonts/futura_medium.woff') format('woff'),
+   url('../fonts/futura_medium.ttf') format('truetype'),
+   url('../fonts/futura_medium.svg#Montserrat') format('svg');
+}
+
+@font-face {
+   font-family: 'Futura';
+   font-style: normal;
+   font-weight: 700;
+   font-display: swap;
+   src: url('../fonts/futura_bold.eot');
+   src: local(''),
+   url('../fonts/futura_bold.eot?#iefix') format('embedded-opentype'),
+   url('../fonts/futura_bold.woff2') format('woff2'),
+   url('../fonts/futura_bold.woff') format('woff'),
+   url('../fonts/futura_bold.ttf') format('truetype'),
+   url('../fonts/futura_bold.svg#Montserrat') format('svg');
+}

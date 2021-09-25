@@ -1,0 +1,280 @@
+.make-appointment {
+   .container {
+      max-width: 1279px;
+      padding: 48px 80px 85px;
+      background-color: #E5F7F8;
+   }
+
+   h2 {
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 30px;
+      letter-spacing: 0.02em;
+   }
+}
+
+.make-appointment__form {
+   .custom-select {
+      width: 287px;
+      margin-right: 0;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(86, 83, 163, 0.2);
+   }
+
+   .select-selected:after {
+      top: 30px;
+   }
+}
+
+fieldset {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-left: 0;
+   padding: 0;
+   border: none;
+
+   &:first-child {
+      margin-bottom: 69px;
+   }
+}
+
+legend {
+   margin-bottom: 40px;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 20px;
+}
+
+.service__labels {
+   display: flex;
+   flex-wrap: wrap;
+   margin-bottom: 35px;
+}
+
+.service__label {
+   display: flex;
+   align-items: center;
+   width: 260px;
+   height: 70px;
+   margin-bottom: 27px;
+   padding-left: 20px;
+   background-color: #FFFFFF;
+   user-select: none;
+
+   &:not(:nth-child(4)) {
+      margin-right: 25px;
+   }
+
+   span:nth-child(2) {
+      display: block;
+      width: 28px;
+      height: 28px;
+      margin-right: 20px;
+      background-color: rgba(0, 177, 185, 0.1);
+      border: 1px solid #00B1B9;
+      border-radius: 7px;
+   }
+
+   span:last-child {
+      padding-left: 20px;
+      border-left: 1px solid rgba($MAIN-DARK-BLUE, 0.2);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+   }
+
+   input:checked + span:nth-child(2) {
+      background-image: url("../img/icons/checked.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 28px 28px;
+      border-color: transparent !important;
+   }
+}
+
+.service__includes {
+   display: flex;
+   flex-wrap: wrap;
+   margin-bottom: 30px;
+   border-bottom: 1px solid rgba($MAIN-DARK-BLUE, 0.2);
+   h4 {
+      width: 100%;
+      margin-bottom: 18px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+   }
+}
+
+.service__includes__label {
+   display: flex;
+   align-items: center;
+   margin-right: 40px;
+   margin-bottom: 30px;
+   cursor: pointer;
+
+   span:nth-child(2) {
+      margin-right: 7px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      user-select: none;
+   }
+
+   span:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 13px;
+      height: 13px;
+      background-color: #00B1B9;
+      border-radius: 4px;
+      opacity: 0;
+   }
+
+   input:checked ~ * {
+      color: $MAIN-LIGHT-BLUE;
+      opacity: 1;
+   }
+}
+
+.appointment-payment {
+   display: flex;
+   flex-wrap: wrap;
+   max-width: 1120px;
+   margin-top: 18px;
+   margin-bottom: 89px;
+   padding: 48px 60px 57px;
+   background-color: rgba($MAIN-LIGHT-BLUE, 0.1);
+}
+
+.appointment-payment__cost {
+   width: 495px;
+   margin-right: 134px;
+
+   h3 {
+      margin-bottom: 38px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+   }
+}
+
+.appointment-payment__list {
+   padding-bottom: 28px;
+   border-bottom: 1px solid rgba(41, 41, 95, 0.3);
+}
+
+.appointment-payment__list__item {
+   display: flex;
+   align-items: flex-start;
+   flex-wrap: wrap;
+   margin-bottom: 25px;
+
+   span:first-child {
+      width: 275px;
+      padding-right: 20px;
+      font-weight: 500!important;
+      font-size: 16px;
+      line-height: 22px;
+   }
+
+   span:last-child {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 22px;
+   }
+}
+
+.appointment-payment__total-cost {
+   padding-top: 25px;
+
+   div:first-child {
+      margin-bottom: 6px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+   }
+
+   div:last-child {
+      font-weight: 500;
+      font-size: 32px;
+      line-height: 42px;
+   }
+}
+
+.appointment-payment__services {
+   width: 340px;
+
+   h3 {
+      margin-bottom: 25px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+   }
+}
+
+.appointment-payment__services__buttons {
+   display: flex;
+   flex-wrap: wrap;
+
+   button {
+      width: 120px;
+      height: 70px;
+      margin-right: 15px;
+      margin-bottom: 15px;
+      background: #FFFFFF;
+      border-radius: 14px;
+      border: none;
+      cursor: pointer;
+   }
+}
+
+.appointment-saving {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+
+   button:first-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-left: 55px;
+      padding-right: 55px;
+      height: 56px;
+      background-color: $MAIN-LIGHT-BLUE;
+      border: none;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: #FFFFFF;
+      cursor: pointer;
+
+      &:hover {
+         background-color: lighten($MAIN-LIGHT-BLUE, 2);
+      }
+
+      img {
+         margin-right: 10px;
+      }
+   }
+
+   button:last-child {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 56px;
+      padding-left: 55px;
+      padding-right: 55px;
+      background-color: transparent;
+      border: none;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: $MAIN-DARK-BLUE;
+      cursor: pointer;
+   }
+}

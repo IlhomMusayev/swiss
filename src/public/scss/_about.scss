@@ -1,0 +1,155 @@
+// ============= SECTION ABOUT STYLES ================ //
+.about-says {
+   padding-top: 140px;
+   padding-bottom: 140px;
+
+   .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+   }
+}
+
+.about-us {
+   width: 765px;
+   padding: 50px 0 0 40px;
+   background-color: #E5F7F8;
+
+   .section__title {
+      margin-bottom: 70px;
+   }
+
+   h3 {
+      margin-bottom: 40px;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 29px;
+   }
+
+   img {
+      vertical-align: middle;
+   }
+}
+
+.people-says {
+   width: 471px;
+   padding: 50px 30px 40px;
+   background-color: #E5F7F8;
+
+   .section__title {
+      margin-bottom: 46px;
+   }
+
+   h3 {
+      margin-bottom: 40px;
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 29px;
+   }
+
+   img {
+      vertical-align: middle;
+   }
+}
+
+.comment {
+   margin-bottom: 56px;
+   padding: 30px 30px 70px;
+   background-color: $MAIN-LIGHT-BLUE;
+   color: $WHITE;
+}
+
+.comment__header {
+   display: flex;
+   align-items: center;
+   margin-bottom: 44px;
+
+   img {
+      margin-right: 20px;
+   }
+}
+
+.comment__owner {
+   h3 {
+      margin-bottom: 5px;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 25px;
+   }
+
+   span {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 16px;
+   }
+}
+
+.comment__text {
+   font-weight: normal;
+   font-size: 20px;
+   line-height: 26px;
+}
+
+.comment__field {
+   flex-grow: 1;
+   width: 300px;
+   height: 50px;
+   padding: 15px;
+   resize: none;
+   border: none;
+   background-color: transparent;
+   color: $MAIN-DARK-BLUE;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 20px;
+
+   &::placeholder {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: #29295F;
+   }
+
+   &:focus {
+      border-bottom: 1px solid $MAIN-LIGHT-BLUE;
+   }
+
+   &::-webkit-scrollbar {
+      display: none;
+   }
+
+
+   & {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+   }
+}
+
+#file_input {
+   display: none;
+}
+
+
+.comment__form {
+   display: flex;
+   align-items: center;
+
+   img {
+      opacity: 0.3;
+      cursor: pointer;
+
+      &:hover {
+         opacity: 1;
+      }
+   }
+}
+
+.record-audio, .send-comment {
+   background-color: transparent;
+   border: none;
+   padding: 0;
+}
+
+.file-input, .record-audio {
+   margin-right: 15px;
+}

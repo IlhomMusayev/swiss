@@ -1,0 +1,90 @@
+// ============== SECTION CAMPAIGN ================== //
+.campaign {
+   padding-top: 160px;
+   padding-bottom: 160px;
+
+   .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+   }
+}
+
+.campaign__section {
+   position: relative;
+   width: 613px;
+   padding-top: 55px;
+   padding-left: 55px;
+   background: #FFFFFF;
+   border: 1px solid #00B1B9;
+
+   h3 {
+      margin-bottom: 41px;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 46px;
+      color: $MAIN-LIGHT-BLUE;
+   }
+
+   &__text {
+      margin-bottom: 62px;
+      font-weight: 400;
+      font-size: 24px;
+      line-height: 26px;
+   }
+
+   &:first-child .campaign__section__text {
+      margin-bottom: 75px;
+   }
+}
+
+.campaign__section__links {
+   position: relative;
+   z-index: 2;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.campaign__section__socials a {
+   margin-right: 30px;
+}
+
+.campaign__section__more {
+   display: flex;
+   align-items: center;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 46px;
+
+   span {
+      margin-right: 40px;
+   }
+
+   a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 140px;
+      height: 90px;
+      background-color: $MAIN-LIGHT-BLUE;
+   }
+}
+
+.campaign__section__img {
+   position: absolute;
+   top: 0;
+   right: 0;
+}
+
+.campaign__section:last-child {
+   h3 {
+      border-bottom: 1px solid rgba(41, 41, 95, 0.1);
+      margin-right: 82px;
+      padding-bottom: 12px;
+   }
+
+   .campaign__section__links {
+      justify-content: flex-end;
+   }
+}

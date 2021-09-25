@@ -1,0 +1,71 @@
+// ============== FEEDBACK ================== //
+.feedback {
+   max-width: 1805px;
+   margin: 0 auto;
+   padding-top: 102px;
+   padding-bottom: 108px;
+   background-color: $MAIN-LIGHT-BLUE;
+
+   .container {
+      display: flex;
+      justify-content: space-between;
+   }
+}
+
+.is-useful {
+   width: 820px;
+   height: 110px;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   padding: 23px 83px 23px 48px;
+   background-color: $WHITE;
+
+   &__question {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+   }
+
+   &__buttons {
+      display: flex;
+   }
+
+   button {
+      width: 102px;
+      height: 64px;
+      background-color: $MAIN-LIGHT-BLUE;
+      border: none;
+
+      &:hover {
+         background-color: lighten($MAIN-LIGHT-BLUE, 2);
+      }
+
+      &:first-child {
+         margin-right: 30px;
+      }
+   }
+}
+
+.share {
+   width: 406px;
+   height: 110px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background-color: $WHITE;
+
+   span {
+      margin-right: 45px;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 20px;
+   }
+
+   button {
+      padding: 0;
+      border: none;
+      background: transparent;
+   }
+}

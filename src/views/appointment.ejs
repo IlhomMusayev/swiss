@@ -1,0 +1,186 @@
+<%- include('parts/header') %>
+
+<!--MAKE APPOINTMENT SECTION-->
+<main class="make-appointment">
+   <div class="container">
+      <h2>Хотите записатся на приём</h2>
+      <form class="make-appointment__form" action="#" method="get">
+         <fieldset class="contact__info__fieldset">
+            <legend>Пожалуйста, заполните все поля</legend>
+            <label class="settings-form__field__label" for="full_name">
+               <span>Имя Фамилия</span>
+               <input id="full_name" type="text" name="full_name">
+            </label>
+            <label class="settings-form__field__label" for="phone_number">
+               <span>Телефон номер</span>
+               <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
+                      data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"/>
+            </label>
+            <div class="custom-select">
+               <select id="filial" name="filial">
+                  <option value="0">Выберите филиал</option>
+                  <option value="1">Юнсобоадиский филиал</option>
+                  <option value="2">Чиланзарский филиал</option>
+                  <option value="3">Мирабадский филиал</option>
+                  <option value="4">Яшнабадский филиал</option>
+               </select>
+            </div>
+         </fieldset>
+         <fieldset class="service__labels__fieldset">
+            <legend>Отметьте одну или несколько наших услуг!</legend>
+            <div class="service__labels">
+               <label class="service__label" for="treatment">
+                  <input id="treatment" type="checkbox">
+                  <span></span>
+                  <span>Лечение</span>
+               </label>
+               <label class="service__label" for="orthopedics">
+                  <input id="orthopedics" type="checkbox">
+                  <span></span>
+                  <span>Ортопедия</span>
+               </label>
+               <label class="service__label" for="therapeutic">
+                  <input id="therapeutic" type="checkbox">
+                  <span></span>
+                  <span>Терапевтическая</span>
+               </label>
+               <label class="service__label" for="implantation">
+                  <input id="implantation" type="checkbox">
+                  <span></span>
+                  <span>Имплонтация</span>
+               </label>
+               <label class="service__label" for="orthodontics">
+                  <input id="orthodontics" type="checkbox">
+                  <span></span>
+                  <span>Ортодонтия</span>
+               </label>
+               <label class="service__label" for="children">
+                  <input id="children" type="checkbox">
+                  <span></span>
+                  <span>Детская</span>
+               </label>
+               <label class="service__label" for="cosmetic">
+                  <input id="cosmetic" type="checkbox">
+                  <span></span>
+                  <span>Косметическая</span>
+               </label>
+            </div>
+         </fieldset>
+         <div class="service__includes__wrapper">
+            <div class="service__includes">
+               <h4>Ортопедия</h4>
+               <label class="service__includes__label" for="1">
+                  <input id="1" type="checkbox">
+                  <span>Лечение</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+               <label class="service__includes__label" for="2">
+                  <input id="2" type="checkbox">
+                  <span>Лечение от кариса</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+               <label class="service__includes__label" for="3">
+                  <input id="3" type="checkbox">
+                  <span>Пломба</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+               <label class="service__includes__label" for="4">
+                  <input id="4" type="checkbox">
+                  <span>Имлантация</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+            </div>
+            <div class="service__includes">
+               <h4>Косметическая</h4>
+               <label class="service__includes__label" for="5">
+                  <input id="5" type="checkbox">
+                  <span>Лечение от кариса</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+               <label class="service__includes__label" for="7">
+                  <input id="7" type="checkbox">
+                  <span>Лечение</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+               <label class="service__includes__label" for="8">
+                  <input id="8" type="checkbox">
+                  <span>Пломба</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+               <label class="service__includes__label" for="9">
+                  <input id="9" type="checkbox">
+                  <span>Имлантация</span>
+                  <span>
+                  <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
+               </span>
+               </label>
+            </div>
+         </div>
+         <div class="appointment-payment">
+            <div class="appointment-payment__cost">
+               <h3>Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту.
+                  Вы можете сохранить
+                  это!</h3>
+               <ul class="appointment-payment__list">
+                  <li class="appointment-payment__list__item">
+                     <span>Ортопедия лечение:</span>
+                     <span>30 000 <small>uzs</small></span>
+                  </li>
+                  <li class="appointment-payment__list__item">
+                     <span>Ортопедия пломба:</span>
+                     <span>15 000 <small>uzs</small></span>
+                  </li>
+                  <li class="appointment-payment__list__item">
+                     <span>Косметическая лечение:</span>
+                     <span>45 000 <small>uzs</small></span>
+                  </li>
+               </ul>
+               <div class="appointment-payment__total-cost">
+                  <div>Общее</div>
+                  <div>90 000 <small>uzs</small></div>
+               </div>
+            </div>
+            <div class="appointment-payment__services">
+               <h3>Записавшись на прием к врачу, вы также можете произвести оплату через наши онлайн-платежи.</h3>
+               <div class="appointment-payment__services__buttons">
+                  <button type="button">
+                     <img src="img/logos/clicklogo.png" alt="click logo" width="70" height="27">
+                  </button>
+                  <button type="button">
+                     <img src="img/logos/payme.png" alt="payme logo" width="70" height="21">
+                  </button>
+                  <button type="button">
+                     <img src="img/logos/upaylogo.png" alt="upay logo" width="70" height="46">
+                  </button>
+               </div>
+            </div>
+         </div>
+         <div class="appointment-saving">
+            <button type="button">
+               <img src="img/icons/bell.svg" alt="bell icon">
+               <span>Записатся</span>
+            </button>
+            <button type="button">
+               <span>Сохранить на «Мои записи»</span>
+            </button>
+         </div>
+      </form>
+   </div>
+</main>
+
+<!--SITE FOOTER-->
+<%- include('parts/footer') %>

@@ -1,0 +1,46 @@
+<%- include('parts/header') %>
+
+<% var error %>
+
+<!--REGISTRATION SECTION-->
+<main class="registration-section">
+   <div class="container">
+      <h2>Админ Регистрация</h2>
+      <% if(error) {%>
+      <div class="tabs__settings__status" style="background-color: rgb(175, 43, 9); color: white">
+            <%= error %>
+      </div>
+      <% } %>
+      <form class="registration-section__form" method="POST">
+         <fieldset>
+            <legend>Пожалуйста, заполните все поля</legend>
+            <label class="settings-form__field__label" for="full_name">
+               <span>Имя Фамилия</span>
+               <input id="full_name" type="text" name="full_name">
+            </label>
+            <label class="settings-form__field__label" for="phone_number">
+               <span>Телефон номер</span>
+               <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
+                      data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"/>
+            </label>
+            <label class="settings-form__field__label" for="email">
+               <span>E-mail</span>
+               <input id="email" type="email" name="email" placeholder=" ">
+            </label>
+            <label class="settings-form__field__label" for="password">
+               <span>Придумайти пароль</span>
+               <input id="password" type="password" name="password">
+            </label>
+         </fieldset>
+         <div class="tabs__settings__saving">
+            <button class="tabs__settings__save">
+               Регистрация
+            </button>
+         </div>
+      </form>
+   </div>
+</main>
+
+<script src="scripts/masked-phone.js"></script>
+
+<%- include('parts/footer') %>

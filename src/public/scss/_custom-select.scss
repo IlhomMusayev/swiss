@@ -1,0 +1,62 @@
+//============== CUSTOM SELECT ================== //
+.custom-select {
+   position: relative;
+   display: flex;
+   align-items: center;
+   width: 150px;
+   margin-right: 40px;
+}
+
+.custom-select select {
+   display: none;
+}
+
+.select-selected {
+   background-color: transparent;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 20px;
+   color: $MAIN-DARK-BLUE;
+}
+
+.select-selected:after {
+   position: absolute;
+   content: "";
+   top: 15px;
+   right: 0;
+   width: 11px;
+   height: 7px;
+   background-image: url("../img/icons/dropdownarrow.svg");
+   background-repeat: no-repeat;
+}
+
+.select-items div, .select-selected {
+   padding: 8px;
+   cursor: pointer;
+}
+
+.select-items {
+   position: absolute;
+   background-color: $MAIN-LIGHT-BLUE;
+   top: 100%;
+   left: 0;
+   right: 0;
+   z-index: 99;
+
+
+   div {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: $WHITE;
+   }
+
+}
+
+.select-hide {
+   display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+   background-color: $MAIN-DARK-BLUE;
+}

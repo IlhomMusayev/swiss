@@ -1,0 +1,56 @@
+<%- include('parts/header')%>
+
+<h1>Bu shunchaki sarlavha</h1>
+
+<!--SITE MAIN SECTION-->
+<main class="site-main">
+   <div class="container">
+      <article class="article">
+         <section class="article__description pt-0">
+            <h2>Косметическая стоматология - это давно установленный факт, который отвлекает читателя.</h2>
+            <p>Давно установлено, что читатель будет отвлекаться на удобочитаемое содержимое страницы при просмотре ее
+               макета. Смысл использования Lorem Ipsum в том, что он имеет более или менее нормальное распределение
+               букв, в отличие от использования «Контент здесь, контент здесь», что делает его похожим на читаемый
+               английский. Многие настольные издательские пакеты и редакторы веб-страниц теперь используют Lorem Ipsum в
+               качестве текста модели по умолчанию, а поиск по запросу «lorem ipsum» обнаружит многие веб-сайты, все еще
+               находящиеся в зачаточном состоянии. С годами появились разные версии, иногда случайно, иногда
+               специально.</p>
+            <div class="article__description__gallery">
+               <figure>
+                  <img src="img/doctors/dentist3.png" alt="" width="400" height="260">
+                  <figcaption>Давно установлено, что читатель будет отвлекаться на читаемое.</figcaption>
+               </figure>
+               <figure>
+                  <img src="img/doctors/dentist4.png" alt="" width="400" height="260">
+                  <figcaption>Давно установлено, что читатель будет отвлекаться на читаемое.</figcaption>
+               </figure>
+            </div>
+            <p>Многие настольные издательские пакеты и редакторы веб-страниц теперь используют Lorem Ipsum в качестве
+               текста модели по умолчанию, а поиск по запросу «lorem ipsum» обнаружит многие веб-сайты, все еще
+               находящиеся в зачаточном состоянии. Иногда с годами развивались различные версии.</p>
+         </section>
+      </article>
+      <aside class="appointment">
+         <h2>Записатся на прием</h2>
+         <form class="appointment__form" action="#" method="get">
+            <input id="full-name" type="text" name="full_name" placeholder="Имя Фамилия">
+            <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
+                   data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"/>
+            <div class="custom-select">
+               <select name="type_services">
+                  <option value="0">Косметическая стоматология</option>
+                  <option value="1">Ортопедия</option>
+                  <option value="2">Терапевтическая</option>
+                  <option value="3">Имплантология</option>
+               </select>
+            </div>
+            <button type="submit">
+               <img src="img/icons/bell.svg" alt="">
+               <span>Записатся</span>
+            </button>
+         </form>
+      </aside>
+   </div>
+</main>
+
+<%- include('parts/footer')%>

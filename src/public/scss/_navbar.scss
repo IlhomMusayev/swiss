@@ -1,0 +1,73 @@
+// ============== SITE NAV ================== //
+.site-nav {
+   padding-top: 35px;
+   padding-bottom: 30px;
+
+   .container {
+      max-width: 1830px;
+   }
+}
+
+.site-nav__ul {
+   display: flex;
+   align-items: center;
+}
+
+.site-nav__li {
+   &:not(:last-child) {
+      margin-right: 50px;
+   }
+
+   &:nth-child(5) {
+      margin-left: auto;
+      margin-right: 0;
+   }
+}
+
+.site-nav__link {
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 20px;
+   color: $MAIN-DARK-BLUE;
+   transition: 0.2s all ease;
+
+   &:hover, &--active {
+      color: $MAIN-LIGHT-BLUE;
+   }
+}
+
+.nav-open {
+   display: none;
+   border: none;
+   background-color: $WHITE;
+   cursor: pointer;
+   font-size: 20px;
+   font-weight: 500;
+   color: $MAIN-DARK-BLUE;
+
+   img {
+      margin-right: 10px;
+      vertical-align: bottom;
+   }
+}
+
+.nav-close {
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   width: 40px;
+   height: 40px;
+   display: none;
+   align-items: center;
+   justify-content: center;
+   background-color: $MAIN-LIGHT-BLUE;
+   color: $WHITE;
+   border-radius: 50%;
+   border: none;
+   box-shadow: 0 0 10px 0 rgba($WHITE, 0.7);
+   font-size: 20px;
+}
+
+.nav-show {
+   left: 0 !important;
+}

@@ -1,0 +1,338 @@
+.tabs__appointments {
+   width: 784px;
+}
+
+.tabs__appointments__card {
+   margin-bottom: 20px;
+   padding: 22px 40px 33px;
+   background-color: rgba($MAIN-LIGHT-BLUE, 0.1);
+}
+
+.tabs__appointments__card__header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-bottom: 17px;
+
+   h3 {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 25px;
+   }
+}
+
+.tabs__appointments__card__date {
+   display: flex;
+   align-items: center;
+
+   > img {
+      margin-right: 23px;
+   }
+
+   time {
+      display: flex;
+      align-items: center;
+      margin-right: 14px;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 20px;
+
+      img {
+         margin-right: 7px;
+      }
+   }
+
+   div:last-child {
+      display: flex;
+      align-items: center;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 20px;
+
+      img {
+         margin-right: 7px;
+      }
+   }
+}
+
+.tabs__appointments__card__main {
+   margin-bottom: 37px;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 130%;
+}
+
+.tabs__appointments__card__footer {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   flex-wrap: wrap;
+
+   button {
+      padding: 0;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 130%;
+   }
+}
+
+.pay-online {
+   color: $MAIN-LIGHT-BLUE;
+}
+
+.cancel-appointment {
+   color: rgba($MAIN-DARK-BLUE, 0.4);
+}
+
+.tabs__payment {
+   width: 784px;
+}
+
+.tabs__payment__card {
+   position: relative;
+   margin-bottom: 20px;
+   padding: 28px 23px 45px 40px;
+   background-color: rgba($MAIN-LIGHT-BLUE, 0.1);
+}
+
+.tabs__payment__card__status {
+   display: flex;
+   align-items: flex-start;
+   margin-bottom: 22px;
+
+   p {
+      margin-right: 90px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+   }
+}
+
+.payment-status {
+   width: 139px;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 6px;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 16px;
+   color: #FFFFFF;
+}
+
+.paid {
+   background-color: $MAIN-LIGHT-BLUE;
+}
+
+.expectation {
+   background-color: #FFA7A7;;
+}
+
+.tabs__payment__card__amount {
+   display: flex;
+   align-items: center;
+   font-weight: 700;
+   font-size: 16px;
+   line-height: 22px;
+}
+
+.treatment-name {
+   margin-right: 60px;
+}
+
+.treatment-cost {
+   span {
+      font-size: 16px;
+      letter-spacing: 0.2px;
+   }
+
+   small {
+      font-size: 16px;
+      letter-spacing: 0.5px;
+   }
+}
+
+.download-check {
+   position: absolute;
+   bottom: 26px;
+   right: 38px;
+   padding: 0;
+   border: none;
+   background-color: transparent;
+   cursor: pointer;
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 130%;
+   color: $MAIN-DARK-BLUE;
+}
+
+.tabs__settings {
+   width: 1000px;
+   padding: 48px 54px 80px;
+   background-color: #E5F7F8;
+}
+
+.tabs__settings__header {
+   margin-bottom: 40px;
+
+   h2 {
+      margin-bottom: 15px;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 30px;
+      letter-spacing: 0.02em;
+   }
+
+   p {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 0.02em;
+   }
+}
+
+.account-info {
+   display: flex;
+   align-items: center;
+   flex-wrap: wrap;
+   margin-bottom: 60px;
+}
+
+.account-avatar {
+   width: 94px;
+   height: 94px;
+   margin-right: 14px;
+   border: 4px solid #FFFFFF;
+   border-radius: 50%;
+
+   img {
+      width: 86px;
+      height: 86px;
+      vertical-align: middle;
+      border-radius: 50%;
+   }
+}
+
+.account-data {
+   h3 {
+      margin-bottom: 6px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+   }
+}
+
+.account-registration-date {
+   margin-bottom: 12px;
+   font-weight: normal;
+   font-size: 12px;
+   line-height: 12px;
+   color: rgba($MAIN-DARK-BLUE, 0.5)
+}
+
+.change-account-avatar {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 97px;
+   height: 30px;
+   background: linear-gradient(287.75deg, #29295F -5.01%, #00B1B9 95.66%);
+   cursor: pointer;
+   transition: 0.5s all linear;
+
+   &:hover {
+      background: linear-gradient(287.75deg, #00B1B9 -5.01%, #29295F 95.66%);
+   }
+
+   img {
+      margin-right: 5px;
+   }
+
+   span {
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 12px;
+      color: #FFFFFF;
+   }
+}
+
+.settings-form {
+   margin-bottom: 57px;
+}
+
+.settings-form__field {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+   margin-bottom: 27px;
+
+   &:nth-child(2) {
+      margin-bottom: 61px;
+   }
+}
+
+.settings-form__field__label {
+   span {
+      display: block;
+      font-weight: 400;
+      font-size: 12px;
+      line-height: 12px;
+   }
+
+   input {
+      width: 287px;
+      padding: 15px 0;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(86, 83, 163, 0.2);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      color: #29295F;
+   }
+}
+
+.tabs__settings__status {
+   width: 710px;
+   margin-bottom: 95px;
+   padding: 22px 35px;
+   background: rgba($MAIN-LIGHT-BLUE, 0.1);
+   font-weight: 400;
+   font-size: 16px;
+   line-height: 22px;
+}
+
+.tabs__settings__saving {
+   display: flex;
+   align-items: center;
+
+   button {
+      width: 230px;
+      height: 56px;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+   }
+}
+
+.tabs__settings__save {
+   background-color: $MAIN-LIGHT-BLUE;
+   color: #FFFFFF;
+
+   &:hover {
+      background-color: lighten($MAIN-LIGHT-BLUE, 2);
+   }
+}
+
+.tabs__settings__cancel {
+   background-color: transparent;
+   color: rgba($MAIN-DARK-BLUE, 0.4);
+}

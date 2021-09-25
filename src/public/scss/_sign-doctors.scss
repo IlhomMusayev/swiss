@@ -1,0 +1,235 @@
+// ============== SIGN AND DOCTORS SECTION ================== //
+.sign-doctors {
+   padding-top: 115px;
+
+   .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+   }
+}
+
+.sign {
+   width: 406px;
+   background-color: #E5F7F8;
+   background-image: url("../img/appointment/girl.png");
+   background-position: top right;
+   background-repeat: no-repeat;
+
+   h2 {
+      padding-top: 40px;
+      margin-bottom: 160px;
+      padding-left: 40px;
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 30px;
+      letter-spacing: 0.02em;
+   }
+}
+
+.sign__form {
+   display: flex;
+   flex-direction: column;
+
+   input {
+      width: 100%;
+      margin-bottom: 30px;
+      border: none;
+      background: transparent;
+      border-bottom: 1px solid rgba(86, 83, 163, 0.2);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+
+      &::placeholder {
+         color: $MAIN-DARK-BLUE;
+      }
+   }
+
+   button {
+      width: 100%;
+      height: 90px;
+      background-color: $MAIN-LIGHT-BLUE;
+      color: $WHITE;
+      border: none;
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 20px;
+
+      &:hover {
+         background-color: lighten($MAIN-LIGHT-BLUE, 2);
+      }
+   }
+}
+
+.sign__form__fields {
+   padding-left: 40px;
+   padding-right: 40px;
+   margin-bottom: 35px;
+}
+
+.our-doctors {
+   width: 820px;
+   height: 560px;
+   background-color: #E5F7F8;
+   background-image: url('../img/doctors/bgimage.png');
+   background-position: bottom right;
+   background-repeat: no-repeat;
+}
+
+.our-doctors__header {
+   margin-bottom: 20px;
+   padding-top: 36px;
+   padding-left: 48px;
+
+   h2 {
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 46px;
+      letter-spacing: 0.02em;
+   }
+
+   span {
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 22px;
+      letter-spacing: 0.02em;
+   }
+}
+
+.our-doctors__main {
+   position: relative;
+   height: 435px;
+}
+
+.doctor {
+   position: absolute;
+   border-width: 10px;
+   border-style: solid;
+   border-radius: 50%;
+   cursor: pointer;
+
+   &:hover {
+      box-shadow: 0 84px 94px rgba(7, 79, 82, 0.2);
+   }
+
+   img {
+      border-radius: 50%;
+   }
+
+   &:nth-child(1) {
+      top: 40px;
+      left: 40px;
+      width: 170px;
+      height: 170px;
+      border-color: $MAIN-LIGHT-BLUE;
+   }
+
+   &:nth-child(2) {
+      top: 300px;
+      left: 80px;
+      width: 95px;
+      height: 95px;
+      border-color: #A5D4FF;
+   }
+
+   &:nth-child(3) {
+      left: 240px;
+      top: 210px;
+      width: 130px;
+      height: 130px;
+      border-color: $MAIN-DARK-BLUE;
+   }
+
+   &:nth-child(4) {
+      top: 40px;
+      right: 280px;
+      width: 120px;
+      height: 120px;
+      border-color: #FF9D9D;
+   }
+
+   &:nth-child(5) {
+      right: 45px;
+      top: 145px;
+      width: 260px;
+      height: 260px;
+      border-color: #5C5CDB;
+   }
+}
+
+.doctor-info {
+   position: relative;
+   display: flex;
+   align-items: center;
+   padding: 27px 45px 27px 48px;
+   background-color: $MAIN-LIGHT-BLUE;
+   background-image: url("../img/doctors/bg.png");
+   background-repeat: no-repeat;
+   background-position: top left;
+   color: #FFFFFF;
+}
+
+.doctor-info__img {
+   width: 380px;
+   height: 380px;
+   flex-shrink: 0;
+   margin-right: 35px;
+
+   img {
+      width: 100%;
+      border-radius: 50%;
+   }
+}
+
+.doctor-info__name {
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 30px;
+   letter-spacing: 0.02em;
+}
+
+.doctor-info__specials {
+   margin-bottom: 24px;
+   font-weight: 400;
+   font-size: 14px;
+   line-height: 15px;
+}
+
+.doctor-info__about {
+   margin-bottom: 68px;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 20px;
+}
+
+.doctor-info__tel {
+   div:first-child {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 15px;
+   }
+
+   div:last-child {
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 30px;
+      letter-spacing: 0.02em;
+   }
+}
+
+.doctor-info__close {
+   position: absolute;
+   top: 20px;
+   right: 20px;
+   width: 30px;
+   height: 30px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   border-radius: 50%;
+   box-shadow: 0 0 5px 0 white;
+   cursor: pointer;
+}

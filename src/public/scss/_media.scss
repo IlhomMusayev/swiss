@@ -1,0 +1,1027 @@
+// ============== MEDIA QUERIES ================== //
+@include media(1305px) {
+   .registration-section {
+      .container {
+         padding: 20px;
+      }
+   }
+}
+
+@include media(1300px) {
+   .slider .container {
+      background-size: 30%;
+   }
+
+   .services {
+      padding-top: 30px;
+   }
+
+   .description {
+      text-align: center;
+   }
+
+   .services__slider .slick-dots {
+      bottom: 30px;
+   }
+
+   .services__slider {
+      width: 100%;
+      margin-bottom: 20px;
+   }
+
+   .services__list {
+      width: 100%;
+   }
+
+   .services__card {
+      width: 32%;
+   }
+
+   .about-says {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+
+   .about-us {
+      width: 100%;
+      margin-bottom: 20px;
+      padding: 15px;
+
+      .section__title {
+         margin-bottom: 20px;
+      }
+
+      h3 {
+         margin-bottom: 10px;
+         font-size: 20px;
+      }
+
+      img {
+         width: 100%;
+      }
+   }
+
+   .people-says {
+      width: 100%;
+      padding: 15px;
+
+      .section__title {
+         margin-bottom: 20px;
+      }
+   }
+
+   .comment {
+      padding: 15px;
+   }
+
+   .comment__text {
+      font-size: 16px;
+      line-height: 20px;
+   }
+
+   .news {
+      padding-top: 30px;
+
+      .slick-track {
+         padding-top: 30px;
+         padding-bottom: 30px;
+      }
+   }
+
+   .sign-doctors {
+      padding-top: 30px;
+   }
+
+   .sign {
+      width: 100%;
+      margin-bottom: 30px;
+   }
+
+   .our-doctors {
+      width: 100%;
+   }
+
+   .prefers {
+      padding-top: 30px;
+   }
+
+   .gallery {
+      padding-top: 30px;
+   }
+
+   .campaign {
+      padding-top: 30px;
+      padding-bottom: 10px;
+   }
+
+   .feedback {
+      padding-top: 30px;
+      padding-bottom: 30px;
+   }
+
+   .is-useful {
+      width: 100%;
+      margin-bottom: 20px;
+   }
+
+   .share {
+      width: 100%;
+   }
+
+   .site-footer {
+      padding-top: 30px;
+   }
+
+   .our-doctors__header {
+      padding-top: 30px;
+      padding-left: 30px;
+
+      h2 {
+         line-height: 30px;
+      }
+   }
+
+   .sign h2 {
+      padding-top: 30px;
+      padding-left: 30px;
+   }
+
+   .tabs__menu {
+      position: static;
+      width: 100%;
+   }
+
+   .tabs__menu__ul {
+      width: 100%;
+      height: auto;
+   }
+
+   .tabs__content {
+      width: 100%;
+      padding-left: 0;
+   }
+
+   .tabs__about {
+      width: 100%;
+      padding-bottom: 30px;
+   }
+
+   .tabs__news {
+      width: 100%;
+      justify-content: space-evenly;
+   }
+
+   .tabs__card__wrapper {
+      justify-content: space-between;
+   }
+
+   .tabs__card {
+      margin: 0 0 30px 0;
+   }
+
+   .tabs__appointments {
+      width: 100%;
+   }
+
+   .tabs__payment {
+      width: 100%;
+   }
+
+   .tabs__payment__card {
+      padding: 20px 20px 40px;
+   }
+
+   .download-check {
+      left: 21px;
+      bottom: 12px;
+   }
+
+   .tabs__settings {
+      width: 100%;
+      padding: 20px;
+   }
+
+   .make-appointment {
+      margin-right: 15px;
+      margin-left: 15px;
+
+      .container {
+         padding: 20px;
+      }
+   }
+}
+
+@include media(1270px) {
+   .campaign__section {
+      width: 100%;
+      margin-bottom: 20px;
+   }
+
+   .tabs__about__cards {
+      justify-content: space-evenly;
+   }
+
+   .tabs__card {
+      width: 32%;
+      height: auto;
+   }
+
+   .tabs__card__header img {
+      width: 100%;
+   }
+
+   .article {
+      width: 100%;
+   }
+
+   .treatment-types__card {
+      width: 49%;
+   }
+
+   .article__treatment {
+      padding-bottom: 30px;
+   }
+
+   .article__description__gallery figure {
+      width: 48%;
+
+      img {
+         width: 100%;
+      }
+   }
+
+   .appointment {
+      width: 100%;
+
+      button {
+         width: 100%;
+      }
+   }
+}
+
+@include media(1245px) {
+   .site-options {
+      width: 100%;
+      justify-content: space-between;
+      flex-wrap: wrap;
+   }
+
+   .prefers {
+      padding-top: 30px;
+
+      .row {
+         margin-bottom: 0 !important;
+      }
+   }
+
+   .prefers__card {
+      width: 100%;
+      margin-bottom: 20px;
+   }
+}
+
+@include media(1200px) {
+   .registration-section {
+      .settings-form__field__label {
+         width: 100%;
+         margin-right: 0 !important;
+      }
+
+      input {
+         width: 100%;
+      }
+
+      .tabs__settings__status {
+         padding: 20px;
+      }
+   }
+}
+
+@include media(1187px) {
+   .service__labels {
+      justify-content: space-between;
+   }
+
+   .service__label {
+      width: 48%;
+      margin-right: 0 !important;
+   }
+}
+
+@include media(1160px) {
+   .gallery__section {
+      width: 100% !important;
+
+      &:first-child {
+         margin-bottom: 30px;
+      }
+   }
+
+   video {
+      width: 100%;
+      height: auto;
+   }
+
+   .video-wrapper {
+      margin-bottom: 30px;
+   }
+
+   .gallery__section__header {
+      margin-bottom: 30px;
+   }
+
+   .appointment-payment {
+      padding: 20px;
+   }
+}
+
+@include media(1090px) {
+   .services__list .row {
+      margin-bottom: 0 !important;
+   }
+
+   .services__card {
+      width: 100%;
+      margin-bottom: 20px;
+   }
+
+   .site-footer__nav, .site-footer__middle, .site-footer__info {
+      width: 100%;
+      text-align: center;
+   }
+
+   .site-footer .container:last-child div {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+   }
+
+   .site-footer__info {
+      width: 100%;
+      text-align: center;
+   }
+
+   .site-footer .container:first-child {
+      padding-bottom: 0 !important;
+   }
+
+   .site-footer__middle h3 {
+      margin-bottom: 45px;
+   }
+
+   .social-links {
+      margin-bottom: 45px;
+   }
+
+   .tabs__videos {
+      width: 100%;
+   }
+
+   .video-wrapper {
+      width: 48%;
+
+      h3 {
+         font-size: 20px;
+         line-height: 1;
+      }
+   }
+
+   .video-wrapper__video img {
+      width: 100%;
+      height: auto;
+   }
+
+   .appointment-payment__cost {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 40px;
+   }
+   .appointment-payment__services {
+      width: 100%;
+   }
+}
+
+@include media(1044px) {
+   .our-address__social__wrapper {
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+   }
+   .about-us__text {
+      flex-grow: 1;
+      margin-top: 20px;
+   }
+   .our-address__list {
+
+   }
+   .our-branch-address__list {
+      grid-template-columns: repeat(2, 1fr);
+   }
+}
+
+@include media(1010px) {
+   .site-nav__ul {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: -110%;
+      width: 100%;
+      z-index: 10;
+      flex-direction: column;
+      justify-content: center;
+      background-color: $MAIN-LIGHT-BLUE;
+      transition: 0.5s;
+   }
+
+   .slider .container {
+      background-image: none;
+   }
+
+   .slick-prev, .slick-next {
+      display: none !important;
+   }
+
+   .nav-open {
+      display: block;
+   }
+
+   .site-nav__li {
+      margin: 20px 0 !important;
+   }
+
+   .site-nav__link {
+      font-size: 25px;
+      color: #FFFFFF;
+   }
+
+   .nav-close {
+      display: flex;
+   }
+
+   .service__includes__label {
+      margin-right: 15px;
+      margin-bottom: 15px;
+   }
+}
+
+@include media(963px) {
+   .site-logo {
+      width: 100%;
+      text-align: center;
+   }
+
+   .registration {
+      width: 100%;
+      margin: 10px 0 !important;
+   }
+
+   .for-blinds, .custom-select {
+      margin-right: 0;
+   }
+
+   .tabs__photos {
+      width: 100%;
+   }
+
+   .left, .right {
+      width: 100%;
+
+      img {
+         width: 100%;
+         margin-bottom: 20px;
+      }
+   }
+
+   .middle {
+      width: 100%;
+
+      &__top img {
+         width: 100%;
+         margin-bottom: 20px;
+      }
+
+      &__bottom img {
+         width: 49%;
+         margin-bottom: 20px;
+      }
+   }
+
+   .video-modal iframe {
+      width: 90%;
+      height: 350px;
+   }
+
+   .modal__user {
+      width: 100%;
+   }
+}
+
+@include media(900px) {
+   .doctor-info {
+      flex-wrap: wrap;
+      padding: 30px;
+   }
+   .doctor-info__img {
+      width: 100%;
+      height: auto;
+
+      img {
+         width: 30%;
+      }
+   }
+   .doctor-info__about {
+      font-size: 16px;
+   }
+   .doctor-info__tel div:last-child {
+      font-size: 14px;
+   }
+   .tabs__appointments__card__header h3 {
+      width: 100%;
+      margin-bottom: 10px;
+   }
+   .tabs__appointments__card__date {
+      width: 100%;
+   }
+}
+
+@include media(830px) {
+   .tabs__about__card {
+      width: 100%;
+      padding-right: 26px;
+   }
+
+   .tabs__card {
+      width: 48%;
+   }
+}
+
+@include media(800px) {
+   .section__title {
+      width: 100%;
+      margin-bottom: 20px;
+   }
+
+   .weather__info {
+      width: 100%;
+      text-align: left;
+
+      img {
+         width: 40px;
+      }
+   }
+
+   .temperature {
+      font-size: 30px;
+   }
+
+   .celcius {
+      font-size: 36px;
+   }
+
+   .today-is {
+      font-size: 15px;
+      line-height: 1;
+   }
+
+   .is-useful {
+      padding: 20px;
+      height: auto;
+
+      span {
+         display: block;
+         width: 100%;
+         text-align: center;
+         font-size: 16px;
+         margin-bottom: 20px;
+      }
+   }
+
+   .is-useful__buttons {
+      width: 100%;
+      justify-content: center;
+
+      button {
+         width: 80px;
+         height: 45px;
+      }
+   }
+
+   .share span {
+      font-size: 16px;
+   }
+
+   .tabs__settings__status {
+      width: 100%;
+   }
+}
+
+@include media(768px) {
+   .our-address__wrapper {
+      padding: 30px 20px;
+   }
+   .our-branch-address__list {
+      grid-template-columns: repeat(1, 1fr);
+      grid-gap: 30px;
+   }
+}
+
+@include media(710px) {
+   .our-doctors {
+      height: auto;
+   }
+
+   .our-doctors__main {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-left: 20px;
+      height: auto;
+   }
+
+   .doctor {
+      position: static;
+      width: 150px !important;
+      height: 150px !important;
+      margin-right: 20px;
+      margin-bottom: 20px;
+   }
+
+   .settings-form__field__label {
+      width: 100%;
+      margin-bottom: 20px;
+
+      input {
+         width: 100%;
+      }
+   }
+
+   .appointment-saving button {
+      width: 100%;
+      padding-right: 10px !important;
+      padding-left: 10px !important;
+   }
+}
+
+@include media(650px) {
+   .photos {
+      width: 100%;
+   }
+
+   .photos__left {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 10px;
+
+      img {
+         width: 60%;
+      }
+   }
+
+   .photos__right {
+      width: 100%;
+      text-align: center;
+   }
+
+   .video-wrapper {
+      width: 100%;
+      margin-bottom: 30px !important;
+   }
+
+   .video-wrapper__video button {
+      width: 50px;
+      height: 50px;
+      bottom: -24px;
+
+      img {
+         width: 20px;
+         height: 20px;
+      }
+   }
+
+   .service__label {
+      width: 100%;
+      margin-bottom: 15px;
+   }
+}
+
+@include media(629px) {
+   .campaign__section {
+      margin-bottom: 20px !important;
+      padding-top: 20px;
+      padding-left: 20px;
+
+      h3 {
+         margin-bottom: 15px;
+         font-size: 25px;
+         line-height: 25px;
+      }
+
+      > img {
+         width: 150px;
+      }
+   }
+
+   .campaign__section__text {
+      margin-bottom: 25px !important;
+      font-size: 16px;
+      line-height: 16px;
+   }
+
+   .campaign__section__more {
+      a {
+         width: 100px;
+         height: 50px;
+
+         img {
+            width: 20px;
+         }
+      }
+
+      span {
+         font-size: 16px;
+         margin-right: 20px;
+      }
+   }
+
+   .campaign__section__socials {
+      a {
+         margin-right: 10px;
+      }
+
+      img {
+         height: 14px;
+      }
+   }
+
+   .tabs__card {
+      width: 100%;
+   }
+
+   .video-modal iframe {
+      height: 250px;
+   }
+
+   .video-modal button {
+      font-size: 30px;
+   }
+
+   .treatment-types__card {
+      width: 100%;
+   }
+
+   .article__description__gallery figure {
+      width: 100%;
+      margin-bottom: 30px;
+   }
+
+   .login-section {
+      width: 93%;
+      padding: 30px;
+      margin: 0 auto;
+   }
+
+   .login-form__field input {
+      width: 100%;
+   }
+
+   .register-forgot {
+      font-size: 0;
+
+      a {
+         font-size: 20px;
+         display: block;
+      }
+   }
+
+   .map__wrapper {
+      height: 300px;
+   }
+
+   .pagination {
+      text-align: center;
+   }
+
+   .pagination {
+      li {
+         width: 30px;
+         height: 30px;
+         font-size: 12px !important;
+      }
+
+      .pagination__btn {
+         width: 30px;
+         height: 30px;
+         margin: 0 5px;
+      }
+   }
+}
+
+@include media(600px) {
+   .our-address__heading {
+      margin-bottom: 30px;
+   }
+   .our-address__list {
+      width: 100%;
+
+      & .our-address__item {
+         margin-bottom: 15px;
+         text-align: center;
+      }
+   }
+   .our-address__social__wrapper {
+      flex-direction: column;
+   }
+   .our-address__social__links {
+      grid-template-columns: repeat(4, 1fr);
+   }
+   .about-us__text {
+      width: 100%;
+   }
+}
+
+@include media(500px) {
+   .slider .container {
+      padding-top: 20px;
+   }
+
+   .slide-item__mini-title {
+      font-size: 16px;
+   }
+
+   .slide-item__big-title {
+      font-size: 32px;
+      margin-bottom: 60px;
+      line-height: 40px;
+   }
+
+   .slide-item__link {
+      min-width: 140px;
+      height: 40px;
+      font-size: 16px;
+   }
+
+   .slick-dots li {
+      width: 20px;
+      height: 20px;
+   }
+
+   .slick-dots li button {
+      width: 0;
+      height: 0;
+      margin: 5px;
+   }
+
+   .tabs__appointments__card {
+      padding: 20px;
+   }
+
+   .tabs__appointments__card__date {
+      span {
+         font-size: 14px;
+      }
+
+      img {
+         width: 12px;
+      }
+   }
+
+   .tabs__payment__card__status p {
+      width: 90%;
+      margin-right: 20px;
+      font-size: 14px;
+   }
+
+   .payment-status {
+      font-size: 14px;
+   }
+
+   .tabs__payment__card__amount div {
+      font-size: 14px;
+   }
+
+   .treatment-name {
+      margin-right: 30px;
+   }
+
+   .download-check {
+      font-size: 14px;
+   }
+
+   .tabs__settings__saving {
+      flex-wrap: wrap;
+
+      button {
+         width: 100%;
+      }
+   }
+
+   .appointment-payment__list__item span {
+      width: 100% !important;
+   }
+
+   .tabs__settings__status {
+      padding: 20px;
+      margin-bottom: 30px;
+   }
+
+   .tabs__appointments__card__main {
+      text-align: justify;
+   }
+}
+
+@include media(425px) {
+   .our-branch-address__list {
+      padding-top: 20px;
+   }
+   .our-branch-address__list {
+      grid-gap: 25px;
+   }
+   .our-address__social__links {
+      width: 100%;
+      padding: 0;
+      grid-gap: 10px;
+   }
+}
+
+@include media(410px) {
+   .for-blinds, .custom-select {
+      width: 100%;
+      margin: 10px 0;
+   }
+
+   .photos__right-bottom {
+      justify-content: space-evenly;
+
+      img {
+         width: 48%;
+      }
+   }
+
+   .campaign__section__img {
+      width: 100px !important;
+   }
+}
+
+@include media(390px) {
+   .our-doctors__main {
+      justify-content: center;
+   }
+
+   .tabs__about {
+      h2 {
+         font-size: 20px;
+      }
+
+      p {
+         font-size: 16px;
+      }
+   }
+
+   .tabs__about__card {
+      span {
+         font-size: 16px;
+      }
+
+      img {
+         width: 40px;
+      }
+   }
+
+   .tabs__appointments__card__footer button {
+      width: 100%;
+      margin-bottom: 10px;
+      text-align: left;
+   }
+
+   .appointment-payment__services__buttons button {
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 15px;
+   }
+
+   .account-avatar {
+      margin: 10px auto;
+   }
+
+   .account-data {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+   }
+
+   .change-account-avatar {
+      width: 100%;
+      margin-bottom: 10px;
+      order: -1;
+   }
+
+   .account-info {
+      margin-bottom: 30px;
+   }
+}
+
+@include media(355px) {
+   .site-nav__link {
+      font-size: 16px;
+   }
+}

@@ -1,0 +1,129 @@
+// ============== SECTION GALLERY ================== //
+.gallery {
+   padding-top: 160px;
+
+   .container {
+      display: flex;
+      justify-content: space-between;
+   }
+}
+
+.gallery__section {
+   width: 484px;
+
+   &:last-child {
+      width: 625px;
+   }
+}
+
+.gallery__section__header {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   margin-bottom: 52px;
+}
+
+.gallery__section__title {
+   span {
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 28px;
+      letter-spacing: 0.02em;
+      color: #29295F;
+   }
+
+   h2 {
+      font-weight: 700;
+      font-size: 28px;
+      line-height: 46px;
+      letter-spacing: 0.02em;
+      color: #29295F;
+   }
+}
+
+.video-wrapper {
+   width: 484px;
+
+   h3 {
+      font-weight: 400;
+      font-size: 28px;
+      line-height: 34px;
+   }
+}
+
+.video-wrapper__video {
+   position: relative;
+   margin-bottom: 54px;
+
+   img {
+      vertical-align: middle;
+      width: 484px;
+      height: 250px;
+   }
+
+   button {
+      position: absolute;
+      bottom: -45px;
+      left: 23px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 90px;
+      height: 90px;
+      background: #00B1B9;
+      border-radius: 50%;
+      border: none;
+      box-shadow: -10px 12px 64px rgba(0, 177, 185, 0.7);
+      cursor: pointer;
+
+      img {
+         width: 28px;
+         height: 28px;
+         filter: drop-shadow(-3px 8px 14px rgba(8, 98, 102, 0.69));
+      }
+   }
+}
+
+.video-modal {
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   right: 0;
+   left: 0;
+   background-color: rgba(0, 0, 0, 0.3);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      border: none;
+      background-color: transparent;
+      font-size: 50px;
+      color: white;
+      cursor: pointer;
+   }
+}
+
+.photos {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   width: 625px;
+
+   img {
+      vertical-align: middle;
+   }
+}
+
+.photos__right-top {
+   margin-bottom: 10px;
+}
+
+.photos__right-bottom {
+   display: flex;
+   justify-content: space-between;
+   flex-wrap: wrap;
+}

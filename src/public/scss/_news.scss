@@ -1,0 +1,68 @@
+//============== SECTION NEWS STYLES ================== //
+.news {
+   padding-top: 66px;
+   background-color: rgba(229, 247, 248, 0.5);
+
+   .slick-next {
+      right: 8px;
+      top: -36px;
+      width: 45px;
+      height: 45px;
+      background: #FFFFFF;
+
+      &::before {
+         content: "";
+         width: 45px;
+         height: 45px;
+         display: block;
+         background-image: url(../img/icons/bluearrowr.svg);
+         background-position: center;
+         background-repeat: no-repeat;
+      }
+   }
+
+   .slick-prev {
+      left: 91%;
+      top: -36px;
+      width: 45px;
+      height: 45px;
+      background: #FFFFFF;
+
+      &::before {
+         content: "";
+         width: 45px;
+         height: 45px;
+         display: block;
+         background-image: url(../img/icons/bluearrowl.svg) !important;
+         background-position: center;
+         background-repeat: no-repeat;
+      }
+   }
+
+   .slick-track {
+      padding-top: 66px;
+      padding-bottom: 127px;
+   }
+}
+
+.news-slider__item {
+   width: 340px;
+   padding: 0 30px;
+
+   &:focus {
+      outline: none;
+   }
+
+   .tabs__card {
+      box-shadow: 0 84px 94px rgba(7, 79, 82, 0.2);
+   }
+
+   .tabs__card__body {
+      border: none;
+   }
+
+   .tabs__card__link {
+      border: none;
+   }
+}
+

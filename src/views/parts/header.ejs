@@ -1,0 +1,93 @@
+<% var user %>
+
+<!doctype html>
+<html lang="ru">
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport"
+         content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>Swiss Dental</title>
+   <link rel="icon"
+         type="image/png"
+         href="img/favicon/favicon.png">
+   <link rel="stylesheet" href="css/slick.css"/>
+   <link rel="stylesheet" href="css/slick-theme.css"/>
+   <link rel="stylesheet" href="css/normalize.css">
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<!--SITE HEADER-->
+<header class="site-header">
+   <div class="container">
+      <a class="site-logo" href="/">
+         <img src="img/logos/mainlogo.svg" alt="site logo" width="247" height="52">
+      </a>
+      <div class="site-options">
+         <button class="for-blinds">
+            <img src="img/icons/glasses.svg" alt="glasses icon" width="24" height="10">
+            <span>Для слабовидящих</span>
+         </button>
+         <div class="custom-select">
+            <img src="img/icons/globus.svg" alt="globus icon">
+            <select name="page-language">
+               <option value="0">Русский</option>
+               <option value="1">Aнглийский</option>
+               <option value="2">Узбекский</option>
+               <option value="3">Русский</option>
+            </select>
+         </div>
+         <a class="registration" href="appointment">
+            <img src="img/icons/bell.svg" alt="bell icons" width="24">
+            <span>Записатся</span>
+         </a>
+         <a class="registration" href="<%= user ?  "account" : "login"%>">
+            <img src="img/icons/avatar.svg" alt="bell icons" width="14">
+            <span><%= user ?  "Личний кабинет" : "Авторизация"%></span>
+         </a>
+      </div>
+   </div>
+</header>
+
+<!--SITE NAVIGATION-->
+<nav class="site-nav">
+   <div class="container">
+      <button class="nav-open">
+         <img src="img/icons/menuicon.svg" alt="">
+         <span>Меню</span>
+      </button>
+      <ul class="site-nav__ul">
+         <li class="site-nav__li">
+            <a class="site-nav__link" href="/about">
+               О клинике
+            </a>
+         </li>
+         <li class="site-nav__li">
+            <a class="site-nav__link" href="/cosmetic">
+               Косметическая стоматология
+            </a>
+         </li>
+         <li class="site-nav__li">
+            <a class="site-nav__link" href="treatment">
+               Лечение
+            </a>
+         </li>
+         <li class="site-nav__li">
+            <a class="site-nav__link" href="contacts">
+               Контакты
+            </a>
+         </li>
+         <li class="site-nav__li" style="margin-right: 30px;">
+            <a class="site-nav__link" href="admin">
+               Админ панель
+            </a>
+         </li>
+         <li class="site-nav__li">
+            <a class="site-nav__link" href="tel: +998711234567">
+               +99871 123-45-67
+            </a>
+         </li>
+         <button class="nav-close" type="button">&times;</button>
+      </ul>
+   </div>
+</nav>

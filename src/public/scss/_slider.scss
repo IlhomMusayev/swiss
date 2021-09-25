@@ -1,0 +1,168 @@
+//============== SLIDER STYLES ================== //
+
+.slider {
+   padding-left: 15px;
+   padding-right: 15px;
+   overflow: hidden;
+
+   .container {
+      max-width: 1800px;
+      padding-top: 100px;
+      padding-bottom: 85px;
+      background-color: rgba(0, 177, 185, 0.1);
+      background-image: url("../img/headerslider/toothbrush.png");
+      background-repeat: no-repeat;
+      background-position: right bottom;
+   }
+}
+
+.single-slider {
+   max-width: 1280px;
+   margin: 0 auto
+}
+
+.slide-item {
+   position: relative;
+   z-index: 999;
+
+   &:focus {
+      outline: none;
+   }
+
+   &__mini-title {
+      max-width: 625px;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 48px;
+      text-transform: uppercase;
+      color: $MAIN-DARK-BLUE;
+   }
+
+   &__big-title {
+      margin-bottom: 110px;
+      max-width: 625px;
+      font-weight: 700;
+      font-size: 46px;
+      line-height: 50px;
+      color: $MAIN-DARK-BLUE;
+
+      span:last-child {
+         color: $MAIN-LIGHT-BLUE;
+      }
+   }
+}
+
+.slide-item__links {
+   max-width: 625px;
+   display: flex;
+   align-items: center
+}
+
+.slide-item__link {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-width: 210px;
+   height: 60px;
+   font-weight: 400;
+   font-size: 20px;
+   line-height: 30px;
+
+   &:focus {
+      outline: none;
+   }
+
+   &:first-child {
+      background-color: $MAIN-DARK-BLUE;
+      color: $WHITE;
+
+
+      &:hover {
+         background-color: lighten($MAIN-DARK-BLUE, 2);
+      }
+   }
+
+   &:last-child {
+      background-color: transparent;
+      color: rgba($MAIN-DARK-BLUE, 0.4);
+
+      &:hover {
+         background-color: $MAIN-LIGHT-BLUE;
+         color: $WHITE;
+      }
+   }
+}
+
+.slick-prev {
+   left: -40px;
+}
+
+.slick-next {
+   right: -39px;
+}
+
+.slick-next:before {
+   content: '';
+   width: 24px;
+   height: 24px;
+   display: block;
+   background-image: url(../img/icons/next.svg);
+   background-position: center;
+   background-repeat: no-repeat;
+
+   &:hover {
+      background-color: $MAIN-LIGHT-BLUE;
+   }
+}
+
+.slick-prev:before {
+   content: '';
+   width: 24px;
+   height: 24px;
+   border-radius: 50%;
+   display: block;
+   background-image: url(../img/icons/prev.svg);
+   background-position: center;
+   background-repeat: no-repeat;
+
+   &:hover {
+      background-color: $MAIN-LIGHT-BLUE;
+   }
+}
+
+.slick-dots {
+   bottom: -50px;
+}
+
+.slick-dots li {
+   width: 24px;
+   height: 24px;
+   margin: 0 8px;
+   border-radius: 50%;
+   background-color: #fff;
+   text-align: center;
+}
+
+.slick-dots li button {
+   width: 10px;
+   height: 10px;
+   margin: 7px;
+   border-radius: 50%;
+   background-color: #E5F7F8;
+
+
+   &:before {
+      content: '';
+      font-size: 0;
+      width: 0;
+      height: 0;
+   }
+}
+
+.slick-dots li.slick-active {
+   background-color: $MAIN-DARK-BLUE;
+
+   button {
+      background-color: #E5F7F8;
+   }
+}

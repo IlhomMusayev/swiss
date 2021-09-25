@@ -1,0 +1,200 @@
+<%- include('parts/header')%>
+
+<h1>Bu shunchaki sarlavha</h1>
+<% if (user) { %>
+
+<!--SECTION TABS-->
+<section class="tabs">
+   <div class="container">
+      <aside class="tabs__menu">
+         <ul class="tabs__menu__ul">
+            <li class="tabs__menu__li">
+               Мои записи
+            </li>
+            <li class="tabs__menu__li">
+               Оплата
+            </li>
+            <li class="tabs__menu__li">
+               Настройка
+            </li>
+            <li class="tabs__menu__li">
+               <a href="/logout">Logout</a>
+            </li>
+         </ul>
+      </aside>
+      <section class="tabs__content">
+         <section class="tabs__content__item tabs__appointments">
+            <div class="tabs__appointments__card">
+               <header class="tabs__appointments__card__header">
+                  <h3>Лечение кариеса</h3>
+                  <div class="tabs__appointments__card__date">
+                     <img src="img/logos/decorativcircle.png" alt="" width="38" height="38">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="">
+                        <span>12:45</span>
+                     </time>
+                     <div>
+                        <img src="img/icons/calendar.svg" alt="">
+                        <span>12 Февраль 2021</span>
+                     </div>
+                  </div>
+               </header>
+               <main class="tabs__appointments__card__main">
+                  Врачи общей практики станут семейными врачами –президент, практики станут семейными врачами –
+                  президент
+               </main>
+               <footer class="tabs__appointments__card__footer">
+                  <button class="pay-online">
+                     Оплатить онлайн
+                  </button>
+                  <button class="cancel-appointment">
+                     Отменить запись
+                  </button>
+               </footer>
+            </div>
+            <div class="tabs__appointments__card">
+               <header class="tabs__appointments__card__header">
+                  <h3>Лечение периодонтита</h3>
+                  <div class="tabs__appointments__card__date">
+                     <img src="img/logos/decorativcircle.png" alt="" width="38" height="38">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="">
+                        <span>11:55</span>
+                     </time>
+                     <div>
+                        <img src="img/icons/calendar.svg" alt="">
+                        <span>18 Февраль 2021</span>
+                     </div>
+                  </div>
+               </header>
+               <main class="tabs__appointments__card__main">
+                  Врачи общей практики станут семейными врачами –президент, практики станут семейными врачами –
+                  президент
+               </main>
+               <footer class="tabs__appointments__card__footer">
+                  <button class="pay-online">
+                     Оплатить онлайн
+                  </button>
+                  <button class="cancel-appointment">
+                     Отменить запись
+                  </button>
+               </footer>
+            </div>
+            <div class="tabs__appointments__card">
+               <header class="tabs__appointments__card__header">
+                  <h3>Отбеливание зубов</h3>
+                  <div class="tabs__appointments__card__date">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="">
+                        <span>09:25</span>
+                     </time>
+                     <div>
+                        <img src="img/icons/calendar.svg" alt="">
+                        <span>10 Февраль 2021</span>
+                     </div>
+                  </div>
+               </header>
+               <main class="tabs__appointments__card__main">
+                  Врачи общей практики станут семейными врачами –президент, практики станут семейными врачами –
+                  президент
+               </main>
+               <footer class="tabs__appointments__card__footer">
+                  <button class="pay-online">
+                     Оплатить онлайн
+                  </button>
+                  <button class="cancel-appointment">
+                     Отменить запись
+                  </button>
+               </footer>
+            </div>
+         </section>
+         <section class="tabs__content__item tabs__payment">
+            <div class="tabs__payment__card">
+               <div class="tabs__payment__card__status">
+                  <p>Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту. Вы можете
+                     сохранить это!</p>
+                  <div class="payment-status paid">Оплачено</div>
+               </div>
+               <div class="tabs__payment__card__amount">
+                  <div class="treatment-name">Ортопедия лечение:</div>
+                  <div class="treatment-cost">
+                     <span>30 000</span> <small>uzs</small>
+                  </div>
+               </div>
+               <button class="download-check">
+                  <img src="img/icons/download.svg" alt="">
+                  <span>Скачать чек</span>
+               </button>
+            </div>
+            <div class="tabs__payment__card">
+               <div class="tabs__payment__card__status">
+                  <p>Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту. Вы можете
+                     сохранить это!</p>
+                  <div class="payment-status expectation">Ожидание</div>
+               </div>
+               <div class="tabs__payment__card__amount">
+                  <div class="treatment-name">Ортопедия лечение:</div>
+                  <div class="treatment-cost">
+                     <span>30 000</span> <small>uzs</small>
+                  </div>
+               </div>
+            </div>
+         </section>
+         <section class="tabs__content__item tabs__settings">
+            <header class="tabs__settings__header">
+               <h2>Настройка аккаунта</h2>
+               <p>Проста нажав на поле вы можете изменить ваше данные! Не забудие Сохранить</p>
+            </header>
+            <main class="tabs__settings__main">
+               <div class="account-info">
+                  <div class="account-data">
+                     <h3><%=user.name%></h3>
+                     <div class="account-registration-date">
+                        <span>Регистрирован в:</span>
+                        <span><%=date%></span>
+                     </div>
+                  </div>
+               </div>
+               <form class="settings-form" action="/account" method="POST">
+                  <div class="settings-form__field">
+                     <label class="settings-form__field__label" for="full_name">
+                        <span>Имя Фамилия</span>
+                        <input id="full_name" type="text" name="name" value="<%=user.name%>">
+                     </label>
+                     <label class="settings-form__field__label" for="phone_number">
+                        <span>Телефон номер</span>
+                        <input class="masked-phone" id="phone_number" type="tel" disabled
+                           data-phonemask="+ <%=user.phone.toString().split('').join(' ')%>" />
+                     </label>
+                  </div>
+                  <div class="settings-form__field">
+                     <label class="settings-form__field__label" for="full_name">
+                        <span>E-mail</span>
+                        <input id="email" type="email" disabled value="<%=user.email%>">
+                     </label>
+                  </div>
+                  <div class="tabs__settings__status">
+                     Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту. Вы можете
+                     сохранить это!
+                  </div>
+                  <div class="tabs__settings__saving">
+                     <button class="tabs__settings__save">
+                        Сохранить
+                     </button>
+                     <button class="tabs__settings__cancel">
+                        Отменить
+                     </button>
+                  </div>
+               </form>
+
+            </main>
+         </section>
+      </section>
+   </div>
+</section>
+<% } %>
+<script src="scripts/masked-phone.js"></script>
+<script src="scripts/main.js"></script>
+<script src="scripts/tabs.js"></script>
+
+<%- include('parts/footer')%>

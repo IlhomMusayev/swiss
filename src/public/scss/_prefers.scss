@@ -1,0 +1,23 @@
+.prefers {
+   padding-top: 140px;
+
+   .row:first-child {
+      margin-bottom: 59px;
+   }
+}
+
+.prefers__card {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 387px;
+   padding: 26px 47px 26px 26px;
+   border: 1px dashed $MAIN-LIGHT-BLUE;
+
+   h3 {
+      width: 200px;
+      font-weight: normal;
+      font-size: 20px;
+      line-height: 21px;
+   }
+}

@@ -1,0 +1,44 @@
+//==============MIXINS==================
+@mixin media($max-width) {
+   @media only screen and (max-width: $max-width) {
+      @content;
+   }
+}
+
+@mixin decoration-discs($type) {
+   @if $type == 'large' {
+      .outer {
+         width: 358px;
+         height: 358px;
+      }
+      .medium {
+         width: 243px;
+         height: 243px;
+      }
+      .inner {
+         width: 137px;
+         height: 137px;
+      }
+      .inner img {
+         width: 40px;
+         height: 40px;
+      }
+   } @else if $type == 'small' {
+      .outer {
+         width: 214px;
+         height: 214px;
+      }
+      .medium {
+         width: 154px;
+         height: 154px;
+      }
+      .inner {
+         width: 86px;
+         height: 86px;
+      }
+      .inner img {
+         width: 27px;
+         height: 27px;
+      }
+   }
+}
