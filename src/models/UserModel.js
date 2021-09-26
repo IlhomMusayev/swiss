@@ -28,6 +28,10 @@ const UserSchema = new Schema({
     dateCreated: {
         type: Date,
         default: Date.now()
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     }
 })
 
@@ -36,10 +40,14 @@ async function UserModel () {
      return await db.model('users', UserSchema)
 }
 
-
-async function addUser(name, phone, email, password){
+async function allUsers(){
     let db = await UserModel()
-    return await db.create({ name, phone, email, password})
+    return await db.find()
+}
+
+async function addUser(name, phone, email, password, isAdmin){
+    let db = await UserModel()
+    return await db.create({ name, phone, email, password, isAdmin})
 }
 
 async function findUserByEmail(email){
@@ -61,5 +69,6 @@ module.exports = {
     addUser,
     findUserByPhone,
     findUserByEmail,
-    findUser
+    findUser,
+    allUsers
 }

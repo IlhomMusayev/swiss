@@ -25,6 +25,10 @@ const AdminSchema = new Schema({
         type: String,
         required: true
     }, 
+    isAdmin: {
+        type: Boolean,
+        default: true
+    },
     dateCreated: {
         type: Date,
         default: Date.now()

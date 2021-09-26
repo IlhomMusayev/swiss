@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const Joi = require('joi')
-const { findUser, addUser } = require('../models/UserModel')
+const { findUser, addUser, allUsers } = require('../models/UserModel')
 const { genereteCrypt } = require('../modules/bcrypt')
 const { genereteToken } = require('../modules/jwt')
 
@@ -32,17 +32,25 @@ const RegisterValidation = Joi.object({
 })
 
 router.get('/', async (req, res) => {
+        let users = await allUsers()
+    console.log(users);
     res.render('register')
 })
 
 router.post('/', async (req, res) => {
     try {
         // convert phone num to Numbers
+        const Users = await allUsers()
         req.body.phone_number = Number(req.body.phone_number.replace(/\D/g,''))
         const { phone_number, email, full_name, password} = await RegisterValidation.validateAsync(req.body)
-        const user = await addUser(full_name, phone_number, email, genereteCrypt(password))
         const token = genereteToken({ name: full_name, email: email })
-        res.cookie('token', token).redirect('/')
+        if(Users.length == 0){
+            await addUser(full_name, phone_number, email, genereteCrypt(password), true)
+            res.cookie('token', token).redirect('/')
+        }else{
+            await addUser(full_name, phone_number, email, genereteCrypt(password), false)
+            res.cookie('token', token).redirect('/')
+        }
     }
     catch (e){
         if(String(e).includes("duplicate key")){

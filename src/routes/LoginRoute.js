@@ -45,22 +45,7 @@ router.post('/', async (req, res) => {
         } = await LoginValidation.validateAsync(req.body)
 
         const user = await findUserByEmail(email)
-        if (!user) {
-            const admin = await findAdminByEmail(email)
-            if (admin) {
-                const validPassword = await compareCrypt(password, user.password)
-
-                if (!validPassword) throw new Error('Invalid email or password')
-
-                const token = genereteToken({
-                    name: user.name,
-                    email: email
-                })
-                res.cookie('token', token).redirect('/')
-                return;
-            }
-        }
-
+   
         const validPassword = await compareCrypt(password, user.password)
 
         if (!validPassword) throw new Error('Invalid email or password')
