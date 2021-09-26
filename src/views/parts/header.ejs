@@ -1,4 +1,6 @@
-<% var user %>
+<% var user
+   var title
+%>
 
 <!doctype html>
 <html lang="ru">
@@ -7,7 +9,7 @@
    <meta name="viewport"
          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <title>Swiss Dental</title>
+   <title>Swiss Dental <%= title %> </title>
    <link rel="icon"
          type="image/png"
          href="/img/favicon/favicon.png">
@@ -77,12 +79,14 @@
                Контакты
             </a>
          </li>
-         <li class="site-nav__li" style="margin-right: 30px;">
-            <a class="site-nav__link" href="admin">
-               Админ панель
-            </a>
-         </li>
-         <li class="site-nav__li">
+         <% if(user.isAdmin) { %> 
+            <li class="site-nav__li" style="margin-right: 30px;">
+               <a class="site-nav__link" href="admin">
+                  Админ панель
+               </a>
+            </li>
+         <% } %> 
+         <li class="site-nav__li"> 
             <a class="site-nav__link" href="tel: +998711234567">
                +99871 123-45-67
             </a>

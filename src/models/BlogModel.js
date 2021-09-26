@@ -25,6 +25,10 @@ const BlogsScheme = new Schema({
         type: 'string',
         required: true,
     },
+    dateCreated: {
+        type: Date,
+        default: Date.now()
+    },
     slug: {
         type: String,
         slug: ["title", "subtitle"],

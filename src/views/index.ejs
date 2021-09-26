@@ -281,188 +281,35 @@
          <span>Будьте начеку</span>
       </div>
       <div class="news-slider">
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
+         <% blogs.forEach(function(blog) { %> 
+            <div class="news-slider__item">
+               <div class="tabs__card">
+                  <div class="tabs__card__header">
+                     <img src="files/<%= blog.filename %>" alt="" width="280" height="190" style="width:280px; height: 190px; object-fit: cover">
+                  </div>
+                  <div class="tabs__card__body">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="clock icon">
+                        <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
+                     </time>
+                     <h3><%= blog.title %></h3>
+                  </div>
+                  <div class="tabs__card__link">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="clock icon">
+                        <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
+                     </time>
+                     <h3>
+                        <a href="#"><%= blog.title %></a>
+                     </h3>
+                     <p>
+                        <a href="#">Врачи общей практики станут семейными врачами – президент</a>
+                     </p>
+                  </div>
                </div>
             </div>
-         </div>
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
-               </div>
-            </div>
-         </div>
-         <div class="news-slider__item">
-            <div class="tabs__card">
-               <div class="tabs__card__header">
-                  <img src="https://picsum.photos/280/190" alt="" width="280" height="190">
-               </div>
-               <div class="tabs__card__body">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>Врачи общей практики станут семейными врачами – президент</h3>
-               </div>
-               <div class="tabs__card__link">
-                  <time>
-                     <img src="img/icons/clock.svg" alt="clock icon">
-                     <span>10:45</span>
-                  </time>
-                  <h3>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
-               </div>
-            </div>
-         </div>
+
+         <% }) %> 
       </div>
    </div>
 </section>

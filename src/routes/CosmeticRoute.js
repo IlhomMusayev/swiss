@@ -1,7 +1,9 @@
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
-    res.render('cosmetic')
+    res.render('cosmetic', {
+        user: req.user
+    })
 })
 
 module.exports = {

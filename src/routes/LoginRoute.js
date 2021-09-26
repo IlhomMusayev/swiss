@@ -15,7 +15,7 @@ const {
 } = require('../models/AdminModel')
 
 
-router.use(AuthMiddleware)
+// router.use(AuthMiddleware)
 
 const LoginValidation = Joi.object({
     login: Joi.string()
@@ -34,7 +34,10 @@ const LoginValidation = Joi.object({
 })
 
 router.get('/', async (req, res) => {
-    res.render('login')
+    res.render('login', {
+        title: "Login",
+        user: req.user
+    })
 })
 
 router.post('/', async (req, res) => {

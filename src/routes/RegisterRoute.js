@@ -34,7 +34,10 @@ const RegisterValidation = Joi.object({
 router.get('/', async (req, res) => {
         let users = await allUsers()
     console.log(users);
-    res.render('register')
+    res.render('register',{
+        title: "Register",
+        user: req.user
+    })
 })
 
 router.post('/', async (req, res) => {

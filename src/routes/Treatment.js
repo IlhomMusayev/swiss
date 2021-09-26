@@ -1,7 +1,10 @@
 const router = require('express').Router()
 
 router.get('/', async (req, res) => {
-    res.render('treatment')
+    res.render('treatment', {
+        user: req.user
+
+    })
 })
 
 

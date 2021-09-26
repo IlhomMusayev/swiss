@@ -164,7 +164,7 @@
                      <label class="settings-form__field__label" for="phone_number">
                         <span>Телефон номер</span>
                         <input class="masked-phone" id="phone_number" type="tel" disabled
-                           data-phonemask="+ <%=user.phone.toString().split('').join(' ')%>" />
+                           data-phonemask="+ <%= user.phone.toString().split('').join(' ')%>" />
                      </label>
                   </div>
                   <div class="settings-form__field">

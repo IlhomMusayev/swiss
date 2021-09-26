@@ -1,16 +1,30 @@
+const { findUserByEmail} = require("../models/UserModel");
 const { checkToken } = require("../modules/jwt");
-const { findUserByEmail } = require('../m')
 
-module.exports = async function AuthMiddleware (req, res, next) {
-    try {
-        const data = checkToken(req?.cookies?.token)
-        const user = await findUserByEmail
-        if(user){
-            req.user = user
-            next()
+module.exports = async function UserMiddleware(req, res, next) {
+	try {
+		if (!req.cookies.token) {
+			next();
+			return;
+		}
+		const data = await checkToken(req.cookies.token);
+
+		if (!data) {
+			next();
+			return;
+		}
+
+        const user = await findUserByEmail(data.email)
+
+        if (!user) {
+            next();
+            return;
         }
-    }
-    catch (e){
-        console.log(e);
-    }
-}
+
+		req.user = data;
+
+		next();
+	} catch (error) {
+		next();
+	}
+};

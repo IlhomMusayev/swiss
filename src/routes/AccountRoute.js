@@ -6,7 +6,7 @@ const { findAdminByEmail } = require('../models/AdminModel')
 const moment = require('moment')
 moment.locale('ru-Ru')
 
-router.use(AuthMiddleware)
+// router.use(AuthMiddleware)
 
 router.get('/', async (req, res) => {
 
@@ -21,7 +21,7 @@ router.get('/', async (req, res) => {
         let date = moment(user.dateCreated).format('LL')
         res.render('account', {
             user: user, 
-            date: date
+            date: date,
         })
         return;
     }
@@ -30,7 +30,7 @@ router.get('/', async (req, res) => {
 
     res.render('account', {
         user: user, 
-        date: date
+        date: date,
     })
 })
 
