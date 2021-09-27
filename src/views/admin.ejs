@@ -16,7 +16,10 @@
     <% 
         var courses = courses || [] 
         var num = 1
-        var error, succes
+        var a_num = 1
+        var error 
+        var succes
+        var allAppointments = allAppointments || []
     %> 
     <div class="container">
         <div class="row">
@@ -36,6 +39,7 @@
                         <%= error %> 
                     </div>
                 <% } %>  
+
                 <% if(succes) {%> 
                     <div class="alert alert-success">
                         <% succes %> 
@@ -101,7 +105,41 @@
                       
                     </tbody>
                   </table>
-        </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 text-center my-5">
+                    <div class="title">
+                        <h2>Appointments</h2>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Phone Number</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Check</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% allAppointments.forEach(function(appointment) {%> 
+                        <tr>
+                            <th scope="row"><%= a_num ++ %> </th>
+                            <td><%= appointment.full_name %> </td>
+                            <td><%= appointment.phone %> </td>
+                            <td><%= appointment.dateCreated.toGMTString()
+                                %>
+                            </td>
+                          </tr>
+                      <% }) %> 
+                      
+                    </tbody>
+                  </table>
+
+            </div>
+        </div>  
 
 
 

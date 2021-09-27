@@ -6,7 +6,7 @@ const https = require('https')
 const http = require('http')
 const cookie = require('cookie-parser')
 const routes = require("./routes/routes");
-const AuthMiddleware = require('./middlewares/auth')
+const UserMiddleware = require('./middlewares/userMiddleware')
 require('dotenv').config({
   path: path.join(__dirname, ".env")
 })
@@ -21,7 +21,7 @@ try {
   app.set('view engine', "ejs")
   /* Middlewares */
   app.use(cookie())
-  app.use(AuthMiddleware)
+  app.use(UserMiddleware)
 
   function ensureSecure(req, res, next) {
     if (req.secure) {

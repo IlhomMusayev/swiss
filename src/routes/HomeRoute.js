@@ -1,23 +1,40 @@
 const router = require('express').Router()
-const AuthMiddleware = require('../middlewares/auth')
+const AuthMiddleware = require('../middlewares/authMiddleware')
 const { findUserByEmail } = require('../models/UserModel')
 const moment = require('moment')
 const { allBlogs } = require('../models/BlogModel')
-const { addAppointmentModel } = require('../models/AppointmentModel')
+const { allAppointmentModel, addAppointmentModel } = require('../models/Appointment')
 moment.locale('ru-Ru')
 
 // router.use(AuthMiddleware)
 
 router.get('/', async (req, res) => {
-    const user = await findUserByEmail(req.user.email)
     const blogs = await allBlogs()
     res.render('index', {
-        user: user,
+        user: req.user,
         blogs
     })
 })
 
-router.post('/addappointment', async (req, res) => {
+router.post('/', AuthMiddleware, async (req, res) => {
+    const { full_name, phone_number } = req.body
+    const blogs = await allBlogs()
+
+    if(!(full_name && phone_number)){
+        res.render('index', {
+            error: 'Please enter a full name or phone number',
+            user: req.user,
+            blogs
+        })
+    }
+    const addAppointment = await addAppointmentModel(full_name, phone_number)
+    if(addAppointment){
+        res.render('index', {
+            success: 'Ваш запрос принят',
+            user: req.user,
+            blogs
+        })
+    }
 
 })
 

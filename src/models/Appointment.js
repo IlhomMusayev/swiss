@@ -2,17 +2,17 @@ const { Schema, model } = require('mongoose')
 const client = require('../modules/mongo')
 
 const AppointmentSchema = new Schema({
-    name: {
+    full_name: {
         type: String, 
         required: true,
         minLength: 3,
-        maxLength: 30,
+        maxLength: 50,
         trim: true,
     },
     phone: {
         type: Number,
         required: true,
-        unique: true
+        trim: true,
     },
     dateCreated: {
         type: Date,
@@ -30,9 +30,9 @@ async function allAppointmentModel(){
     return await db.find()
 }
 
-async function addAppointmentModel(name, phone, email, password, isAdmin){
+async function addAppointmentModel(full_name, phone){
     let db = await AppointmentModel()
-    return await db.create({ name, phone, email, password, isAdmin})
+    return await db.create({full_name, phone})
 }
 module.exports = {
     allAppointmentModel,

@@ -256,7 +256,7 @@
                   что читатель отвлекаться на удобочитаемое содержимое страницы при просмотре ее макета.</p>
             </main>
          </div>
-         <form class="comment__form">
+         <form class="comment__form" >
             <textarea class="comment__field" name="comment" id="comment" placeholder="Пишите сюда"></textarea>
             <label class="file-input" for="file_input">
                <input id="file_input" type="file">
@@ -315,14 +315,18 @@
 </section>
 
 <!--SECTION SIGN AND DOCTORS-->
+<% var error %> 
 <div class="sign-doctors">
    <div class="container">
       <section class="sign">
          <h2>Запипшитесь <br>на приём</h2>
-         <form class="sign__form">
+         <% if(error) { %>
+            <div class="alert alert-danger"><%= error %></div>
+            <% } %> 
+            <form class="sign__form" action="/" method="post">
             <div class="sign__form__fields">
-               <input type="text" placeholder="Имя Фамилия" name="full_name">
-               <input type="number" placeholder="Номер телефона" name="phone_number">
+               <input type="text" placeholder="Имя Фамилия" name="full_name" required>
+               <input type="number" placeholder="Номер телефона" name="phone_number" required>
             </div>
             <button type="submit">
                Записатся

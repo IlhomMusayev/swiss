@@ -6,13 +6,11 @@ const {
 const {
     genereteToken
 } = require('../modules/jwt')
-const AuthMiddleware = require('../middlewares/auth')
+const AuthMiddleware = require('../middlewares/userMiddleware')
 const {
     compareCrypt
 } = require('../modules/bcrypt')
-const {
-    findAdminByEmail
-} = require('../models/AdminModel')
+
 
 
 // router.use(AuthMiddleware)
@@ -55,7 +53,8 @@ router.post('/', async (req, res) => {
 
         const token = genereteToken({
             name: user.name,
-            email: email
+            email: email,
+            isAdmin: user.isAdmin
         })
         res.cookie('token', token).redirect('/')
 

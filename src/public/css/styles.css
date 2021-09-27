@@ -3849,3 +3849,17 @@ legend {
 .blog-post p{
   /* height: 100px; */
 }
+
+.alert{
+  padding: 10px 10px;
+  margin: 0 40px;
+  color: #fff;
+}
+.alert-danger{
+  border: 1px solid rgb(163, 3, 3);
+  background-color: #f86c6c;
+} 
+.alert-success{
+  border: 1px solid rgb(4, 134, 0);
+  background-color: #93f665;
+} 

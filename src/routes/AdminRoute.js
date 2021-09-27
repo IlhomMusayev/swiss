@@ -12,6 +12,8 @@ const path = require('path');
 const router = require('express').Router()
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectId
+const { allAppointmentModel } = require('../models/Appointment')
+
 
 
 router.use(adminMiddleware)
@@ -19,8 +21,10 @@ router.use(adminMiddleware)
 
 router.get('/', async (req, res) => {
     const courses = await allBlogs()
+    const allAppointments = await allAppointmentModel()
     res.render('admin', {
-        courses
+        courses,
+        allAppointments
     })
 })
 
@@ -44,9 +48,7 @@ router.post('/add', expressFileUpload(), async (req, res) => {
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
-        res.render('admin', {
-            succes: "Muvoffaqiyatli qo'shildi..."
-        })
+        res.redirect('/admin')
 
     } catch (error) {
         console.log(error);
@@ -103,7 +105,7 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
 })
 
 
-router.get('/delete/:id', async (req, res) => {
+router.get('/delete/:id' ,async (req, res) => {
     const blogItem = await findBlogById(req.params.id)
     if (!blogItem) {
         res.render('admin', {
