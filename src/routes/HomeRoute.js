@@ -17,8 +17,10 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', AuthMiddleware, async (req, res) => {
+    console.log(req.body)
     const { full_name, phone_number } = req.body
     const blogs = await allBlogs()
+    console.log(full_name, phone_number);
 
     if(!(full_name && phone_number)){
         res.render('index', {
@@ -29,10 +31,9 @@ router.post('/', AuthMiddleware, async (req, res) => {
     }
     const addAppointment = await addAppointmentModel(full_name, phone_number)
     if(addAppointment){
-        res.render('index', {
-            success: 'Ваш запрос принят',
-            user: req.user,
-            blogs
+        res.json({
+            success: 'ok',
+            body: req.body,
         })
     }
 

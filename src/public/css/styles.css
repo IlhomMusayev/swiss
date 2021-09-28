@@ -3851,15 +3851,16 @@ legend {
 }
 
 .alert{
-  padding: 10px 10px;
+  padding: 15px 15px;
   margin: 0 40px;
-  color: #fff;
+  color: #29295F;
+  font-size: 20px;
 }
 .alert-danger{
   border: 1px solid rgb(163, 3, 3);
   background-color: #f86c6c;
 } 
 .alert-success{
-  border: 1px solid rgb(4, 134, 0);
-  background-color: #93f665;
+  border: 1px solid rgba(39, 185, 34, 0.842);
+  background-color: #5fc82d5e;
 } 

@@ -1,5 +1,5 @@
 <% 
-   var user
+   var user = user || ""
    var title
    // var admin = user.isAdmin || false
 %>
@@ -82,11 +82,13 @@
             </a>
          </li>
  
+         <% if(user.isAdmin) { %>
             <li class="site-nav__li" style="margin-right: 30px;">
                <a class="site-nav__link" href="admin">
                   Админ панель
                </a>
             </li>
+         <% } %> 
  
          <li class="site-nav__li"> 
             <a class="site-nav__link" href="tel: +998711234567">

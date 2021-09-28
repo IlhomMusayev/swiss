@@ -256,7 +256,7 @@
                   что читатель отвлекаться на удобочитаемое содержимое страницы при просмотре ее макета.</p>
             </main>
          </div>
-         <form class="comment__form" >
+         <form class="comment__form">
             <textarea class="comment__field" name="comment" id="comment" placeholder="Пишите сюда"></textarea>
             <label class="file-input" for="file_input">
                <input id="file_input" type="file">
@@ -281,54 +281,54 @@
          <span>Будьте начеку</span>
       </div>
       <div class="news-slider">
-         <% blogs.forEach(function(blog) { %> 
-            <div class="news-slider__item">
-               <div class="tabs__card">
-                  <div class="tabs__card__header">
-                     <img src="files/<%= blog.filename %>" alt="" width="280" height="190" style="width:280px; height: 190px; object-fit: cover">
-                  </div>
-                  <div class="tabs__card__body">
-                     <time>
-                        <img src="img/icons/clock.svg" alt="clock icon">
-                        <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
-                     </time>
-                     <h3><%= blog.title %></h3>
-                  </div>
-                  <div class="tabs__card__link">
-                     <time>
-                        <img src="img/icons/clock.svg" alt="clock icon">
-                        <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
-                     </time>
-                     <h3>
-                        <a href="#"><%= blog.title %></a>
-                     </h3>
-                     <p>
-                        <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                     </p>
-                  </div>
+         <% blogs.forEach(function(blog) { %>
+         <div class="news-slider__item">
+            <div class="tabs__card">
+               <div class="tabs__card__header">
+                  <img src="files/<%= blog.filename %>" alt="" width="280" height="190"
+                     style="width:280px; height: 190px; object-fit: cover">
+               </div>
+               <div class="tabs__card__body">
+                  <time>
+                     <img src="img/icons/clock.svg" alt="clock icon">
+                     <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
+                  </time>
+                  <h3><%= blog.title %></h3>
+               </div>
+               <div class="tabs__card__link">
+                  <time>
+                     <img src="img/icons/clock.svg" alt="clock icon">
+                     <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
+                  </time>
+                  <h3>
+                     <a href="#"><%= blog.title %></a>
+                  </h3>
+                  <p>
+                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
+                  </p>
                </div>
             </div>
+         </div>
 
-         <% }) %> 
+         <% }) %>
       </div>
    </div>
 </section>
 
 <!--SECTION SIGN AND DOCTORS-->
-<% var error %> 
 <div class="sign-doctors">
    <div class="container">
       <section class="sign">
          <h2>Запипшитесь <br>на приём</h2>
-         <% if(error) { %>
-            <div class="alert alert-danger"><%= error %></div>
-            <% } %> 
-            <form class="sign__form" action="/" method="post">
+         <div class="alerts">
+
+         </div>
+         <form class="sign__form">
             <div class="sign__form__fields">
-               <input type="text" placeholder="Имя Фамилия" name="full_name" required>
-               <input type="number" placeholder="Номер телефона" name="phone_number" required>
+               <input type="text" placeholder="Имя Фамилия" name="full_name" required class="full_name">
+               <input type="number" placeholder="Номер телефона" name="phone_number" required class="phone_number">
             </div>
-            <button type="submit">
+            <button type="submit" class="send_appointment_btn">
                Записатся
             </button>
          </form>
@@ -502,3 +502,44 @@
 </div>
 
 <%- include('parts/footer') %>
+
+
+<script>
+   const sendAppointment = document.querySelector('.sign__form')
+   const fullNameElement = document.querySelector('.full_name')
+   const phoneNumberElement = document.querySelector('.phone_number')
+   sendAppointment.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      const option = {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+            full_name: sendAppointment.full_name.value,
+            phone_number: sendAppointment.phone_number.value,
+         })
+
+      }
+      const response = await fetch('/', option);
+      const json = await response.json();
+      console.log(json);
+
+      if (response.status === 200) {
+
+         const successAlertElement = document.createElement('div')
+
+         successAlertElement.classList.add('alert', 'alert-success')
+         successAlertElement.textContent = 'Ваша заявка отправлена'
+         document.querySelector('.alerts').appendChild(successAlertElement)
+
+         fullNameElement.value = ''
+         phoneNumberElement.value = ''
+
+         setTimeout(function () {
+            successAlertElement.parentNode.removeChild(successAlertElement);
+         }, 5000);
+      }
+
+   })
+</script>
