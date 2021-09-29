@@ -1485,6 +1485,7 @@ input[type=number] {
   align-items: center;
   justify-content: center;
   background-color: #FFFFFF;
+  cursor: pointer;
 }
 .share span {
   margin-right: 45px;
@@ -1701,7 +1702,7 @@ input[type=number] {
 }
 
 .pagination {
-  display: none;
+  /* display: none; */
   margin-bottom: 370px;
   text-align: left;
 }
@@ -2994,6 +2995,7 @@ legend {
   }
 
   .share {
+    cursor: pointer;
     width: 100%;
   }
 

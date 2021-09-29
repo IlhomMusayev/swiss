@@ -6,48 +6,48 @@ document.addEventListener('DOMContentLoaded', () => {
          posterURL: 'https://picsum.photos/484/250?rand=1',
          videoTitle: 'Технологии будущего для вашего здоровья'
       },
-      {
-         id: 2,
-         videoURL: 'https://www.youtube.com/embed/GFADGs3vBuU',
-         posterURL: 'https://picsum.photos/484/250?rand=2',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      {
-         id: 3,
-         videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-         posterURL: 'https://picsum.photos/484/250?rand=3',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      {
-         id: 4,
-         videoURL: 'https://www.youtube.com/embed/xH8P-8EbpnM',
-         posterURL: 'https://picsum.photos/484/250?rand=4',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      {
-         id: 5,
-         videoURL: 'https://www.youtube.com/embed/GFADGs3vBuU',
-         posterURL: 'https://picsum.photos/484/250?rand=5',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      {
-         id: 6,
-         videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-         posterURL: 'https://picsum.photos/484/250?rand=6',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      {
-         id: 7,
-         videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-         posterURL: 'https://picsum.photos/484/250?rand=7',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      {
-         id: 8,
-         videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-         posterURL: 'https://picsum.photos/484/250?rand=8',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      }
+      // {
+      //    id: 2,
+      //    videoURL: 'https://www.youtube.com/embed/GFADGs3vBuU',
+      //    posterURL: 'https://picsum.photos/484/250?rand=2',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // },
+      // {
+      //    id: 3,
+      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
+      //    posterURL: 'https://picsum.photos/484/250?rand=3',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // },
+      // {
+      //    id: 4,
+      //    videoURL: 'https://www.youtube.com/embed/xH8P-8EbpnM',
+      //    posterURL: 'https://picsum.photos/484/250?rand=4',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // },
+      // {
+      //    id: 5,
+      //    videoURL: 'https://www.youtube.com/embed/GFADGs3vBuU',
+      //    posterURL: 'https://picsum.photos/484/250?rand=5',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // },
+      // {
+      //    id: 6,
+      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
+      //    posterURL: 'https://picsum.photos/484/250?rand=6',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // },
+      // {
+      //    id: 7,
+      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
+      //    posterURL: 'https://picsum.photos/484/250?rand=7',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // },
+      // {
+      //    id: 8,
+      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
+      //    posterURL: 'https://picsum.photos/484/250?rand=8',
+      //    videoTitle: 'Технологии будущего для вашего здоровья'
+      // }
    ]
 
    const tabsVideosWrapper = document.querySelector('.tabs__videos');

@@ -1,4 +1,5 @@
 const {
+    BlogModel,
     addBlog,
     allBlogs,
     findBlogById,
@@ -12,7 +13,10 @@ const path = require('path');
 const router = require('express').Router()
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectId
-const { allAppointmentModel } = require('../models/Appointment')
+const {
+    AppointmentModel,
+    allAppointmentModel
+} = require('../models/Appointment')
 
 
 
@@ -20,16 +24,44 @@ router.use(adminMiddleware)
 
 
 router.get('/', async (req, res) => {
-    const courses = await allBlogs()
+    const skipblog = req.query.skipblog * 1 || 0;
+    const BlogModele = await BlogModel()
+    const allblogs = await allBlogs()
+    const allBlogsPog = await BlogModele
+        .find()
+        .skip(skipblog*10)
+        .limit(10)
+    const allBlogsCount = await allblogs.length
+
+    const skipappontment = req.query.skipappontment * 1 || 0;
+
+    const AppointmentModels = await AppointmentModel()
     const allAppointments = await allAppointmentModel()
+    const allAppointmentPog = await AppointmentModels
+        .find()
+        .skip(skipblog*10)
+        .limit(10)
+        .sort({dateCreated: -1})
+    const allAppointmentCount = await allAppointments.length
+
+
+
     res.render('admin', {
-        courses,
-        allAppointments
+        skipblog,
+        allBlogsPog,
+        allBlogsCount,
+        skipappontment,
+        allAppointmentPog,
+        allAppointmentCount
     })
 })
 
+router.get('/addblog', async (req, res) => {
+    res.render('addblog')
+})
 
-router.post('/add', expressFileUpload(), async (req, res) => {
+
+router.post('/addblog', expressFileUpload(), async (req, res) => {
     try {
         const {
             title,
@@ -48,12 +80,15 @@ router.post('/add', expressFileUpload(), async (req, res) => {
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
-        res.redirect('/admin')
+        res.render('addblog', {
+            message: "Muvoffaqiyatli qo'shildi!"
+        })
 
     } catch (error) {
         console.log(error);
     }
 })
+
 
 router.get('/edite/:id', async (req, res) => {
     try {
@@ -105,18 +140,21 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
 })
 
 
-router.get('/delete/:id' ,async (req, res) => {
-    const blogItem = await findBlogById(req.params.id)
-    if (!blogItem) {
-        res.render('admin', {
-            title: 'Admin panel',
-            error: "Bunday blog mavjud emas 1"
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const deleteOne = await deleteOneById(req.params.id)
+
+        if (deleteOne) {
+            res.json({
+                message: 'Blog deleted'
+            })
+        }
+
+    } catch (error) {
+        res.json({
+            error: error
         })
-        return;
     }
-    
-    const deleteOne = await deleteOneById(req.params.id)
-    res.redirect('/admin')
 
 })
 

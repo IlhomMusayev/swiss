@@ -49,6 +49,7 @@ async function allBlogs() {
     return await db.find()
 }
 
+
 async function addBlog(title, content, filename) {
     let db = await BlogModel()
     return await db.create({
@@ -93,5 +94,5 @@ module.exports = {
     allBlogs,
     findBlogById,
     updateOneBlogModel,
-    deleteOneById
+    deleteOneById,
 }

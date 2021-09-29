@@ -1,4 +1,5 @@
 <%- include('parts/header') %>
+<% var language = language || "ru" %>
 
 <h1>Bu shunchaki sarlavha</h1>
 
@@ -7,47 +8,71 @@
    <div class="container">
       <div class="single-slider">
          <div class="slide-item">
-            <div class="slide-item__mini-title">Знаешь, в чем секрет зубов?</div>
+            <div class="slide-item__mini-title">
+               <%= homeLanguages.header.slick_track[language] %>
+            </div>
             <div class="slide-item__big-title">
-               <span>Белый, как Жемчуг!</span>
-               <span>Знаешь, в чем секрет зубов?</span>
+               <span><%= homeLanguages.header.slide_item__big_title.span1[language] %> </span>
+               <span><%= homeLanguages.header.slide_item__big_title.span2[language] %></span>
             </div>
             <div class="slide-item__links">
-               <a class="slide-item__link" href="#">Подробнее</a>
-               <a class="slide-item__link" href="#">Не интересно</a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button1[language] %>
+               </a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button2[language] %>
+               </a>
             </div>
          </div>
          <div class="slide-item">
-            <div class="slide-item__mini-title">Знаешь, в чем секрет зубов?</div>
+            <div class="slide-item__mini-title">
+               <%= homeLanguages.header.slick_track[language] %>
+            </div>
             <div class="slide-item__big-title">
-               <span>Белый, как Жемчуг!</span>
-               <span>Знаешь, в чем секрет зубов?</span>
+               <span><%= homeLanguages.header.slide_item__big_title.span1[language] %> </span>
+               <span><%= homeLanguages.header.slide_item__big_title.span2[language] %></span>
             </div>
             <div class="slide-item__links">
-               <a class="slide-item__link" href="#">Подробнее</a>
-               <a class="slide-item__link" href="#">Не интересно</a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button1[language] %>
+               </a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button2[language] %>
+               </a>
             </div>
          </div>
          <div class="slide-item">
-            <div class="slide-item__mini-title">Знаешь, в чем секрет зубов?</div>
+            <div class="slide-item__mini-title">
+               <%= homeLanguages.header.slick_track[language] %>
+            </div>
             <div class="slide-item__big-title">
-               <span>Белый, как Жемчуг!</span>
-               <span>Знаешь, в чем секрет зубов?</span>
+               <span><%= homeLanguages.header.slide_item__big_title.span1[language] %> </span>
+               <span><%= homeLanguages.header.slide_item__big_title.span2[language] %></span>
             </div>
             <div class="slide-item__links">
-               <a class="slide-item__link" href="#">Подробнее</a>
-               <a class="slide-item__link" href="#">Не интересно</a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button1[language] %>
+               </a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button2[language] %>
+               </a>
             </div>
          </div>
          <div class="slide-item">
-            <div class="slide-item__mini-title">Знаешь, в чем секрет зубов?</div>
+            <div class="slide-item__mini-title">
+               <%= homeLanguages.header.slick_track[language] %>
+            </div>
             <div class="slide-item__big-title">
-               <span>Белый, как Жемчуг!</span>
-               <span>Знаешь, в чем секрет зубов?</span>
+               <span><%= homeLanguages.header.slide_item__big_title.span1[language] %> </span>
+               <span><%= homeLanguages.header.slide_item__big_title.span2[language] %></span>
             </div>
             <div class="slide-item__links">
-               <a class="slide-item__link" href="#">Подробнее</a>
-               <a class="slide-item__link" href="#">Не интересно</a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button1[language] %>
+               </a>
+               <a class="slide-item__link" href="#">
+                  <%= homeLanguages.header.buttons.button2[language] %>
+               </a>
             </div>
          </div>
       </div>
@@ -59,8 +84,12 @@
    <header class="services__header">
       <div class="container">
          <div class="section__title">
-            <h2>Предлагаемые услуги</h2>
-            <span>Является искажённым отрывком.</span>
+            <h2>
+               <%= homeLanguages.service_header.section_title.h2[language] %>
+            </h2>
+            <span>
+               <%= homeLanguages.service_header.section_title.span[language] %>
+            </span>
          </div>
          <div class="weather">
             <div class="weather__info">
@@ -70,7 +99,9 @@
             </div>
             <div class="today-is">
                <span class="date">12 Ноябрь.</span>
-               <span class="advice"> Не забудьте надеть шапку)</span>
+               <span class="advice">
+                  <%= homeLanguages.service_header.weather.today_id.advice[language] %>
+               </span>
             </div>
          </div>
       </div>
@@ -232,32 +263,49 @@
    <div class="container">
       <section class="about-us">
          <div class="section__title">
-            <h2>Коротко о нас</h2>
-            <span>Является искажённым отрывком из философского</span>
+            <h2>
+               <%= homeLanguages.about_says.section_title.h2[language] %>
+            </h2>
+            <span>
+               <%= homeLanguages.about_says.section_title.span[language] %>
+            </span>
          </div>
-         <h3>Швейцарская косметическая стоматология</h3>
+         <h3>
+            <%= homeLanguages.about_says.section_title.h3[language] %>
+         </h3>
          <img src="img/aboutus/dentistroom.png" alt="dentist's room">
       </section>
       <section class="people-says">
          <div class="section__title">
-            <h2>Люди говорят</h2>
-            <span>Вы также можете оставить свою фотографию и голосовое сообщение!</span>
+            <h2>
+               <%= homeLanguages.about_says.people_say.section_title.h2[language] %>
+            </h2>
+            <span>
+               <%= homeLanguages.about_says.people_say.section_title.span[language] %>
+            </span>
          </div>
          <div class="comment">
             <header class="comment__header">
                <img src="img/peoplesays/operator.png" alt="patient image" width="50" height="50">
                <div class="comment__owner">
-                  <h3>Ingrid Helm</h3>
-                  <span>Пациент</span>
+                  <h3>
+                     <%= homeLanguages.about_says.people_say.comment.name %>
+                  </h3>
+                  <span>
+                     <%= homeLanguages.about_says.people_say.comment.span[language] %>
+
+                  </span>
                </div>
             </header>
             <main class="comment__text">
-               <p>Давно установлено,
-                  что читатель отвлекаться на удобочитаемое содержимое страницы при просмотре ее макета.</p>
+               <p>
+                  <%= homeLanguages.about_says.people_say.comment.comment_text[language] %>
+               </p>
             </main>
          </div>
          <form class="comment__form">
-            <textarea class="comment__field" name="comment" id="comment" placeholder="Пишите сюда"></textarea>
+            <textarea class="comment__field" name="comment" id="comment"
+               placeholder="<%= homeLanguages.about_says.people_say.comment.input_value[language] %>"></textarea>
             <label class="file-input" for="file_input">
                <input id="file_input" type="file">
                <img src="img/icons/fileinput.svg" alt="file input icon">
@@ -277,8 +325,12 @@
 <section class="news">
    <div class="container">
       <div class="section__title">
-         <h2>Новости</h2>
-         <span>Будьте начеку</span>
+         <h2>
+            <%= homeLanguages.news.section_title.h2[language] %>
+         </h2>
+         <span>
+            <%= homeLanguages.news.section_title.span[language] %>
+         </span>
       </div>
       <div class="news-slider">
          <% blogs.forEach(function(blog) { %>
@@ -319,24 +371,36 @@
 <div class="sign-doctors">
    <div class="container">
       <section class="sign">
-         <h2>Запипшитесь <br>на приём</h2>
+         <h2>
+            <%= homeLanguages.sign_doctors.section_title.h2[language] %>
+            <br>
+            <%= homeLanguages.sign_doctors.section_title.h22[language] %>
+         </h2>
          <div class="alerts">
 
          </div>
-         <form class="sign__form">
+         <form class="sign__form" action='/' method='post'>
             <div class="sign__form__fields">
-               <input type="text" placeholder="Имя Фамилия" name="full_name" required class="full_name">
-               <input type="number" placeholder="Номер телефона" name="phone_number" required class="phone_number">
+               <input type="text" placeholder="
+            <%= homeLanguages.sign_doctors.section_title.sign_form.name_input[language] %>
+            " name="full_name" required class="full_name">
+               <input type="number" placeholder="
+            <%= homeLanguages.sign_doctors.section_title.sign_form.phone_number_input[language] %>
+            " name="phone_number" required class="phone_number">
             </div>
             <button type="submit" class="send_appointment_btn">
-               Записатся
+               <%= homeLanguages.sign_doctors.section_title.sign_form.submit_btn[language] %>
             </button>
          </form>
       </section>
       <section class="our-doctors">
          <header class="our-doctors__header">
-            <h2>Наши врачи - наша гордость!</h2>
-            <span>Является искажённым отрывком из философского</span>
+            <h2>
+               <%= homeLanguages.our_doctors.section_title.h2[language] %>
+            </h2>
+            <span>
+               <%= homeLanguages.our_doctors.section_title.span[language] %>
+            </span>
          </header>
          <main class="our-doctors__main">
 
@@ -350,35 +414,41 @@
    <div class="container">
       <div class="row">
          <div class="prefers__card">
-            <h3>Швейцарская
-               надежность</h3>
+            <h3>
+               <%= homeLanguages.prefers.prefers__card1[language] %>
+            </h3>
             <img src="img/gallery/tooth.png" alt="">
          </div>
          <div class="prefers__card">
-            <h3>Современное
-               оборудование</h3>
+            <h3>
+               <%= homeLanguages.prefers.prefers__card2[language] %>
+            </h3>
             <img src="img/gallery/tooth.png" alt="">
          </div>
          <div class="prefers__card">
-            <h3>Квалифицированные
-               Специалисты</h3>
+            <h3>
+               <%= homeLanguages.prefers.prefers__card3[language] %>
+            </h3>
             <img src="img/gallery/tooth.png" alt="">
          </div>
       </div>
       <div class="row">
          <div class="prefers__card">
-            <h3>Большой
-               опыт работы</h3>
+            <h3>
+               <%= homeLanguages.prefers.prefers__card4[language] %>
+            </h3>
             <img src="img/gallery/tooth.png" alt="">
          </div>
          <div class="prefers__card">
-            <h3>Высокие
-               стандарты</h3>
+            <h3>
+               <%= homeLanguages.prefers.prefers__card5[language] %>
+            </h3>
             <img src="img/gallery/tooth.png" alt="">
          </div>
          <div class="prefers__card">
-            <h3>Клиника в
-               Центре города</h3>
+            <h3>
+               <%= homeLanguages.prefers.prefers__card6[language] %>
+            </h3>
             <img src="img/gallery/tooth.png" alt="">
          </div>
       </div>
@@ -391,15 +461,19 @@
       <section class="gallery__section">
          <header class="gallery__section__header">
             <div class="gallery__section__title">
-               <span>Будьте начеку</span>
-               <h2>Видеогалерея</h2>
+               <span>
+                  <%= homeLanguages.galery.video_galery.section_title.span[language] %>
+               </span>
+               <h2>
+                  <%= homeLanguages.galery.video_galery.section_title.h2[language] %>
+               </h2>
             </div>
             <a href="#">
                <img src="img/icons/bluearrowr.svg" alt="">
             </a>
          </header>
-         <div class="video-wrapper">
-            <div class="video-wrapper">
+         <div class="tabs__videos">
+            <!-- <div class="video-wrapper">
                <div class="video-wrapper__video" data-index="0">
                   <img src='https://picsum.photos/484/250' alt="">
                   <button>
@@ -407,14 +481,18 @@
                   </button>
                </div>
                <h3>Технологии будущего для вашего здоровья</h3>
-            </div>
+            </div> -->
          </div>
       </section>
       <section class="gallery__section">
          <header class="gallery__section__header">
             <div class="gallery__section__title">
-               <span>Будьте начеку</span>
-               <h2>Фотогалерея</h2>
+               <span>
+                  <%= homeLanguages.galery.photo_galery.section_title.span[language] %>
+               </span>
+               <h2>
+                  <%= homeLanguages.galery.photo_galery.section_title.h2[language] %>
+               </h2>
             </div>
          </header>
          <div class="photos">
@@ -439,8 +517,12 @@
 <section class="campaign">
    <div class="container">
       <section class="campaign__section">
-         <h3>акция 2021</h3>
-         <div class="campaign__section__text">Для нашего 2021-го пациента</div>
+         <h3>
+            <%= homeLanguages.campaign.campaign_section1.h3[language] %>
+         </h3>
+         <div class="campaign__section__text">
+            <%= homeLanguages.campaign.campaign_section1.span[language] %>
+         </div>
          <div class="campaign__section__links">
             <div class="campaign__section__socials">
                <a href="#">
@@ -451,7 +533,9 @@
                </a>
             </div>
             <div class="campaign__section__more">
-               <span>Подробнее</span>
+               <span>
+                  <%= homeLanguages.campaign.campaign_section1.btn[language] %>
+               </span>
                <a href="#">
                   <img src="img/icons/arrowbig.svg" alt="arrow icon">
                </a>
@@ -460,11 +544,17 @@
          <img class="campaign__section__img" src="img/campaign/apparat.png" alt="aparat image">
       </section>
       <section class="campaign__section">
-         <h3>e-mail</h3>
-         <div class="campaign__section__text">Интересуют ли вас наши рассылки?</div>
+         <h3>
+            <%= homeLanguages.campaign.campaign_section2.h3[language] %>
+         </h3>
+         <div class="campaign__section__text">
+            <%= homeLanguages.campaign.campaign_section2.span[language] %>
+         </div>
          <div class="campaign__section__links">
             <div class="campaign__section__more">
-               <span>Подпишись сейчас</span>
+               <span>
+                  <%= homeLanguages.campaign.campaign_section2.btn[language] %>
+               </span>
                <a href="#">
                   <img src="img/icons/arrowbig.svg" alt="arrow icon">
                </a>
@@ -479,7 +569,7 @@
    <div class="container">
       <section class="is-useful">
          <span class="is-useful__question">
-            Была ли это страница полезна?
+            <%= homeLanguages.feedback.is_useful[language] %>
          </span>
          <div class="is-useful__buttons">
             <button>
@@ -492,7 +582,7 @@
       </section>
       <section class="share">
          <span>
-            Поделится
+            <%= homeLanguages.feedback.share[language] %>
          </span>
          <button>
             <img src="img/icons/share.svg" alt="share icon">
@@ -502,44 +592,3 @@
 </div>
 
 <%- include('parts/footer') %>
-
-
-<script>
-   const sendAppointment = document.querySelector('.sign__form')
-   const fullNameElement = document.querySelector('.full_name')
-   const phoneNumberElement = document.querySelector('.phone_number')
-   sendAppointment.addEventListener('submit', async (e) => {
-      e.preventDefault()
-      const option = {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
-            full_name: sendAppointment.full_name.value,
-            phone_number: sendAppointment.phone_number.value,
-         })
-
-      }
-      const response = await fetch('/', option);
-      const json = await response.json();
-      console.log(json);
-
-      if (response.status === 200) {
-
-         const successAlertElement = document.createElement('div')
-
-         successAlertElement.classList.add('alert', 'alert-success')
-         successAlertElement.textContent = 'Ваша заявка отправлена'
-         document.querySelector('.alerts').appendChild(successAlertElement)
-
-         fullNameElement.value = ''
-         phoneNumberElement.value = ''
-
-         setTimeout(function () {
-            successAlertElement.parentNode.removeChild(successAlertElement);
-         }, 5000);
-      }
-
-   })
-</script>

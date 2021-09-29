@@ -12,7 +12,23 @@ const AppointmentSchema = new Schema({
     phone: {
         type: Number,
         required: true,
-        trim: true,
+    },
+    filial: {
+        type: String,
+        required: true,
+    },
+    service_label: {
+        type: Object,
+        required: true,
+    },
+    service_include_label: {
+        type: Object,
+        required: true,
+    },
+    chack_in: {
+        type: Boolean,
+        required: true,
+        default: false,
     },
     dateCreated: {
         type: Date,
@@ -27,14 +43,15 @@ async function AppointmentModel () {
 
 async function allAppointmentModel(){
     let db = await AppointmentModel()
-    return await db.find()
+    return await db.find({})
 }
 
-async function addAppointmentModel(full_name, phone){
+async function addAppointmentModel(full_name, phone, filial, service_label, service_include_label){
     let db = await AppointmentModel()
-    return await db.create({full_name, phone})
+    return await db.create({full_name, phone, filial, service_label, service_include_label})
 }
 module.exports = {
+    AppointmentModel,
     allAppointmentModel,
     addAppointmentModel
 }
