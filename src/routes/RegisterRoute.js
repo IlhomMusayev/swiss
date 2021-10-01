@@ -4,6 +4,9 @@ const { findUser, addUser, allUsers } = require('../models/UserModel')
 const { genereteCrypt } = require('../modules/bcrypt')
 const { genereteToken } = require('../modules/jwt')
 
+const registerLanguages = require('../public/languages/registerLanguages.json')
+const navbarLanguages = require('../public/languages/navbarLanguage.json')
+
 const RegisterValidation = Joi.object({
     full_name: Joi.string()
         .required()
@@ -36,7 +39,10 @@ router.get('/', async (req, res) => {
     console.log(users);
     res.render('register',{
         title: "Register",
-        user: req.user
+        user: req.user,
+        registerLanguages,
+        navbarLanguages,
+        language: "uz"
     })
 })
 

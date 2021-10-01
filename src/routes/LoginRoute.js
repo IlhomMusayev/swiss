@@ -11,6 +11,8 @@ const {
     compareCrypt
 } = require('../modules/bcrypt')
 
+const loginLanguages = require('../public/languages/loginLanguages.json')
+const navbarLanguages = require('../public/languages/navbarLanguage.json')
 
 
 // router.use(AuthMiddleware)
@@ -34,7 +36,10 @@ const LoginValidation = Joi.object({
 router.get('/', async (req, res) => {
     res.render('login', {
         title: "Login",
-        user: req.user
+        user: req.user,
+        loginLanguages,
+        navbarLanguages,
+        language: "uz"
     })
 })
 

@@ -6,6 +6,7 @@ const {
 } = require('../models/BlogModel')
 
 const homeLanguages = require('../public/languages/homeLanguages.json')
+const navbarLanguages = require('../public/languages/navbarLanguage.json')
 
 moment.locale('ru-Ru')
 
@@ -17,6 +18,7 @@ router.get('/', async (req, res) => {
         user: req.user,
         blogs,
         homeLanguages: homeLanguages.languages,
+        navbarLanguages,
         language: "uz"
     })
 })

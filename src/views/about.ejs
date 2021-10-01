@@ -8,21 +8,29 @@
       <aside class="tabs__menu">
          <ul class="tabs__menu__ul">
             <li class="tabs__menu__li">
-               О клинике
+               <a href="#tabs__about">
+                  <%= aboutLanguages.menu.item1[language] %> 
+               </a>
             </li>
             <li class="tabs__menu__li">
-               Новости
+               <a href="#news">
+                  <%= aboutLanguages.menu.item2[language] %> 
+               </a>
             </li>
             <li class="tabs__menu__li">
-               Фото галерея
+               <a href="#photo_galery">
+                  <%= aboutLanguages.menu.item3[language] %> 
+               </a>
             </li>
             <li class="tabs__menu__li">
-               Видео галерея
+               <a href="#video_galery">
+                  <%= aboutLanguages.menu.item4[language] %> 
+               </a>
             </li>
          </ul>
       </aside>
       <section class="tabs__content">
-         <article class="tabs__content__item tabs__about">
+         <article class="tabs__content__item tabs__about" id="tabs__about">
             <h2>Это давно установленный факт, что читатель будет отвлекаться.</h2>
             <p class="mb-70">Давно установлено, что читатель будет отвлекаться на удобочитаемое содержимое страницы
                при
@@ -84,7 +92,7 @@
                на
                читаемый английский.</p>
          </article>
-         <section class="tabs__content__item tabs__news">
+         <section class="tabs__content__item tabs__news" id="news">
             <div class="tabs__card__wrapper">
 
             </div>
@@ -94,7 +102,7 @@
                </ul>
             </div>
          </section>
-         <section class="tabs__content__item tabs__photos">
+         <section class="tabs__content__item tabs__photos" id="photo_galery">
             <div class="row">
                <div class="left">
                   <img src="https://picsum.photos/240/363?rand=1" alt="doctor img" width="240" height="363">
@@ -147,7 +155,7 @@
                </div>
             </div>
          </section>
-         <section class="tabs__content__item tabs__videos">
+         <section class="tabs__content__item tabs__videos" id="video_galery">
          </section>
       </section>
    </div>

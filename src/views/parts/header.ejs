@@ -40,7 +40,9 @@
          </div>
          <a class="registration" href="appointment">
             <img src="/img/icons/bell.svg" alt="bell icons" width="24">
-            <span>Записатся</span>
+            <span>
+               <%= navbarLanguages.top_navbar.btns.btn1[language] %> 
+            </span>
          </a>
          <a class="registration" href="<%= user ?  "account" : "login"%>">
             <img src="/img/icons/avatar.svg" alt="bell icons" width="14">
@@ -60,22 +62,22 @@
       <ul class="site-nav__ul">
          <li class="site-nav__li">
             <a class="site-nav__link" href="/about">
-               О клинике
+               <%= navbarLanguages.navbar.list_items.item1[language] %> 
             </a>
          </li>
          <li class="site-nav__li">
             <a class="site-nav__link" href="/cosmetic">
-               Косметическая стоматология
+               <%= navbarLanguages.navbar.list_items.item2[language] %> 
             </a>
          </li>
          <li class="site-nav__li">
             <a class="site-nav__link" href="treatment">
-               Лечение
+               <%= navbarLanguages.navbar.list_items.item3[language] %> 
             </a>
          </li>
          <li class="site-nav__li">
             <a class="site-nav__link" href="contacts">
-               Контакты
+               <%= navbarLanguages.navbar.list_items.item4[language] %> 
             </a>
          </li>
  

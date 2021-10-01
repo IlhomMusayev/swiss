@@ -3,11 +3,15 @@ const {
     allAppointmentModel,
     addAppointmentModel
 } = require('../models/Appointment')
-
+const appointmentLanguages = require('../public/languages/appointmentLanguages.json')
+const navbarLanguages = require('../public/languages/navbarLanguage.json')
 
 router.get('/', async (req, res) => {
     res.render('appointment', {
-        user: req.user
+        user: req.user,
+        appointmentLanguages,
+        navbarLanguages,
+        language: "uz"
     })
 })
 router.post('/', async (req, res) => {
