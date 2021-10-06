@@ -194,16 +194,16 @@
 <%- include('parts/footer') %>
 
 
-<!-- <script>
-   const shereBtn = document.querySelector('.share')
+<script>
+   // const shereBtn = document.querySelector('.share')
 
-   shereBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText("https://swissdental.uz");
-      alert("Copied the text: " + "https://swissdental.uz");
-   })
+   // shereBtn.addEventListener('click', () => {
+   //    navigator.clipboard.writeText("https://swissdental.uz");
+   //    alert("Copied the text: " + "https://swissdental.uz");
+   // })
 
 
-   const sendAppointment = document.querySelector('.sign__form')
+   const sendAppointment = document.querySelector('.make-appointment__form')
    const fullNameElement = document.querySelector('.full_name')
    const phoneNumberElement = document.querySelector('.phone_number')
    sendAppointment.addEventListener('submit', async (e) => {
@@ -217,10 +217,13 @@
          body: JSON.stringify({
             full_name: sendAppointment.full_name.value,
             phone_number: sendAppointment.phone_number.value,
+            filial: sendAppointment.filial.value,
+            service__label: sendAppointment.service__label.value,
+            service__includes__label: sendAppointment.service__includes__label.value,
          })
 
       }
-      const response = await fetch('/', option);
+      const response = await fetch('/appointment', option);
       const json = await response.json();
 
       console.log(json);
@@ -253,4 +256,4 @@
       }
 
    })
-</script> -->
+</script> 

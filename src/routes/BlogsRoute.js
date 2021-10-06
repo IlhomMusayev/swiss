@@ -6,7 +6,8 @@ router.get('/:id', async (req, res) => {
     const blogs = await allBlogs()
     res.render('index', {
         user: user,
-        blogs
+        blogs,
+        language: req.language
     })
 })
 

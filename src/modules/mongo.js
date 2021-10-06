@@ -7,7 +7,6 @@ async function client () {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })  
-    console.log("connect mongodb");
     return server
 }
 

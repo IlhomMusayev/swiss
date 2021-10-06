@@ -16,7 +16,8 @@ router.get('/', AuthMiddleware, async (req, res) => {
 
     res.render('account', {
         user: user, 
-        date: date
+        date: date,
+        language: req.language
     })
 })
 

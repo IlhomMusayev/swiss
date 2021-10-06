@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
         user: req.user,
         contactLanguages,
         navbarLanguages,
-        language: "uz"
+        language: req.language
 
     })
 })

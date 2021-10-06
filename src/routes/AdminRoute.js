@@ -7,6 +7,13 @@ const {
     deleteOneById,
 } = require('../models/BlogModel')
 
+const {
+    AboutModel,
+    allAbout,
+    addAbout,
+    updateAbout
+} = require('../models/AboutModel')
+
 const adminMiddleware = require('../middlewares/adminMiddleware')
 const expressFileUpload = require('express-fileupload');
 const path = require('path');
@@ -29,19 +36,23 @@ router.get('/', async (req, res) => {
     const allblogs = await allBlogs()
     const allBlogsPog = await BlogModele
         .find()
-        .skip(skipblog*10)
+        .skip(skipblog * 10)
         .limit(10)
     const allBlogsCount = await allblogs.length
 
+
+    // 
     const skipappontment = req.query.skipappontment * 1 || 0;
 
     const AppointmentModels = await AppointmentModel()
     const allAppointments = await allAppointmentModel()
     const allAppointmentPog = await AppointmentModels
         .find()
-        .skip(skipblog*10)
+        .skip(skipblog * 10)
         .limit(10)
-        .sort({dateCreated: -1})
+        .sort({
+            dateCreated: -1
+        })
     const allAppointmentCount = await allAppointments.length
 
 
@@ -60,6 +71,51 @@ router.get('/addblog', async (req, res) => {
     res.render('addblog')
 })
 
+router.get('/about', async (req, res) => {
+    const allAbouts = await allAbout()
+    res.render('adminAbout',
+    {
+        allAbouts : allAbouts[0],
+    })
+})
+
+router.post('/about', expressFileUpload(), async (req, res) => {
+    try {
+        const allAbouts = await allAbout()
+        const {
+            title_uz,
+            title_ru,
+            content_uz,
+            content_ru,
+            id
+        } = req.body
+        console.log(id);
+
+        const imgName = req.files.image.name.split(".")
+
+        const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
+
+        if (!(title_uz || title_ru || content_uz || content_ru)) {
+            throw new Error('Title yoki Blog kiritmadingiz!')
+        }
+
+        if(allAbouts.length <= 0){
+            await addAbout(title_uz, title_ru, content_uz, content_ru, filename)
+            req.files.image.mv(
+                path.join(__dirname, '..', 'public', 'files', filename),
+            )
+            res.redirect('/about')
+        }
+        await updateAbout(title_uz, title_ru, content_uz, content_ru, filename, id.trim())
+        req.files.image.mv(
+            path.join(__dirname, '..', 'public', 'files', filename),
+        )
+        res.redirect('/about')
+    } catch (error) {
+        console.log(error);
+
+    }
+})
 
 router.post('/addblog', expressFileUpload(), async (req, res) => {
     try {
@@ -76,7 +132,7 @@ router.post('/addblog', expressFileUpload(), async (req, res) => {
             throw new Error('Title yoki Blog kiritmadingiz!')
         }
 
-        const courses = addBlog(title, content, filename)
+        const blog = addBlog(title, content, filename)
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )

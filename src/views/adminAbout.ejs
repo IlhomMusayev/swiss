@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <% var allAbouts %> 
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Admin panel</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container container-fluid">
+          <a class="navbar-brand" href="#">Admin Panel</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/admin/about">About</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="/admin/addblog">Add Blog</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center my-4">
+                <h2>About page</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+
+                <form action="/admin/about" method='POST' enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="title" class="mt-5">Uzbek Title</label>
+                        <input type="text" class="form-control my-2" id="title" name="title_uz" required 
+                        value="<% if(allAbouts){ %> <%= allAbouts.title_uz %> <% } %>  ">
+
+                        <label for="title" class="mt-5">Russion Title</label>
+                        <input type="text" class="form-control my-2" id="title" name="title_ru" required
+                        value="<% if(allAbouts){ %> <%= allAbouts.title_ru %> <% } %>  ">
+
+                        <label for="text" class="my-2">Uzbek Text</label>
+                        <textarea name="content_uz" id="editoruz" class="my-2" placeholder="Shu yerga blog so'zlarini kiriting..." required >
+                            &lt;p&gt;<% if(allAbouts){ %> <%= allAbouts.content_uz %> <% } %> &lt;/p&gt;
+                        </textarea>
+
+                        <label for="text" class="my-2">Rus Text</label>
+                        <textarea name="content_ru" id="editorru" class="my-2" placeholder="Shu yerga blog so'zlarini kiriting..."  required>
+                            &lt;p&gt;<% if(allAbouts){ %> <%= allAbouts.content_ru %> <% } %> &lt;/p&gt;
+                        </textarea>
+                        <label for="image" class="mt-2">Image</label>
+                        <input type="file" class="form-control my-2" style="display: block" id="image" name="image" required>
+
+                        <input type="" name='id' value="<%if(allAbouts){%><%=allAbouts._id %><%}%>">
+
+                        <input type="submit" class="btn btn-primary w-100 mt-3" value="Ma'lumot qo'shish">
+                    </div>
+                </form>
+            </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editoruz' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+
+            ClassicEditor
+                .create( document.querySelector( '#editorru' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+</body>
+
+</html>

@@ -7,6 +7,7 @@ const http = require('http')
 const cookie = require('cookie-parser')
 const routes = require("./routes/routes");
 const UserMiddleware = require('./middlewares/userMiddleware')
+const languageMiddleware = require('./middlewares/languageMiddleware')
 require('dotenv').config({
   path: path.join(__dirname, ".env")
 })
@@ -22,6 +23,7 @@ try {
   /* Middlewares */
   app.use(cookie())
   app.use(UserMiddleware)
+  app.use(languageMiddleware)
 
   function ensureSecure(req, res, next) {
     if (req.secure) {
@@ -40,6 +42,8 @@ try {
   }))
   app.use('/', express.static(path.join(__dirname, "public")))
   app.set('views', path.join(__dirname, "views"))
+
+  
 
 } finally {
   routes(app)

@@ -31,12 +31,13 @@
 
          <div class="custom-select">
             <img src="/img/icons/globus.svg" alt="globus icon">
-            <select name="page-language">
-               <option value="0">Русский</option>
-               <option value="1">Aнглийский</option>
-               <option value="2">Узбекский</option>
-               <option value="3">Русский</option>
-            </select>
+            <form class="form-language">
+               <select name="language" class="page-language">
+                  <option value="val">Val</option>
+                  <option value="ru">Русский</option>
+                  <option value="uz">Узбекский</option>
+               </select>
+            </form>
          </div>
          <a class="registration" href="appointment">
             <img src="/img/icons/bell.svg" alt="bell icons" width="24">
@@ -98,3 +99,15 @@
       </ul>
    </div>
 </nav>
+
+
+
+<script>
+   const selectLanguageElement =  document.querySelector(".page-language")
+   selectLanguageElement.addEventListener("change", (e) => {
+      console.log('slom');
+      const language = e.target.value
+      document.cookie("language", language)
+      window.location.reload()
+   })
+</script>

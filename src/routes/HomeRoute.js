@@ -14,16 +14,18 @@ moment.locale('ru-Ru')
 
 router.get('/', async (req, res) => {
     const blogs = await allBlogs()
+    console.log(req.cookies.language);
+
     res.render('index', {
         user: req.user,
         blogs,
         homeLanguages: homeLanguages.languages,
         navbarLanguages,
-        language: "uz"
+        language: req.language.toString()
     })
 })
 
-router.post('/', AuthMiddleware, async (req, res) => {
+router.post('/appointment', AuthMiddleware, async (req, res) => {
     const {
         full_name,
         phone_number
@@ -33,6 +35,8 @@ router.post('/', AuthMiddleware, async (req, res) => {
             full_name,
             phone_number
         },
+        navbarLanguages,
+        language: "uz"
     })
 })
 

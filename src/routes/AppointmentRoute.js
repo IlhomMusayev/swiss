@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
         user: req.user,
         appointmentLanguages,
         navbarLanguages,
-        language: "uz"
+        language: req.language
     })
 })
 router.post('/', async (req, res) => {
