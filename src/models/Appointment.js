@@ -9,7 +9,7 @@ const AppointmentSchema = new Schema({
         maxLength: 50,
         trim: true,
     },
-    phone: {
+    phone_number: {
         type: Number,
         required: true,
     },
@@ -17,12 +17,12 @@ const AppointmentSchema = new Schema({
         type: String,
         required: true,
     },
-    service_label: {
-        type: Object,
+    service__label: {
+        type: String,
         required: true,
     },
-    service_include_label: {
-        type: Object,
+    service__includes__label: {
+        type: String,
         required: true,
     },
     chack_in: {
@@ -46,9 +46,9 @@ async function allAppointmentModel(){
     return await db.find({})
 }
 
-async function addAppointmentModel(full_name, phone, filial, service_label, service_include_label){
+async function addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label){
     let db = await AppointmentModel()
-    return await db.create({full_name, phone, filial, service_label, service_include_label})
+    return await db.create({full_name, phone_number, filial, service__label, service__includes__label})
 }
 module.exports = {
     AppointmentModel,

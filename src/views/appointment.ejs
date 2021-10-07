@@ -1,10 +1,25 @@
 <%- include('parts/header') %>
-<% var user %> 
+<% var user
+   var error
+   var status
+%> 
 <!--MAKE APPOINTMENT SECTION-->
 <main class="make-appointment">
    <div class="container">
+      <div class="alerts">
+         <% if(status === 'ok') {%>
+            <div class="alert alert-success" style="margin: 0;">
+               Sizning so'rovnoma qabul qilindi!
+            </div>
+         <% } %> 
+         <% if(error) {%>
+            <div class="alert alert-danger" style="margin: 0;">
+               <%= error %> 
+            </div>
+         <% } %> 
+      </div>
       <h2>Хотите записатся на приём</h2>
-      <form class="make-appointment__form" action="/appointment" method="post">
+      <form class="make-appointment__form" method="post" action="/appointment">
          <fieldset class="contact__info__fieldset">
             <legend>Пожалуйста, заполните все поля</legend>
             <label class="settings-form__field__label" for="full_name">
@@ -203,57 +218,56 @@
    // })
 
 
-   const sendAppointment = document.querySelector('.make-appointment__form')
-   const fullNameElement = document.querySelector('.full_name')
-   const phoneNumberElement = document.querySelector('.phone_number')
-   sendAppointment.addEventListener('submit', async (e) => {
-      console.log(e);
-      e.preventDefault()
-      const option = {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
-            full_name: sendAppointment.full_name.value,
-            phone_number: sendAppointment.phone_number.value,
-            filial: sendAppointment.filial.value,
-            service__label: sendAppointment.service__label.value,
-            service__includes__label: sendAppointment.service__includes__label.value,
-         })
+   // const sendAppointment = document.querySelector('.make-appointment__form')
+   // const fullNameElement = document.querySelector('.full_name')
+   // const phoneNumberElement = document.querySelector('.phone_number')
+   // sendAppointment.addEventListener('submit', async (e) => {
+   //    e.preventDefault()
+   //    const option = {
+   //       method: 'POST',
+   //       headers: {
+   //          'Content-Type': 'application/json'
+   //       },
+   //       body: JSON.stringify({
+   //          full_name: sendAppointment.full_name.value,
+   //          phone_number: sendAppointment.phone_number.value,
+   //          filial: sendAppointment.filial.value,
+   //          service__label: sendAppointment.service__label.value,
+   //          service__includes__label: sendAppointment.service__includes__label.value,
+   //       })
 
-      }
-      const response = await fetch('/appointment', option);
-      const json = await response.json();
+   //    }
+   //    console.log(sendAppointment.service__label.value);
+   //    const response = await fetch('/appointment', option);
+   //    const json = await response.json();
 
-      console.log(json);
+   //    console.log(json);
+   //    if (json.status === "ok") {
 
-      if (json.status === "ok") {
+   //       const successAlertElement = document.createElement('div')
 
-         const successAlertElement = document.createElement('div')
+   //       successAlertElement.classList.add('alert', 'alert-success')
+   //       successAlertElement.textContent = 'Ваша заявка отправлена'
+   //       document.querySelector('.alerts').appendChild(successAlertElement)
 
-         successAlertElement.classList.add('alert', 'alert-success')
-         successAlertElement.textContent = 'Ваша заявка отправлена'
-         document.querySelector('.alerts').appendChild(successAlertElement)
+   //       fullNameElement.value = ''
+   //       phoneNumberElement.value = ''
 
-         fullNameElement.value = ''
-         phoneNumberElement.value = ''
+   //       setTimeout(function () {
+   //          successAlertElement.parentNode.removeChild(successAlertElement);
+   //       }, 5000);
+   //    }
+   //    if (json.status === "error") {
+   //       const successAlertElement = document.createElement('div')
 
-         setTimeout(function () {
-            successAlertElement.parentNode.removeChild(successAlertElement);
-         }, 5000);
-      }
-      if (json.status === "error") {
-         const successAlertElement = document.createElement('div')
+   //       successAlertElement.classList.add('alert', 'alert-danger')
+   //       successAlertElement.textContent = 'Ошибка отправки заявки'
+   //       document.querySelector('.alerts').appendChild(successAlertElement)
 
-         successAlertElement.classList.add('alert', 'alert-danger')
-         successAlertElement.textContent = 'Ошибка отправки заявки'
-         document.querySelector('.alerts').appendChild(successAlertElement)
+   //       setTimeout(function () {
+   //          successAlertElement.parentNode.removeChild(successAlertElement);
+   //       }, 5000)
+   //    }
 
-         setTimeout(function () {
-            successAlertElement.parentNode.removeChild(successAlertElement);
-         }, 5000)
-      }
-
-   })
+   // })
 </script> 

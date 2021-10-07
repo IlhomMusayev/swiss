@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const AuthMiddleware = require('../middlewares/authMiddleware')
 const { findUserByEmail } = require('../models/UserModel')
+const navbarLanguages = require('../public/languages/navbarLanguage.json')
+
 
 const moment = require('moment')
 moment.locale('ru-Ru')
@@ -17,6 +19,7 @@ router.get('/', AuthMiddleware, async (req, res) => {
     res.render('account', {
         user: user, 
         date: date,
+        navbarLanguages,
         language: req.language
     })
 })

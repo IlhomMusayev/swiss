@@ -7,6 +7,7 @@ const appointmentLanguages = require('../public/languages/appointmentLanguages.j
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
 
 router.get('/', async (req, res) => {
+
     res.render('appointment', {
         user: req.user,
         appointmentLanguages,
@@ -15,35 +16,48 @@ router.get('/', async (req, res) => {
     })
 })
 router.post('/', async (req, res) => {
-    console.log(req.body);
     try {
-        const {
+        let {
             full_name,
             phone_number,
-            service_label,
-            service_include_label
+            filial,
+            service__label,
+            service__includes__label   
         } = req.body
-
-        if (!(full_name && phone_number && service_label && service_include_label)) {
-            res.json({
+      
+        
+        if (!(full_name && phone_number && filial)) {
+            res.render('appointment', {
                 status: 'error',
-                error: 'Please fill all the fields'
+                error: 'Iltimos bo\'shliqlarni o\'ldiring',
+                navbarLanguages,
+                appointmentLanguages,
+                language: req.language
             })
             return;
+        }        
+
+
+        if(typeof(service__label) === "object"){
+            service__label = service__label.join(", ")
+        }
+        if(typeof(service__includes__label) === "object"){
+            service__includes__label = service__includes__label.join(", ")
         }
 
-        const addAppointment = await addAppointmentModel(full_name, phone_number, service_label, service_include_label)
+
+        const addAppointment = await addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label)
         if (addAppointment) {
-            res.json({
+            res.render('appointment', {
                 status: 'ok',
+                navbarLanguages,
+                appointmentLanguages,
+                language: req.language
             })
         }
 
     } catch (error) {
-        res.json({
-            status: 'error',
-            error: error.message
-        })
+        console.log(error);
     }
 })
 

@@ -74,7 +74,7 @@
          </article>
          <section class="tabs__content__item tabs__news" id="news">
             <div class="tabs__card__wrapper">
-
+               
             </div>
             <div class="pagination">
                <ul class="pagination__list">
@@ -83,24 +83,14 @@
             </div>
          </section>
          <section class="tabs__content__item tabs__photos" id="photo_galery">
-            <div class="row">
-               <div class="left">
-                  <img src="https://picsum.photos/240/363?rand=1" alt="doctor img" width="240" height="363">
-               </div>
-               <div class="middle">
-                  <div class="middle__top">
-                     <img src="https://picsum.photos/375/176?rand=1" alt="">
+               <% photos.forEach(function(photo) {%>
+                  <div class="row">
+                     <div class="left d-inline-block">
+                        <img src="/photogalery/<%= photo.filename %> " alt="doctor img" width="240" height="363">
+                     </div>
                   </div>
-                  <div class="middle__bottom">
-                     <img src="https://picsum.photos/183/176?rand=1" alt="">
-                     <img src="https://picsum.photos/183/176?rand=2" alt="">
-                  </div>
-               </div>
-               <div class="right">
-                  <img src="https://picsum.photos/240/363?rand=2" alt="doctor img" width="240" height="363">
-               </div>
-            </div>
-            <div class="row">
+               <% }) %> 
+            <!-- <div class="row">
                <div class="middle">
                   <div class="middle__top">
                      <img src="https://picsum.photos/375/176" alt="">
@@ -133,7 +123,7 @@
                <div class="right">
                   <img src="https://picsum.photos/240/363?rand=6" alt="doctor img" width="240" height="363">
                </div>
-            </div>
+            </div> -->
          </section>
          <section class="tabs__content__item tabs__videos" id="video_galery">
          </section>

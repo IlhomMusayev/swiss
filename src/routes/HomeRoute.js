@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.post('/appointment', AuthMiddleware, async (req, res) => {
+router.post('/appointmenthome', AuthMiddleware, async (req, res) => {
     const {
         full_name,
         phone_number
