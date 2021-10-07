@@ -33,6 +33,10 @@ const AppointmentSchema = new Schema({
     dateCreated: {
         type: Date,
         default: Date.now()
+    },
+    email: {
+        type: String,
+        required: true,
     }
 })
 
@@ -46,12 +50,29 @@ async function allAppointmentModel(){
     return await db.find({})
 }
 
-async function addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label){
+async function addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label, email){
     let db = await AppointmentModel()
-    return await db.create({full_name, phone_number, filial, service__label, service__includes__label})
+    return await db.create({full_name, phone_number, filial, service__label, service__includes__label, email})
 }
+
+async function findAppointmentByEmail(email){
+    let db = await AppointmentModel()
+    return await db.find({ email: email })
+}
+
+async function deleteOneAppointmentById(id) {
+    let db = await AppointmentModel()
+    return await db.deleteOne({
+        _id: id
+    })
+}
+
+
+
 module.exports = {
     AppointmentModel,
     allAppointmentModel,
-    addAppointmentModel
+    addAppointmentModel,
+    findAppointmentByEmail,
+    deleteOneAppointmentById
 }

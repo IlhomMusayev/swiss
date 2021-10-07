@@ -1,4 +1,8 @@
 <%- include('parts/header')%>
+<% var myAppoinments %>
+<% function pad(n) {
+   return n<10 ? '0'+n : n;
+} %>
 
 <h1>Bu shunchaki sarlavha</h1>
 <% if (user) { %>
@@ -24,89 +28,45 @@
       </aside>
       <section class="tabs__content">
          <section class="tabs__content__item tabs__appointments">
+           <% if(myAppoinments.length > 0) {%>
+            <div class="alerts">
+            </div>
+            <% myAppoinments.forEach(function(appointment) {%>
             <div class="tabs__appointments__card">
                <header class="tabs__appointments__card__header">
-                  <h3>Лечение кариеса</h3>
+                  <h3><%= appointment.service__label %></h3>
                   <div class="tabs__appointments__card__date">
                      <img src="img/logos/decorativcircle.png" alt="" width="38" height="38">
                      <time>
                         <img src="img/icons/clock.svg" alt="">
-                        <span>12:45</span>
+                        <span><%=  pad(appointment.dateCreated.getHours())
+                              %>:<%= pad(appointment.dateCreated.getMinutes()) %></span>
                      </time>
                      <div>
                         <img src="img/icons/calendar.svg" alt="">
-                        <span>12 Февраль 2021</span>
+                        <span><%=  pad(appointment.dateCreated.getDate())
+                              %>:<%= pad(appointment.dateCreated.getMonth()) %>:<%= pad(appointment.dateCreated.getFullYear()) %></span>
                      </div>
                   </div>
                </header>
                <main class="tabs__appointments__card__main">
-                  Врачи общей практики станут семейными врачами –президент, практики станут семейными врачами –
-                  президент
+                  <%= appointment.service__includes__label %>
                </main>
                <footer class="tabs__appointments__card__footer">
-                  <button class="pay-online">
-                     Оплатить онлайн
-                  </button>
-                  <button class="cancel-appointment">
+                  <span>
+                     <b>Филиал:</b> <%= appointment.filial %>
+                  </span>
+                  <button data-id = "<%= appointment._id %>" class="cancel-appointment">
                      Отменить запись
                   </button>
                </footer>
             </div>
-            <div class="tabs__appointments__card">
-               <header class="tabs__appointments__card__header">
-                  <h3>Лечение периодонтита</h3>
-                  <div class="tabs__appointments__card__date">
-                     <img src="img/logos/decorativcircle.png" alt="" width="38" height="38">
-                     <time>
-                        <img src="img/icons/clock.svg" alt="">
-                        <span>11:55</span>
-                     </time>
-                     <div>
-                        <img src="img/icons/calendar.svg" alt="">
-                        <span>18 Февраль 2021</span>
-                     </div>
-                  </div>
-               </header>
-               <main class="tabs__appointments__card__main">
-                  Врачи общей практики станут семейными врачами –президент, практики станут семейными врачами –
-                  президент
-               </main>
-               <footer class="tabs__appointments__card__footer">
-                  <button class="pay-online">
-                     Оплатить онлайн
-                  </button>
-                  <button class="cancel-appointment">
-                     Отменить запись
-                  </button>
-               </footer>
-            </div>
-            <div class="tabs__appointments__card">
-               <header class="tabs__appointments__card__header">
-                  <h3>Отбеливание зубов</h3>
-                  <div class="tabs__appointments__card__date">
-                     <time>
-                        <img src="img/icons/clock.svg" alt="">
-                        <span>09:25</span>
-                     </time>
-                     <div>
-                        <img src="img/icons/calendar.svg" alt="">
-                        <span>10 Февраль 2021</span>
-                     </div>
-                  </div>
-               </header>
-               <main class="tabs__appointments__card__main">
-                  Врачи общей практики станут семейными врачами –президент, практики станут семейными врачами –
-                  президент
-               </main>
-               <footer class="tabs__appointments__card__footer">
-                  <button class="pay-online">
-                     Оплатить онлайн
-                  </button>
-                  <button class="cancel-appointment">
-                     Отменить запись
-                  </button>
-               </footer>
-            </div>
+
+            <% }) %>
+            
+            <% } else{%>
+               <span>Sizda Appontmentlar yo'q</span>     
+            <% } %> 
          </section>
          <section class="tabs__content__item tabs__payment">
             <div class="tabs__payment__card">
@@ -196,5 +156,31 @@
 <script src="scripts/masked-phone.js"></script>
 <script src="scripts/main.js"></script>
 <script src="scripts/tabs.js"></script>
+
+
+<script>
+   const deleteAppointmentBtnElement = document.querySelectorAll('.cancel-appointment')
+   deleteAppointmentBtnElement.forEach((button) => {
+      button.addEventListener("click", async (evt) => {
+         console.log(evt);
+         const response = await fetch(
+            "account/delete/" + evt.target.dataset.id, {
+               method: "DELETE",
+            }
+         );
+         console.log(evt.target);
+         console.log(evt.target.parentNode.parentNode);
+
+         const json = await response.json();
+         console.log(json.message);
+         if (response.status === 200) {
+            alert(json.message);
+            evt.target.parentNode.parentNode.remove();
+         } else {
+            alert(json.error);
+         }
+      });
+   });
+</script>
 
 <%- include('parts/footer')%>

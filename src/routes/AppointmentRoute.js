@@ -5,9 +5,12 @@ const {
 } = require('../models/Appointment')
 const appointmentLanguages = require('../public/languages/appointmentLanguages.json')
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
+const AuthMiddleware = require('../middlewares/authMiddleware')
+
+
+
 
 router.get('/', async (req, res) => {
-
     res.render('appointment', {
         user: req.user,
         appointmentLanguages,
@@ -15,7 +18,8 @@ router.get('/', async (req, res) => {
         language: req.language
     })
 })
-router.post('/', async (req, res) => {
+router.post('/', AuthMiddleware, async (req, res) => {
+    
     try {
         let {
             full_name,
@@ -24,7 +28,7 @@ router.post('/', async (req, res) => {
             service__label,
             service__includes__label   
         } = req.body
-      
+        const email = req.user.email
         
         if (!(full_name && phone_number && filial)) {
             res.render('appointment', {
@@ -46,7 +50,7 @@ router.post('/', async (req, res) => {
         }
 
 
-        const addAppointment = await addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label)
+        const addAppointment = await addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label, email)
         if (addAppointment) {
             res.render('appointment', {
                 status: 'ok',
