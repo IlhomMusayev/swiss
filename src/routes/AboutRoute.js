@@ -6,10 +6,14 @@ const {
 } = require('../models/AboutModel')
 const { allPhotos } = require('../models/PhotosModel')
 const { allVideos } = require('../models/VideoModel')
+const { allBlogs } = require('../models/BlogModel')
 
 router.get('/', async (req, res) => {
     const allAbouts = await allAbout()
     const allPhotoss = await allPhotos()
+    const videos = await allVideos()
+    const news = await allBlogs()
+    console.log(news);
     res.render('about', {
         title: "About",
         user: req.user,
@@ -17,7 +21,9 @@ router.get('/', async (req, res) => {
         navbarLanguages,
         language: req.language,
         allAbouts: allAbouts[0],
-        photos: allPhotoss
+        photos: allPhotoss,
+        videos,
+        news
     })
 })
 

@@ -250,7 +250,19 @@ router.get('/deletephoto/:id' , async (req, res) => {
 // video gaery routes
 router.post('/addvideo', expressFileUpload(), async (req, res) => {
     try {
-        const addVideos = await addVideo(req.body.video_link)
+        const {
+            video_link,
+            caption
+        } = req.body
+
+        const imgName = req.files.videoimg.name.split(".")
+        
+        const filename = req.files.videoimg.md5 + '.' + imgName[imgName.length - 1]
+    
+        const addVideos = await addVideo(video_link, caption, filename)
+        req.files.videoimg.mv(
+            path.join(__dirname, '..', 'public', 'files', filename),
+        )
         res.redirect('/admin/about')
     } catch (error) {
         console.log(error);
@@ -265,6 +277,14 @@ router.get('/deletevideo/:id' , async (req, res) => {
         console.log(error);
         res.redirect('/admin')
     }
+})
+
+router.get('/allvideos',  async (req, res) => {
+    const videos = await allVideos()
+    
+    res.json({
+        videos
+    })
 })
 
 

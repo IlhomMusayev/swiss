@@ -19,7 +19,7 @@ router.get('/', AuthMiddleware, async (req, res) => {
     console.log(myAppoinments);
     // convert time to the necessary format
     let date = moment(user.dateCreated).format('LL')
-
+    
     res.render('account', { 
         user: user, 
         date: date,

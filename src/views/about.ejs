@@ -74,7 +74,30 @@
          </article>
          <section class="tabs__content__item tabs__news" id="news">
             <div class="tabs__card__wrapper">
-               
+               <% var news %> 
+               <% for (let item of news) {%>
+                  <div class="tabs__card">
+                     <div class="tabs__card__header">
+                        <img src="files/<%= item.filename %>" alt="" width="280" height="190" style="width:280px; height: 190px; object-fit: cover">
+                     </div>
+                     <div class="tabs__card__body">
+                        <time>
+                           <img src="img/icons/clock.svg" alt="clock icon">
+                           <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
+                        </time>
+                        <h3><%=  item.title %></h3>
+                     </div>
+                     <div class="tabs__card__link">
+                        <time>
+                           <img src="img/icons/clock.svg" alt="clock icon">
+                           <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
+                        </time>
+                        <h3>
+                           <a href="#" tabindex="-1"><%=  item.title %></a>
+                        </h3>
+                     </div>
+                  </div>
+               <% } %> 
             </div>
             <div class="pagination">
                <ul class="pagination__list">
@@ -82,50 +105,32 @@
                </ul>
             </div>
          </section>
+         
          <section class="tabs__content__item tabs__photos" id="photo_galery">
-               <% photos.forEach(function(photo) {%>
-                  <div class="row">
-                     <div class="left d-inline-block">
-                        <img src="/photogalery/<%= photo.filename %> " alt="doctor img" width="240" height="363">
+            <% for(let i = 0; i < photos.length; i=i+5) {%>
+               <div class="row"> 
+                  <div class="left">
+                     <img src="/photogalery/<%= photos[i].filename %>" alt="doctor img" width="240" height="363" style="object-fit: contain;">
+                  </div>
+                  <div class="middle">
+                     <div class="middle__top">
+                        <img src="https://picsum.photos/375/176" alt="">
+                     </div>
+                     <div class="middle__bottom">
+                        <img src="https://picsum.photos/183/176?rand=5" alt="">
+                        <img src="https://picsum.photos/183/176?rand=6" alt="">
                      </div>
                   </div>
-               <% }) %> 
-            <!-- <div class="row">
-               <div class="middle">
-                  <div class="middle__top">
-                     <img src="https://picsum.photos/375/176" alt="">
-                  </div>
-                  <div class="middle__bottom">
-                     <img src="https://picsum.photos/183/176?rand=3" alt="">
-                     <img src="https://picsum.photos/183/176?rand=4" alt="">
+                  <div class="right">
+                     <img src="https://picsum.photos/240/363?rand=6" alt="doctor img" width="240" height="363">
                   </div>
                </div>
-               <div class="left">
-                  <img src="https://picsum.photos/240/363?rand=3" alt="doctor img" width="240" height="363">
-               </div>
-               <div class="right">
-                  <img src="https://picsum.photos/240/363?rand=4" alt="doctor img" width="240" height="363">
-               </div>
-            </div>
-            <div class="row">
-               <div class="left">
-                  <img src="https://picsum.photos/240/363?rand=5" alt="doctor img" width="240" height="363">
-               </div>
-               <div class="middle">
-                  <div class="middle__top">
-                     <img src="https://picsum.photos/375/176" alt="">
-                  </div>
-                  <div class="middle__bottom">
-                     <img src="https://picsum.photos/183/176?rand=5" alt="">
-                     <img src="https://picsum.photos/183/176?rand=6" alt="">
-                  </div>
-               </div>
-               <div class="right">
-                  <img src="https://picsum.photos/240/363?rand=6" alt="doctor img" width="240" height="363">
-               </div>
-            </div> -->
+               
+            <% } %> 
+
          </section>
          <section class="tabs__content__item tabs__videos" id="video_galery">
+
          </section>
       </section>
    </div>

@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
    const doctorsListWrapper = document.querySelector('.our-doctors__main');
 
    function doctorsListRender() {
-      doctorsListWrapper.innerHTML = '';
+      doctorsListWrapper.innerHTML = ' ';
       doctors.forEach(({id, name, img}) => {
          const doctorElement = document.createElement('div'),
             doctorImg = document.createElement('img');

@@ -1,54 +1,16 @@
-document.addEventListener('DOMContentLoaded', () => {
-   const videosData = [
-      {
-         id: 1,
-         videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-         posterURL: 'https://picsum.photos/484/250?rand=1',
-         videoTitle: 'Технологии будущего для вашего здоровья'
-      },
-      // {
-      //    id: 2,
-      //    videoURL: 'https://www.youtube.com/embed/GFADGs3vBuU',
-      //    posterURL: 'https://picsum.photos/484/250?rand=2',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // },
-      // {
-      //    id: 3,
-      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-      //    posterURL: 'https://picsum.photos/484/250?rand=3',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // },
-      // {
-      //    id: 4,
-      //    videoURL: 'https://www.youtube.com/embed/xH8P-8EbpnM',
-      //    posterURL: 'https://picsum.photos/484/250?rand=4',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // },
-      // {
-      //    id: 5,
-      //    videoURL: 'https://www.youtube.com/embed/GFADGs3vBuU',
-      //    posterURL: 'https://picsum.photos/484/250?rand=5',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // },
-      // {
-      //    id: 6,
-      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-      //    posterURL: 'https://picsum.photos/484/250?rand=6',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // },
-      // {
-      //    id: 7,
-      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-      //    posterURL: 'https://picsum.photos/484/250?rand=7',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // },
-      // {
-      //    id: 8,
-      //    videoURL: 'https://www.youtube.com/embed/1YPQ2iZhYEA',
-      //    posterURL: 'https://picsum.photos/484/250?rand=8',
-      //    videoTitle: 'Технологии будущего для вашего здоровья'
-      // }
-   ]
+
+document.addEventListener('DOMContentLoaded', async function(){
+
+   const response = await fetch(
+      "/admin/allvideos", {
+      method: "GET"
+   })
+
+   const json = await response.json()
+
+
+   let videosData = await json.videos
+   
 
    const tabsVideosWrapper = document.querySelector('.tabs__videos');
 
@@ -57,12 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
          tabsVideosWrapper.innerHTML += `
          <div class="video-wrapper">
             <div class="video-wrapper__video" data-index="${index}">
-               <img src=${video.posterURL} alt="">
+               <img src=/files/${video.filename} alt="">
                <button>
                   <img src="img/icons/play.svg" alt="">
                </button>
             </div>
-            <h3>${video.videoTitle}</h3>
+            <h3>${video.caption}</h3>
          </div>
       `
       })
@@ -76,19 +38,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
    tabsVideos.forEach(video => {
       video.addEventListener('click', e => {
-         const target = e.currentTarget;
-         openVideoModal(+target.getAttribute('data-index'))
+         const target = e.currentTarget;    
+        openVideoModal(+target.getAttribute('data-index'))
       })
    })
 
    function openVideoModal(index) {
       document.body.style.overflow = 'hidden';
       videoModal.classList.remove('hide');
-      videoModal.innerHTML = `
-      <iframe width="800" height="450" src=${videosData[index].videoURL} frameborder="0" allow="accelerometer; autoplay;
+      videoModal.innerHTML = `<iframe width="800" height="450" src='${videosData[index].video_link}' frameborder="0" allow="accelerometer; autoplay;
       clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <button>&times;</button>
-   `
+      <button>&times;</button>`
       closeVideoModalBtn = document.querySelector('.video-modal button');
 
       closeVideoModalBtn.addEventListener('click', () => {

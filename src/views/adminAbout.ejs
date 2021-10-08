@@ -101,9 +101,15 @@
             <% var num = 1 %> 
             <div class="col-md-12">
                 <h2 class="my-5">Video galery</h2>
-                <form action="/admin/addvideo" method="post">
-                    <label for="photos">Select photos</label>
-                    <input type="link" name="video_link" id="video_link" style="display: block" class="form-control my-2" placeholder="Youtube video link">
+                <form action="/admin/addvideo" method="post" enctype="multipart/form-data">
+                    <label for="video_link">Youtube video link</label>
+                    <input type="link" name="video_link" id="video_link" style="display: block" class="form-control my-2" placeholder="Youtube video link" required>        
+
+                    <label for="videoimg">Youtube video cover image</label>
+                    <input type="file" name="videoimg" id="videoimg" style="display: block" class="form-control my-2" required>
+
+                    <label for="caption">Youtube video cover image</label>
+                    <input type="text" name="caption" id="caption" style="display: block" class="form-control my-2" placeholder="Video caption" required>
                     <input type="submit" value="Saqlash" class="btn btn-primary w-100 mt-3">
                 </form>
             </div>

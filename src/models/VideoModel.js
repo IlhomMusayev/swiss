@@ -13,6 +13,14 @@ const VideosScheme = new Schema({
         type: 'string',
         required: true,
     },
+     caption: {
+        type: 'string',
+        required: true,
+    },
+     filename: {
+        type: 'string',
+        required: true,
+    },
     dateCreated: {
         type: Date,
         default: Date.now()
@@ -30,10 +38,12 @@ async function allVideos() {
 }
 
 
-async function addVideo(video_link) {
+async function addVideo(video_link, caption, filename) {
     let db = await VideosModel()
     return await db.create({
-        video_link
+        video_link,
+        caption,
+        filename
     })
 }
 
