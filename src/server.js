@@ -13,7 +13,8 @@ require('dotenv').config({
 })
 
 const PORT = process.env.PORT
-http.createServer(app).listen(3000)
+
+http.createServer(app).listen(PORT)
 
 /* Routes */
 try {
