@@ -57,6 +57,7 @@ async function deleteOneVideoById(id) {
 
 
 module.exports = {
+    VideosModel,
     allVideos,
     addVideo,
     deleteOneVideoById

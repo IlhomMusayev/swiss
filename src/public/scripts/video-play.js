@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async function(){
       array.forEach((video, index) => {
          tabsVideosWrapper.innerHTML += `
          <div class="video-wrapper">
-            <div class="video-wrapper__video" data-index="${index}">
+            <div class="video-wrapper__video" data-index="${video.video_link}">
                <img src=/files/${video.filename} alt="">
                <button>
                   <img src="img/icons/play.svg" alt="">
@@ -38,15 +38,17 @@ document.addEventListener('DOMContentLoaded', async function(){
 
    tabsVideos.forEach(video => {
       video.addEventListener('click', e => {
+         console.log(e.currentTarget);
          const target = e.currentTarget;    
-        openVideoModal(+target.getAttribute('data-index'))
-      })
-   })
+        openVideoModal(target.getAttribute('data-index'))
+      })   })
 
    function openVideoModal(index) {
+      console.log('salom');
       document.body.style.overflow = 'hidden';
       videoModal.classList.remove('hide');
-      videoModal.innerHTML = `<iframe width="800" height="450" src='${videosData[index].video_link}' frameborder="0" allow="accelerometer; autoplay;
+         
+      videoModal.innerHTML = `<iframe width="800" height="450" src='${index}' frameborder="0" allow="accelerometer; autoplay;
       clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <button>&times;</button>`
       closeVideoModalBtn = document.querySelector('.video-modal button');

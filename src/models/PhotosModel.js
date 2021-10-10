@@ -47,6 +47,7 @@ async function deleteOnePhotoById(id) {
 
 
 module.exports = {
+    PhotosModel,
     allPhotos,
     addPhoto,
     deleteOnePhotoById

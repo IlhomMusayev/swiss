@@ -32,41 +32,41 @@
       <section class="tabs__content">
          <article class="tabs__content__item tabs__about" id="tabs__about">
             <h2><% if(language === 'uz'){ %>
-                  <%= allAbouts.title_uz %>
+               <%= allAbouts.title_uz %>
                <%} else {%>
-                  <%= allAbouts.title_ru %>
-               <% } %> 
+               <%= allAbouts.title_ru %>
+               <% } %>
             </h2>
-            <p class="mb-70">
+            <div class="mb-70">
                <% if(language === 'uz'){ %>
-                  <%- allAbouts.content_uz %>
+               <%- allAbouts.content_uz %>
                <%} else {%>
-                  <%- allAbouts.content_ru %>
-               <% } %> 
-            </p>
+               <%- allAbouts.content_ru %>
+               <% } %>
+            </div>
             <div class="tabs__about__cards">
                <div class="tabs__about__card">
-                  <span>Швейцарская надежность</span>
+                  <span><%= aboutLanguages.prefers.prefers__card1[language]  %> </span>
                   <img src="img/gallery/tooth.png" alt="">
                </div>
                <div class="tabs__about__card">
-                  <span>Современное оборудование</span>
+                  <span><%= aboutLanguages.prefers.prefers__card2[language]  %></span>
                   <img src="img/gallery/tooth.png" alt="">
                </div>
                <div class="tabs__about__card">
-                  <span>Большой опыт работы</span>
+                  <span><%= aboutLanguages.prefers.prefers__card4[language]  %></span>
                   <img src="img/gallery/tooth.png" alt="">
                </div>
                <div class="tabs__about__card">
-                  <span>Высокие стандарты</span>
+                  <span><%= aboutLanguages.prefers.prefers__card5[language]  %></span>
                   <img src="img/gallery/tooth.png" alt="">
                </div>
                <div class="tabs__about__card">
-                  <span>Квалифицированные cпециалисты</span>
+                  <span><%= aboutLanguages.prefers.prefers__card3[language]  %></span>
                   <img src="img/gallery/tooth.png" alt="">
                </div>
                <div class="tabs__about__card">
-                  <span>Клиника в центре города</span>
+                  <span><%= aboutLanguages.prefers.prefers__card6[language]  %></span>
                   <img src="img/gallery/tooth.png" alt="">
                </div>
             </div>
@@ -74,30 +74,31 @@
          </article>
          <section class="tabs__content__item tabs__news" id="news">
             <div class="tabs__card__wrapper">
-               <% var news %> 
+               <% var news %>
                <% for (let item of news) {%>
-                  <div class="tabs__card">
-                     <div class="tabs__card__header">
-                        <img src="files/<%= item.filename %>" alt="" width="280" height="190" style="width:280px; height: 190px; object-fit: cover">
-                     </div>
-                     <div class="tabs__card__body">
-                        <time>
-                           <img src="img/icons/clock.svg" alt="clock icon">
-                           <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
-                        </time>
-                        <h3><%=  item.title %></h3>
-                     </div>
-                     <div class="tabs__card__link">
-                        <time>
-                           <img src="img/icons/clock.svg" alt="clock icon">
-                           <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
-                        </time>
-                        <h3>
-                           <a href="#" tabindex="-1"><%=  item.title %></a>
-                        </h3>
-                     </div>
+               <div class="tabs__card">
+                  <div class="tabs__card__header">
+                     <img src="files/<%= item.filename %>" alt="" width="280" height="190"
+                        style="width:280px; height: 190px; object-fit: cover">
                   </div>
-               <% } %> 
+                  <div class="tabs__card__body">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="clock icon">
+                        <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
+                     </time>
+                     <h3><%=  item.title %></h3>
+                  </div>
+                  <div class="tabs__card__link">
+                     <time>
+                        <img src="img/icons/clock.svg" alt="clock icon">
+                        <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
+                     </time>
+                     <h3>
+                        <a href="#" tabindex="-1"><%=  item.title %></a>
+                     </h3>
+                  </div>
+               </div>
+               <% } %>
             </div>
             <div class="pagination">
                <ul class="pagination__list">
@@ -105,35 +106,36 @@
                </ul>
             </div>
          </section>
-         
+
          <section class="tabs__content__item tabs__photos" id="photo_galery">
-            <% for(let i = 0; i < photos.length; i=i+5) {%>
-               <div class="row"> 
-                  <div class="left">
-                     <img src="/photogalery/<%= photos[i].filename %>" alt="doctor img" width="240" height="363" style="object-fit: contain;">
-                  </div>
-                  <div class="middle">
-                     <div class="middle__top">
-                        <img src="https://picsum.photos/375/176" alt="">
+            <% var k = 0 %>
+            <% for(let i = 0; i < Math.ceil(photos.length / 5); i++) {%>
+            <div class="row">
+               <div class="left">
+                  <img src="<% if(photos[k]) {%>/photogalery/<%= photos[k].filename %><%}else{%>/img/noPhoto.jpg<% } %> " alt="img" width="240">
                      </div>
-                     <div class="middle__bottom">
-                        <img src="https://picsum.photos/183/176?rand=5" alt="">
-                        <img src="https://picsum.photos/183/176?rand=6" alt="">
-                     </div>
-                  </div>
-                  <div class="right">
-                     <img src="https://picsum.photos/240/363?rand=6" alt="doctor img" width="240" height="363">
-                  </div>
+                     <div class="middle">
+                        <div class="middle__top">
+                           <img src="<% if(photos[k+1]) {%>/photogalery/<%= photos[k+1].filename %><%}else{%>/img/noPhoto.jpg<% } %> " alt="">
                </div>
-               
-            <% } %> 
-
-         </section>
-         <section class="tabs__content__item tabs__videos" id="video_galery">
-
-         </section>
-      </section>
+               <div class="middle__bottom">
+                  <img src="<% if(photos[k+2]) {%>/photogalery/<%= photos[k+2].filename %><%}else{%>/img/noPhoto.jpg<% } %> " alt="">
+                  <img src="<% if(photos[k+3]) {%>/photogalery/<%= photos[k+3].filename %><%}else{%>/img/noPhoto.jpg<% } %> " alt="">
+               </div>
+            </div>
+            <div class="right">
+               <img src="<% if(photos[k+4]) {%>/photogalery/<%= photos[k+4].filename %><%}else{%>/img/noPhoto.jpg<% } %> "alt="doctor img" width="240" height="363">
+            </div>
    </div>
+   <% k = k + 5 %>
+   <% } %>
+
+</section>
+<section class="tabs__content__item tabs__videos" id="video_galery">
+
+</section>
+</section>
+</div>
 </section>
 
 <!--SECTION FEEDBACK-->
@@ -163,4 +165,7 @@
    </div>
 </div>
 
+<!--VIDEO MODAL-->
+<div class="video-modal hide"></div>
 <%- include('parts/footer')%>
+<script src="/scripts/video-play.js"></script>

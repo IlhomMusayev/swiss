@@ -476,20 +476,20 @@
                   <%= homeLanguages.galery.video_galery.section_title.h2[language] %>
                </h2>
             </div>
-            <a href="#">
+            <a href="/about#video_galery">
                <img src="img/icons/bluearrowr.svg" alt="">
             </a>
          </header>
-         <div class="tabs__videos">
-            <!-- <div class="video-wrapper">
-               <div class="video-wrapper__video" data-index="0">
-                  <img src='https://picsum.photos/484/250' alt="">
+         <div class="tabs__video">
+            <div class="video-wrapper">
+               <div class="video-wrapper__video" data-index="<%= videoItem[0].video_link %>">
+                  <img src='/files/<%= videoItem[0].filename %>' alt="">
                   <button>
                      <img src="img/icons/play.svg" alt="">
                   </button>
                </div>
-               <h3>Технологии будущего для вашего здоровья</h3>
-            </div> -->
+               <h3><%= videoItem[0].caption %></h3>
+            </div>
          </div>
       </section>
       <section class="gallery__section">
@@ -502,8 +502,25 @@
                   <%= homeLanguages.galery.photo_galery.section_title.h2[language] %>
                </h2>
             </div>
+            <a href="/about#photo_galery">
+               <img src="img/icons/bluearrowr.svg" alt="">
+            </a>
          </header>
-         <div class="photos">
+         <div class="gallery_photos">
+            <div class="photos__left">
+               <img src="/photogalery/<%=photos[0].filename%>" alt="">
+            </div>
+            <div class="photos__right">
+               <div class="photos__right-top">
+                  <img src="/photogalery/<%=photos[1].filename%>" alt="">
+               </div>
+               <div class="photos__right-bottom" style="display: flex;">
+                  <img src="/photogalery/<%=photos[2].filename%>" alt="" style="width: 50%; padding-right: 4px;">
+                  <img src="/photogalery/<%=photos[3].filename%>" alt="" style="width: 50%;">
+               </div>
+            </div>
+         </div>
+         <!-- <div class="photos">
             <div class="photos__left">
                <img src="img/gallery/1.png" alt="">
             </div>
@@ -516,7 +533,7 @@
                   <img src="img/gallery/4.png" alt="">
                </div>
             </div>
-         </div>
+         </div> -->
       </section>
    </div>
 </section>
@@ -599,4 +616,47 @@
    </div>
 </div>
 
+<div class="video-modal hide">
+   
+</div>
+
 <%- include('parts/footer') %>
+
+<script>
+   let tabsVideos = document.querySelector('.video-wrapper__video'),
+      videoModal = document.querySelector('.video-modal'),
+      closeVideoModalBtn;
+   const playVideo = document.querySelector('.video-wrapper')
+      
+
+   tabsVideos.addEventListener('click', e => {
+         const target = e.currentTarget;    
+        openVideoModal(target.getAttribute('data-index'))
+      }) 
+      
+   function openVideoModal(index) {
+      document.body.style.overflow = 'hidden';
+      videoModal.classList.remove('hide');
+         
+      videoModal.innerHTML = `<iframe width="800" height="450" src='${index}' frameborder="0" allow="accelerometer; autoplay;
+      clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <button>&times;</button>`
+      closeVideoModalBtn = document.querySelector('.video-modal button');
+
+      closeVideoModalBtn.addEventListener('click', () => {
+         closeVideoModal();
+      });
+   }
+
+   function closeVideoModal() {
+      document.body.style.overflow = '';
+      videoModal.classList.add('hide');
+      videoModal.innerHTML = '';
+   }
+
+   window.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+         closeVideoModal();
+      }
+   })
+</script>

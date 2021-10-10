@@ -13,7 +13,8 @@ router.get('/', async (req, res) => {
     const allPhotoss = await allPhotos()
     const videos = await allVideos()
     const news = await allBlogs()
-    console.log(news);
+
+    console.log(allPhotoss);
     res.render('about', {
         title: "About",
         user: req.user,

@@ -14,8 +14,16 @@ const {
     updateAbout
 } = require('../models/AboutModel')
 
-const { allPhotos, addPhoto, deleteOnePhotoById } = require('../models/PhotosModel')
-const { allVideos, addVideo, deleteOneVideoById } = require('../models/VideoModel')
+const {
+    allPhotos,
+    addPhoto,
+    deleteOnePhotoById
+} = require('../models/PhotosModel')
+const {
+    allVideos,
+    addVideo,
+    deleteOneVideoById
+} = require('../models/VideoModel')
 
 const adminMiddleware = require('../middlewares/adminMiddleware')
 const expressFileUpload = require('express-fileupload');
@@ -78,9 +86,8 @@ router.get('/about', async (req, res) => {
     const allAbouts = await allAbout()
     const allPhotoss = await allPhotos()
     const allVideoss = await allVideos()
-    res.render('adminAbout',
-    {
-        allAbouts : allAbouts[0],
+    res.render('adminAbout', {
+        allAbouts: allAbouts[0],
         photos: allPhotoss,
         videos: allVideoss
     })
@@ -106,7 +113,7 @@ router.post('/about', expressFileUpload(), async (req, res) => {
             throw new Error('Title yoki Blog kiritmadingiz!')
         }
 
-        if(allAbouts.length <= 0){
+        if (allAbouts.length <= 0) {
             await addAbout(title_uz, title_ru, content_uz, content_ru, filename)
             req.files.image.mv(
                 path.join(__dirname, '..', 'public', 'files', filename),
@@ -181,18 +188,18 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
             content,
             id
         } = req.body
-        
+
         const imgName = req.files.image.name.split(".")
-        
+
         const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
-        
+
         const blogItem = await findBlogById(id)
         try {
             fs.unlinkSync(path.join(__dirname, 'public', 'file', blogItem.filename))
         } catch (error) {
             console.log(error);
         }
-        
+
         const updateOneBlog = await updateOneBlogModel(title, content, filename, id)
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
@@ -209,39 +216,51 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     try {
         const deleteOne = await deleteOneById(req.params.id)
-        
+
         if (deleteOne) {
             res.json({
                 message: 'Blog deleted'
             })
         }
-        
+
     } catch (error) {
         res.json({
             error: error
         })
     }
-    
+
 })
 
 // photo galery
 router.post('/addphotos', expressFileUpload(), async (req, res) => {
     const photos = req.files.photos
-    for(let photo of photos) {
-        const imgName = photo.name.split(".")
-        const filename = photo.md5 + '.' + imgName[imgName.length - 1]
-        photo.mv(
-            path.join(__dirname, '..', 'public', 'photogalery', filename),
-        )
-        const addPhotos = await addPhoto(filename)
+    console.log(photos);
+    if (photos.length > 1) {
+        for (let photo of photos) {
+            const imgName = photo.name.split(".")
+            const filename = photo.md5 + '.' + imgName[imgName.length - 1]
+            photo.mv(
+                path.join(__dirname, '..', 'public', 'photogalery', filename),
+            )
+            const addPhotos = await addPhoto(filename)
+            res.redirect('/admin/about')
+            return;
+        }
     }
+    const imgName = photos.name.split(".")
+    const filename = photos.md5 + '.' + imgName[imgName.length - 1]
+    photos.mv(
+        path.join(__dirname, '..', 'public', 'photogalery', filename),
+    )
+    const addPhotos = await addPhoto(filename)
     res.redirect('/admin/about')
+
 })
 
-router.get('/deletephoto/:id' , async (req, res) => {
+router.get('/deletephoto/:id', async (req, res) => {
     try {
         await deleteOnePhotoById(req.params.id)
-        res.redirect('/admin/about')      
+        res.redirect('/admin/about')
     } catch (error) {
         console.log(error);
         res.redirect('/admin')
@@ -255,11 +274,22 @@ router.post('/addvideo', expressFileUpload(), async (req, res) => {
             caption
         } = req.body
 
+        function getId(url) {
+            const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+            const match = url.match(regExp);
+
+            return (match && match[2].length === 11) ?
+                match[2] :
+                null;
+        }
+        const id = getId(video_link)
+        const videoLink = `https://youtube.com/embed/${id}`
+
         const imgName = req.files.videoimg.name.split(".")
-        
+
         const filename = req.files.videoimg.md5 + '.' + imgName[imgName.length - 1]
-    
-        const addVideos = await addVideo(video_link, caption, filename)
+
+        const addVideos = await addVideo(videoLink, caption, filename)
         req.files.videoimg.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
@@ -269,19 +299,19 @@ router.post('/addvideo', expressFileUpload(), async (req, res) => {
     }
 })
 
-router.get('/deletevideo/:id' , async (req, res) => {
+router.get('/deletevideo/:id', async (req, res) => {
     try {
         await deleteOneVideoById(req.params.id)
-        res.redirect('/admin/about')      
+        res.redirect('/admin/about')
     } catch (error) {
         console.log(error);
         res.redirect('/admin')
     }
 })
 
-router.get('/allvideos',  async (req, res) => {
+router.get('/allvideos', async (req, res) => {
     const videos = await allVideos()
-    
+
     res.json({
         videos
     })
