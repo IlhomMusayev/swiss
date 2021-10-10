@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', async function(){
          tabsVideosWrapper.innerHTML += `
          <div class="video-wrapper">
             <div class="video-wrapper__video" data-index="${video.video_link}">
-               <img src=/files/${video.filename} alt="">
+               <img src=/files/${video.filename} alt="" style="width: 100%; height:250px; object-fit:cover;">
                <button>
-                  <img src="img/icons/play.svg" alt="">
+                  <img src="img/icons/play.svg" alt="" style = "width: 25%">
                </button>
             </div>
             <h3>${video.caption}</h3>

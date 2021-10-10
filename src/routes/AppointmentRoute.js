@@ -19,17 +19,17 @@ router.get('/', async (req, res) => {
     })
 })
 router.post('/', AuthMiddleware, async (req, res) => {
-    
+
     try {
         let {
             full_name,
             phone_number,
             filial,
             service__label,
-            service__includes__label   
+            service__includes__label
         } = req.body
         const email = req.user.email
-        
+
         if (!(full_name && phone_number && filial)) {
             res.render('appointment', {
                 status: 'error',
@@ -39,13 +39,13 @@ router.post('/', AuthMiddleware, async (req, res) => {
                 language: req.language
             })
             return;
-        }        
+        }
 
 
-        if(typeof(service__label) === "object"){
+        if (typeof (service__label) === "object") {
             service__label = service__label.join(", ")
         }
-        if(typeof(service__includes__label) === "object"){
+        if (typeof (service__includes__label) === "object") {
             service__includes__label = service__includes__label.join(", ")
         }
 
@@ -53,6 +53,8 @@ router.post('/', AuthMiddleware, async (req, res) => {
         const addAppointment = await addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label, email)
         if (addAppointment) {
             res.render('appointment', {
+                user: req.user,
+
                 status: 'ok',
                 navbarLanguages,
                 appointmentLanguages,
