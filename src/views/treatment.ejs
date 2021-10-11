@@ -37,27 +37,27 @@
             </div>
          </section>
          <section class="article__description">
-            <h2>Ортопедия это - это давно установленный факт, который отвлекает читателя.</h2>
-            <p>Давно установлено, что читатель будет отвлекаться на удобочитаемое содержимое страницы при просмотре ее
-               макета. Смысл использования Lorem Ipsum в том, что он имеет более или менее нормальное распределение
-               букв, в отличие от использования «Контент здесь, контент здесь», что делает его похожим на читаемый
-               английский. Многие настольные издательские пакеты и редакторы веб-страниц теперь используют Lorem Ipsum в
-               качестве текста модели по умолчанию, а поиск по запросу «lorem ipsum» обнаружит многие веб-сайты, все еще
-               находящиеся в зачаточном состоянии. С годами появились разные версии, иногда случайно, иногда
-               специально.</p>
+            <h2><%if(language === 'uz'){%> <%= allTreatments.title_uz %> <% }else {%> <%= allTreatments.title_ru %> <% } %> </h2>
+            <p>
+               <%if(language === 'uz'){%> <%- allTreatments.content1_uz %> <% } else {%> <%= allTreatments.content1_ru %> <% } %> 
+            </p>
             <div class="article__description__gallery">
                <figure>
-                  <img src="img/doctors/dentist1.png" alt="" width="400" height="260">
-                  <figcaption>Давно установлено, что читатель будет отвлекаться на читаемое.</figcaption>
+                  <img src="/files/<%= allTreatments.filename1 %>" alt="" width="400" height="260">
+                  <figcaption>
+                     <%if(language === 'uz'){%> <%= allTreatments.caption1_uz %> <% }else {%> <%= allTreatments.caption1_ru %> <% } %>
+                  </figcaption>
                </figure>
                <figure>
-                  <img src="img/doctors/dentist2.png" alt="" width="400" height="260">
-                  <figcaption>Давно установлено, что читатель будет отвлекаться на читаемое.</figcaption>
+                  <img src="/files/<%= allTreatments.filename2 %>" alt="" width="400" height="260">
+                  <figcaption>
+                     <%if(language === 'uz'){%> <%= allTreatments.caption1_uz %> <% }else {%> <%= allTreatments.caption1_ru %> <% } %>
+                  </figcaption>
                </figure>
             </div>
-            <p>Многие настольные издательские пакеты и редакторы веб-страниц теперь используют Lorem Ipsum в качестве
-               текста модели по умолчанию, а поиск по запросу «lorem ipsum» обнаружит многие веб-сайты, все еще
-               находящиеся в зачаточном состоянии. Иногда с годами развивались различные версии.</p>
+            <p>
+               <%if(language === 'uz'){%> <%- allTreatments.content2_uz %> <% } else {%> <%= allTreatments.content2_ru %> <% } %>
+            </p>
          </section>
       </article>
       <aside class="appointment">

@@ -2054,7 +2054,7 @@ input[type=number] {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 230px;
+  width: 100%;
   height: 56px;
   margin: 0 auto;
   background-color: #00B1B9;
