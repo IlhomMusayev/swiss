@@ -15,10 +15,18 @@ const {
 } = require('../models/AboutModel')
 
 const {
+    CosmeticModel,
+    addCosmetic,
+    allCosmetic,
+    updateCosmetic
+} = require('../models/CosmeticPageModel')
+
+const {
     allPhotos,
     addPhoto,
     deleteOnePhotoById
 } = require('../models/PhotosModel')
+
 const {
     allVideos,
     addVideo,
@@ -33,6 +41,7 @@ const {
     deleteDoctorById,
     findDoctorById
 } = require('../models/DoctorModel')
+
 
 const adminMiddleware = require('../middlewares/adminMiddleware')
 const expressFileUpload = require('express-fileupload');
@@ -51,7 +60,7 @@ router.use(adminMiddleware)
 
 
 router.get('/', async (req, res) => {
- 
+
     // 
     const skipappontment = req.query.skipappontment * 1 || 0;
 
@@ -123,6 +132,86 @@ router.post('/about', expressFileUpload(), async (req, res) => {
 
     }
 })
+// COSMETIC
+router.get('/cosmetic', async (req, res) => {
+    const allCosmetics = await allCosmetic()
+    res.render('adminCosmetic', {
+        allCosmetics: allCosmetics[0]
+    })
+})
+router.post('/cosmetic', expressFileUpload(), async (req, res) => {
+    try {
+        const allCosmetics = await allCosmetic()
+
+        const {
+            title_uz,
+            title_ru,
+            content1_uz,
+            content1_ru,
+            caption1_uz,
+            caption1_ru,
+            caption2_uz,
+            caption2_ru,
+            content2_uz,
+            content2_ru,
+            id
+        } = req.body
+
+        const imgName1 = req.files.filename1.name.split(".")
+
+        const filename1 = req.files.filename1.md5 + '.' + imgName1[imgName1.length - 1]
+
+        const imgName2 = req.files.filename2.name.split(".")
+
+        const filename2 = req.files.filename2.md5 + '.' + imgName2[imgName2.length - 1]
+
+        if (!(title_uz || title_ru || content1_uz || content1_ru || content2_uz || content2_ru || caption1_ru || caption2_ru || caption1_uz || caption2_uz)) {
+            throw new Error('Maydonlarning hammasini to\'ldiring!!!')
+        }
+
+        if (allCosmetics.length <= 0) {
+            await addCosmetic(
+                title_uz,
+                title_ru, 
+                content1_uz, 
+                content1_ru, 
+                filename1, 
+                caption1_uz, 
+                caption1_ru, 
+                filename2, 
+                caption2_uz, 
+                caption2_ru, 
+                content2_uz, 
+                content2_ru
+            )
+            req.files.filename1.mv(
+                path.join(__dirname, '..', 'public', 'files', filename1),
+            )
+            req.files.filename2.mv(
+                path.join(__dirname, '..', 'public', 'files', filename2),
+            )
+            res.redirect('/admin/cosmetic')
+        }
+        await updateCosmetic(
+            title_uz, title_ru, content1_uz, content1_ru, filename1, caption1_uz, caption1_ru, filename2, caption2_uz, caption2_ru, content2_uz, content2_ru, id.trim())
+        
+        // fs.unlinkSync(`../public/files/${allCosmetics[0].filename1}`)
+        // fs.unlinkSync(`../public/files/${allCosmetics[0].filename2}`)
+        
+        req.files.filename1.mv(
+            path.join(__dirname, '..', 'public', 'files', filename1),
+        )
+        req.files.filename2.mv(
+            path.join(__dirname, '..', 'public', 'files', filename2),
+        )
+        res.redirect('/admin/cosmetic')
+    } catch (error) {
+        console.log(error);
+
+    }
+})
+
+
 
 // BLOG
 router.get('/addblog', async (req, res) => {
@@ -134,7 +223,7 @@ router.get('/addblog', async (req, res) => {
         .skip(skipblog * 10)
         .limit(10)
     const allBlogsCount = await allblogs.length
-    
+
     res.render('addblog', {
         skipblog,
         allBlogsPog,
@@ -323,12 +412,12 @@ router.get('/doctor', async (req, res) => {
         doctors
     })
 })
-router.post('/doctor',expressFileUpload(), async (req, res) => {
+router.post('/doctor', expressFileUpload(), async (req, res) => {
     try {
         const {
             name,
             special,
-            about, 
+            about,
             phone_number
         } = req.body
         const doctors = await allDoctors()
@@ -342,7 +431,7 @@ router.post('/doctor',expressFileUpload(), async (req, res) => {
             throw new Error('Bo\'shliqlarni to\'ldiring')
         }
 
-        if(!(about.length <= 2048)){
+        if (!(about.length <= 2048)) {
             res.render('adminDoctor', {
                 error: "Iltimos 2048 ta belgidan kamroq ma'lumot kiriting!",
                 doctors
@@ -401,7 +490,7 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
         const {
             name,
             special,
-            about, 
+            about,
             phone_number,
             id
         } = req.body
@@ -414,7 +503,7 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
             throw new Error('Bo\'shliqlarni to\'ldiring')
         }
 
-        if(!(about.length <= 2048)){
+        if (!(about.length <= 2048)) {
             res.render('adminDoctor', {
                 error: "Iltimos 2048 ta belgidan kamroq ma'lumot kiriting!",
                 doctors
@@ -433,7 +522,6 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
 
 
 // Cotegorys
-
 router.get('/admin/category', (req, res) => {
     res.render('admincategory', {
         title: "Categorys"

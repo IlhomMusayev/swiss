@@ -9,25 +9,21 @@ const AboutScheme = new Schema({
     title_uz: {
         type: 'string',
         required: true,
-        minLength: 5,
         trim: true,
     },
     title_ru: {
         type: 'string',
         required: true,
-        minLength: 5,
         trim: true,
     },
     content_uz: {
         type: 'string',
         required: true,
-        minLength: 100,
         trim: true,
     },
     content_ru: {
         type: 'string',
         required: true,
-        minLength: 100,
         trim: true,
     },
     filename: {
