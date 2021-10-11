@@ -25,6 +25,15 @@ const {
     deleteOneVideoById
 } = require('../models/VideoModel')
 
+const {
+    DoctorModel,
+    addDoctor,
+    allDoctors,
+    updateDoctor,
+    deleteDoctorById,
+    findDoctorById
+} = require('../models/DoctorModel')
+
 const adminMiddleware = require('../middlewares/adminMiddleware')
 const expressFileUpload = require('express-fileupload');
 const path = require('path');
@@ -42,16 +51,7 @@ router.use(adminMiddleware)
 
 
 router.get('/', async (req, res) => {
-    const skipblog = req.query.skipblog * 1 || 0;
-    const BlogModele = await BlogModel()
-    const allblogs = await allBlogs()
-    const allBlogsPog = await BlogModele
-        .find()
-        .skip(skipblog * 10)
-        .limit(10)
-    const allBlogsCount = await allblogs.length
-
-
+ 
     // 
     const skipappontment = req.query.skipappontment * 1 || 0;
 
@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
     const allAppointments = await allAppointmentModel()
     const allAppointmentPog = await AppointmentModels
         .find()
-        .skip(skipblog * 10)
+        .skip(skipappontment * 10)
         .limit(10)
         .sort({
             dateCreated: -1
@@ -69,19 +69,13 @@ router.get('/', async (req, res) => {
 
 
     res.render('admin', {
-        skipblog,
-        allBlogsPog,
-        allBlogsCount,
         skipappontment,
         allAppointmentPog,
         allAppointmentCount
     })
 })
 
-router.get('/addblog', async (req, res) => {
-    res.render('addblog')
-})
-
+// ABOUT
 router.get('/about', async (req, res) => {
     const allAbouts = await allAbout()
     const allPhotoss = await allPhotos()
@@ -92,7 +86,6 @@ router.get('/about', async (req, res) => {
         videos: allVideoss
     })
 })
-
 router.post('/about', expressFileUpload(), async (req, res) => {
     try {
         const allAbouts = await allAbout()
@@ -131,6 +124,23 @@ router.post('/about', expressFileUpload(), async (req, res) => {
     }
 })
 
+// BLOG
+router.get('/addblog', async (req, res) => {
+    const skipblog = req.query.skipblog * 1 || 0;
+    const BlogModele = await BlogModel()
+    const allblogs = await allBlogs()
+    const allBlogsPog = await BlogModele
+        .find()
+        .skip(skipblog * 10)
+        .limit(10)
+    const allBlogsCount = await allblogs.length
+    
+    res.render('addblog', {
+        skipblog,
+        allBlogsPog,
+        allBlogsCount,
+    })
+})
 router.post('/addblog', expressFileUpload(), async (req, res) => {
     try {
         const {
@@ -158,11 +168,6 @@ router.post('/addblog', expressFileUpload(), async (req, res) => {
         console.log(error);
     }
 })
-
-
-
-
-
 router.get('/edite/:id', async (req, res) => {
     try {
         const blogItem = await findBlogById(new ObjectId(req.params.id))
@@ -180,7 +185,6 @@ router.get('/edite/:id', async (req, res) => {
         console.log(error);
     }
 })
-
 router.post('/edite', expressFileUpload(), async (req, res) => {
     try {
         const {
@@ -211,8 +215,6 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
         console.log(error);
     }
 })
-
-
 router.delete('/delete/:id', async (req, res) => {
     try {
         const deleteOne = await deleteOneById(req.params.id)
@@ -231,7 +233,7 @@ router.delete('/delete/:id', async (req, res) => {
 
 })
 
-// photo galery
+// Photo galery
 router.post('/addphotos', expressFileUpload(), async (req, res) => {
     const photos = req.files.photos
     console.log(photos);
@@ -256,7 +258,6 @@ router.post('/addphotos', expressFileUpload(), async (req, res) => {
     res.redirect('/admin/about')
 
 })
-
 router.get('/deletephoto/:id', async (req, res) => {
     try {
         await deleteOnePhotoById(req.params.id)
@@ -266,7 +267,7 @@ router.get('/deletephoto/:id', async (req, res) => {
         res.redirect('/admin')
     }
 })
-// video gaery routes
+// Video gaery routes
 router.post('/addvideo', expressFileUpload(), async (req, res) => {
     try {
         const {
@@ -298,7 +299,6 @@ router.post('/addvideo', expressFileUpload(), async (req, res) => {
         console.log(error);
     }
 })
-
 router.get('/deletevideo/:id', async (req, res) => {
     try {
         await deleteOneVideoById(req.params.id)
@@ -308,7 +308,6 @@ router.get('/deletevideo/:id', async (req, res) => {
         res.redirect('/admin')
     }
 })
-
 router.get('/allvideos', async (req, res) => {
     const videos = await allVideos()
 
@@ -317,6 +316,120 @@ router.get('/allvideos', async (req, res) => {
     })
 })
 
+// DOCTOR
+router.get('/doctor', async (req, res) => {
+    const doctors = await allDoctors()
+    res.render('adminDoctor', {
+        doctors
+    })
+})
+router.post('/doctor',expressFileUpload(), async (req, res) => {
+    try {
+        const {
+            name,
+            special,
+            about, 
+            phone_number
+        } = req.body
+        const doctors = await allDoctors()
+
+
+        const imgName = req.files.image.name.split(".")
+
+        const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
+
+        if (!(name || special || phone_number || about)) {
+            throw new Error('Bo\'shliqlarni to\'ldiring')
+        }
+
+        if(!(about.length <= 2048)){
+            res.render('adminDoctor', {
+                error: "Iltimos 2048 ta belgidan kamroq ma'lumot kiriting!",
+                doctors
+            })
+            return;
+        }
+        const doctor = addDoctor(name, special, about, phone_number, filename)
+        req.files.image.mv(
+            path.join(__dirname, '..', 'public', 'files', 'doctors', filename),
+        )
+        res.render('adminDoctor', {
+            message: "Muvoffaqiyatli qo'shildi!",
+            doctors
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+router.delete('/doctor/delete/:id', async (req, res) => {
+    try {
+        const deleteOne = await deleteDoctorById(req.params.id)
+
+        if (deleteOne) {
+            res.json({
+                message: 'Docktor deleted'
+            })
+        }
+
+    } catch (error) {
+        res.json({
+            error: error
+        })
+    }
+})
+router.get('/doctor/edite/:id', async (req, res) => {
+    try {
+        const doctor = await findDoctorById(new ObjectId(req.params.id))
+        if (!doctor) {
+            res.render('adminDoctor', {
+                title: 'Admin panel',
+                error: "Bunday doctor mavjud emas"
+            })
+        }
+        res.render('editDoctor', {
+            title: doctor.name,
+            doctor
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
+    try {
+        const {
+            name,
+            special,
+            about, 
+            phone_number,
+            id
+        } = req.body
+
+        const imgName = req.files.image.name.split(".")
+
+        const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
+
+        if (!(name || special || phone_number || about)) {
+            throw new Error('Bo\'shliqlarni to\'ldiring')
+        }
+
+        if(!(about.length <= 2048)){
+            res.render('adminDoctor', {
+                error: "Iltimos 2048 ta belgidan kamroq ma'lumot kiriting!",
+                doctors
+            })
+            return;
+        }
+        const doctor = updateDoctor(name, special, about, phone_number, filename, id)
+        req.files.image.mv(
+            path.join(__dirname, '..', 'public', 'files', 'doctors', filename),
+        )
+        res.redirect('/admin/doctor')
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 module.exports = {
     path: '/admin',

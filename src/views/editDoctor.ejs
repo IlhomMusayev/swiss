@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Admin panel</title>
+</head>
+
+<body>
+    <% var doctor = doctor || {} %> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center my-4">
+                <h2>Edite Doctor</h2>
+                <hr>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <form action="/admin/doctor/edite" method='POST' enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="name" class="mt-5">Name</label>
+                        <input type="text" class="form-control my-2" id="name" name="name" placeholder="Doctor name" required value="<%= doctor.name %>">
+    
+                        <label for="specials" class="">Specials</label>
+                        <input type="text" class="form-control my-2" id="specials" name="special"
+                            placeholder="Doctor special" required value="<%= doctor.specials %>">
+    
+                        <label for="text" class="my-2">About</label>
+                        <textarea name="about" id="editor" class="my-2" placeholder="Shu yerga blog so'zlarini kiriting..." required>
+                                &lt;p&gt;<%= doctor.about %> &lt;/p&gt;
+                            </textarea>
+    
+                        <label for="phone_number" class="mt-4">Phone number</label>
+                        <input type="text" class="form-control my-2" id="phone_number" name="phone_number"
+                            placeholder="Phone number" required value="<%= doctor.phone_number %>">
+    
+    
+                        <label for="image" class="mt-2">Image</label>
+                        <input type="file" class="form-control my-2" style="display: block" id="image" name="image" required>
+
+                        <input type="hidden" name="id" value="<%= doctor._id %>">
+    
+                        <input type="submit" class="btn btn-primary w-100 mt-3" value="Saqlash">
+                    </div>
+                </form>
+            </div>
+
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+        </script>
+        <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+        <script>
+            ClassicEditor
+                .create( document.querySelector( '#editor' ) )
+                .catch( error => {
+                    console.error( error );
+                } );
+        </script>
+</body>
+
+</html>

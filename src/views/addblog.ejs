@@ -12,7 +12,7 @@
 </head>
 
 <body>
-
+    <% var num =1 %> 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container container-fluid">
               <a class="navbar-brand" href="#">Admin Panel</a>
@@ -21,12 +21,18 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="/admin">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/admin/addblog">Add admin</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                      </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/addblog">Add News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin/doctor">Doctor</a>
+                    </li>
                 </ul>
               </div>
             </div>
@@ -62,6 +68,89 @@
                     <input type="submit" class="btn btn-primary w-100 mt-3" value="Blog qo'shish">
                 </div>
             </form>
+        </div>
+
+
+        <div class="col-md-12 mt-5">
+            <div class="title">
+                <h2>Bloglar ro'yxati</h2>
+                <hr>
+            </div>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Title</th>
+                        <th scope="col">Blog</th>
+                        <th scope="col">Img</th>
+                        <th scope="col">E/D</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% allBlogsPog.forEach(function(blogItem) {%>
+                    <tr>
+                        <th scope="row"><%= num ++ %> </th>
+                        <td><%= blogItem.title %></td>
+                        <td class="blog-post">
+                            <div style="height:200px">
+                                <%- blogItem.content %>
+                            </div>
+                        </td>
+                        <td>
+                            <img style="width: 200px; height:200px; object-fit: contain"
+                                src="/files/<%= blogItem.filename %>" alt="">
+                        </td>
+                        <td>
+                            <a class="btn btn-primary edite_btn" href="/admin/edite/<%= blogItem._id %>">Edit</a>
+                            <hr>
+                            <button data-id="<%= blogItem._id%>" class="
+                                btn btn-danger
+                                delete_btn
+                            ">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+                </tbody>
+            </table>
+
+            <div>
+                <nav
+                    class=""
+                    aria-label="Page navigation example"
+                >
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="/admin?skipblog=<%= skipblog - 1%>"
+                                >Previous</a
+                            >
+                        </li>
+
+                        <% for(let i = 0; i < Math.ceil(allBlogsCount / 10); i++){%>
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="/admin?skipblog=<%= i%>"
+                                ><%= i + 1%></a
+                            >
+                        </li>
+                        <%}%>
+
+                        <li class="page-item">
+                            <a
+                                class="page-link"
+                                href="/admin?skipblog=<%= skipblog + 1%>"
+                                >Next</a
+                            >
+                        </li>
+                    </ul>
+                </nav>
+            </div> 
         </div>
 
     </div>
