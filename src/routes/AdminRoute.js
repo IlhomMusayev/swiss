@@ -431,6 +431,15 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
     }
 })
 
+
+// Cotegorys
+
+router.get('/admin/category', (req, res) => {
+    res.render('admincategory', {
+        title: "Categorys"
+    })
+})
+
 module.exports = {
     path: '/admin',
     router

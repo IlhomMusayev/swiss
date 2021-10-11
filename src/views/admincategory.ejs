@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Doctor</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container container-fluid">
+            <a class="navbar-brand" href="#">Admin Panel</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin/addblog">Add News</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/doctor">Doctor</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <% var message, error %>
+        <div class="row mb-5">
+            <div class="col-md-12">
+                <div class="title mt-5">
+                    <h2>Doctor</h2>
+                </div>
+
+                <% if(message) {%>
+                <div class="alert alert-success" style="margin: 20px 0px;">
+                    <%= message %>
+                </div>
+                <% } %>
+                <% if(error) {%>
+                    <div class="alert alert-danger" style="margin: 20px 0px;">
+                        <%= error %>
+                    </div>
+                    <% } %>
+            </div>
+            <form action="/admin/doctor" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="name" class="mt-5">Name</label>
+                    <input type="text" class="form-control my-2" id="name" name="name" placeholder="Doctor name" required>
+
+                    <label for="specials" class="">Specials</label>
+                    <input type="text" class="form-control my-2" id="specials" name="special"
+                        placeholder="Doctor special" required>
+
+                    <label for="text" class="my-2">About</label>
+                    <textarea name="about" id="editor" class="my-2" placeholder="Shu yerga blog so'zlarini kiriting..." required>
+                            &lt;p&gt;&lt;/p&gt;
+                        </textarea>
+
+                    <label for="phone_number" class="mt-4">Phone number</label>
+                    <input type="text" class="form-control my-2" id="phone_number" name="phone_number"
+                        placeholder="Phone number" required>
+
+
+                    <label for="image" class="mt-2">Image</label>
+                    <input type="file" class="form-control my-2" style="display: block" id="image" name="image" required>
+
+                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Blog qo'shish">
+                </div>
+            </form>
+        </div>
+        <% 
+        var doctors = doctors || [];
+        var num = 1
+        %>
+        <div style="overflow-x: auto;">
+            <table class="table" style="width: 100%">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Special</th>
+                        <th scope="col">About</th>
+                        <th scope="col">Phone number</th>
+                        <th scope="col">Photo</th>
+                        <th scope="col">Edit/Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% doctors.forEach(function(doctor) {%>
+                    <tr>
+                        <th scope="row"><%= num ++ %> </th>
+                        <td><%= doctor.name %> </td>
+                        <td><%= doctor.specials %> </td>
+                        <td style="width:40%;">
+                            <div style="height:200px">
+                                <%- doctor.about %>
+                            </div>
+                        </td>
+                        <td><%= doctor.phone_number %> </td>
+                        <td><img style="width: 200px; height:200px; object-fit: contain"
+                                src="/files/doctors/<%= doctor.filename %>" alt=""> </td>
+
+                        <td>
+                            <a class="btn btn-primary edite_btn" href="/admin/doctor/edite/<%= doctor._id %>">Edit</a>
+                            <hr>
+                            <button data-id="<%= doctor._id%>" class="
+                                btn btn-danger
+                                delete_btn
+                            ">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+
+        const successAlertElement = document.querySelector('.alert')
+        setTimeout(function () {
+            successAlertElement.parentNode.removeChild(successAlertElement);
+        }, 5000);
+    </script>
+
+<script>
+    const delete_buttons = document.querySelectorAll(".delete_btn");
+    delete_buttons.forEach((button) => {
+        button.addEventListener("click", async (evt) => {
+            console.log(evt);
+            const response = await fetch(
+                "doctor/delete/" + evt.target.dataset.id, {
+                    method: "DELETE",
+                }
+            );
+
+            const json = await response.json();
+            console.log(json.message);
+            if (response.status === 200) {
+                alert(json.message);
+                evt.target.parentNode.parentNode.remove();
+            } else {
+                alert(json.error);
+            }   
+        });
+    });
+</script>
+
+</body>
+
+</html>

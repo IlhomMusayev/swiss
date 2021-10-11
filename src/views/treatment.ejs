@@ -63,17 +63,9 @@
       </article>
       <aside class="appointment">
          <h2>Записатся на прием</h2>
-         <form class="appointment__form" action="#" method="get">
+         <form class="appointment__form" action="/appointmenthome" method="post">
             <input id="full-name" type="text" name="full_name" placeholder="Имя Фамилия">
-            <input class="masked-phone" id="phone_number" type="tel" name="phone_number" data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _" />
-            <div class="custom-select">
-               <select name="type_services">
-                  <option value="0">Тип услуги</option>
-                  <option value="1">Ортопедия</option>
-                  <option value="2">Терапевтическая</option>
-                  <option value="3">Имплантология</option>
-               </select>
-            </div>
+            <input class="masked-phone" id="phone_number" type="tel" name="phone_number" data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _" placeholder="Phone Number"/>
             <button type="submit">
                <img src="img/icons/bell.svg" alt="">
                <span>Записатся</span>
