@@ -32,7 +32,6 @@ const CosmeticScheme = new Schema({
     filename1: {
         type: 'string',
         required: true,
-
     },
     caption1_uz: {
         type: 'string',
