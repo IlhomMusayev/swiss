@@ -8,8 +8,7 @@
    <div class="container">
       <article class="article">
          <section class="article__treatment">
-            <h2>Лечение</h2>
-            <div class="article__treatment__subtitle">In publishing and graphic design</div>
+            <h2><%= treatmentLanguages.treatment.title[language] %></h2>
             <div class="treatment-types">
                <div class="treatment-types__card">
                   <h3>Ортопедия</h3>
@@ -62,13 +61,13 @@
          </section>
       </article>
       <aside class="appointment">
-         <h2>Записатся на прием</h2>
+         <h2><%= treatmentLanguages.appointment.header[language] %></h2>
          <form class="appointment__form" action="/appointmenthome" method="post">
-            <input id="full-name" type="text" name="full_name" placeholder="Имя Фамилия">
-            <input class="masked-phone" id="phone_number" type="tel" name="phone_number" data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _" placeholder="Phone Number"/>
+            <input id="full-name" type="text" name="full_name" placeholder="<%= treatmentLanguages.appointment.form.name[language] %>">
+            <input class="masked-phone" id="phone_number" type="tel" name="phone_number" data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _" placeholder="<%= treatmentLanguages.appointment.form.phone_number[language] %>"/>
             <button type="submit">
                <img src="img/icons/bell.svg" alt="">
-               <span>Записатся</span>
+               <span><%= treatmentLanguages.appointment.form.submit_btn[language] %></span>
             </button>
          </form>
       </aside>
