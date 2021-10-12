@@ -8,7 +8,7 @@ const client = require('../modules/mongo')
 const AboutScheme = new Schema({
     title_uz: {
         type: 'string',
-        required: true,
+        required: true, 
         trim: true,
     },
     title_ru: {

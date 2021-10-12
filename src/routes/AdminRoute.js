@@ -29,6 +29,13 @@ const {
 } = require('../models/TreatmentPageModel')
 
 const {
+    ContactModel,
+    addContact,
+    allContacts,
+    updateContact
+} = require('../models/ContactsModel')
+
+const {
     allPhotos,
     addPhoto,
     deleteOnePhotoById
@@ -179,16 +186,16 @@ router.post('/cosmetic', expressFileUpload(), async (req, res) => {
         if (allCosmetics.length <= 0) {
             await addCosmetic(
                 title_uz,
-                title_ru, 
-                content1_uz, 
-                content1_ru, 
-                filename1, 
-                caption1_uz, 
-                caption1_ru, 
-                filename2, 
-                caption2_uz, 
-                caption2_ru, 
-                content2_uz, 
+                title_ru,
+                content1_uz,
+                content1_ru,
+                filename1,
+                caption1_uz,
+                caption1_ru,
+                filename2,
+                caption2_uz,
+                caption2_ru,
+                content2_uz,
                 content2_ru
             )
             req.files.filename1.mv(
@@ -201,10 +208,10 @@ router.post('/cosmetic', expressFileUpload(), async (req, res) => {
         }
         await updateCosmetic(
             title_uz, title_ru, content1_uz, content1_ru, filename1, caption1_uz, caption1_ru, filename2, caption2_uz, caption2_ru, content2_uz, content2_ru, id.trim())
-        
+
         // fs.unlinkSync(`../public/files/${allCosmetics[0].filename1}`)
         // fs.unlinkSync(`../public/files/${allCosmetics[0].filename2}`)
-        
+
         req.files.filename1.mv(
             path.join(__dirname, '..', 'public', 'files', filename1),
         )
@@ -257,16 +264,16 @@ router.post('/treatment', expressFileUpload(), async (req, res) => {
         if (allTreatments.length <= 0) {
             await addTreatment(
                 title_uz,
-                title_ru, 
-                content1_uz, 
-                content1_ru, 
-                filename1, 
-                caption1_uz, 
-                caption1_ru, 
-                filename2, 
-                caption2_uz, 
-                caption2_ru, 
-                content2_uz, 
+                title_ru,
+                content1_uz,
+                content1_ru,
+                filename1,
+                caption1_uz,
+                caption1_ru,
+                filename2,
+                caption2_uz,
+                caption2_ru,
+                content2_uz,
                 content2_ru
             )
             req.files.filename1.mv(
@@ -279,10 +286,10 @@ router.post('/treatment', expressFileUpload(), async (req, res) => {
         }
         await updateTreatment(
             title_uz, title_ru, content1_uz, content1_ru, filename1, caption1_uz, caption1_ru, filename2, caption2_uz, caption2_ru, content2_uz, content2_ru, id.trim())
-        
+
         // fs.unlinkSync(`../public/files/${allCosmetics[0].filename1}`)
         // fs.unlinkSync(`../public/files/${allCosmetics[0].filename2}`)
-        
+
         req.files.filename1.mv(
             path.join(__dirname, '..', 'public', 'files', filename1),
         )
@@ -294,11 +301,55 @@ router.post('/treatment', expressFileUpload(), async (req, res) => {
         console.log(error);
     }
 })
+// Contact
+router.get('/contacts', async (req, res) => {
+    const allContact = await allContacts()
+    res.render('adminContacts', {
+        allContact: allContact[0]
+    })
+})
+router.post('/contacts', async (req, res) => {
+    try {
+        const allContact = await allContacts()
 
+        const {
+            phone_number,
+            email,
+            address,
+            facebook,
+            instagram,
+            telegram,
+            twitter,
+            aboutuz,
+            aboutru,
+            id
+        } = req.body
+
+        if (!(phone_number || email || address || facebook || instagram || telegram || twitter || aboutuz, aboutru)) {
+            res.render('adminContacts', {
+                allContact,
+                error: "Hamma maydonlarni to'ldiring"
+            })
+        }
+
+        if (allContact.length <= 0) {
+            await addTreatment(
+                phone_number, email, address, facebook, instagram, telegram, twitter, aboutuz, aboutru
+            )
+            res.redirect('/admin/contacts')
+        }
+        await updateTreatment(
+            phone_number, email, address, facebook, instagram, telegram, twitter, aboutuz, aboutru, id.trim())
+
+        res.redirect('/admin/contacts')
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 // BLOG
-router.get('/addblog', async (req, res) => {
+router.get('/news', async (req, res) => {
     const skipblog = req.query.skipblog * 1 || 0;
     const BlogModele = await BlogModel()
     const allblogs = await allBlogs()
@@ -308,13 +359,13 @@ router.get('/addblog', async (req, res) => {
         .limit(10)
     const allBlogsCount = await allblogs.length
 
-    res.render('addblog', {
+    res.render('adminNews', {
         skipblog,
         allBlogsPog,
         allBlogsCount,
     })
 })
-router.post('/addblog', expressFileUpload(), async (req, res) => {
+router.post('/news', expressFileUpload(), async (req, res) => {
     try {
         const {
             title,
@@ -333,7 +384,7 @@ router.post('/addblog', expressFileUpload(), async (req, res) => {
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
-        res.render('addblog', {
+        res.render('adminNews', {
             message: "Muvoffaqiyatli qo'shildi!"
         })
 
@@ -605,10 +656,10 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
 })
 
 
-// Cotegorys
-router.get('/admin/category', (req, res) => {
-    res.render('admincategory', {
-        title: "Categorys"
+// Appointment
+router.get('/admin/apponitment', (req, res) => {
+    res.render('adminAppointment', {
+        title: "Appointment"
     })
 })
 
