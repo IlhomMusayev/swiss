@@ -14,15 +14,20 @@ const {
 const {
     VideosModel
 } = require('../models/VideoModel')
-const { allContacts } = require('../models/ContactsModel')
-
+const {
+    allContacts
+} = require('../models/ContactsModel')
+const {
+    allDoctors,
+    DoctorModel
+} = require('../models/DoctorModel')
 
 moment.locale('ru-Ru')
 
 // router.use(AuthMiddleware)
 
 router.get('/', async (req, res) => {
-    
+
     const photosModel = await PhotosModel()
     const videoModel = await VideosModel()
     const contacts = await allContacts()
@@ -64,9 +69,26 @@ router.post('/appointmenthome', AuthMiddleware, async (req, res) => {
             phone_number
         },
         navbarLanguages,
-        language: "uz"
+        language: req.language.toString() == "uz" ? "uz" : "ru"
     })
 })
+
+router.get('/alldoctorsusers', async (req, res) => {
+    const doctorModel = await DoctorModel()
+    const alldoctors = await allDoctors()
+    const doctors = await doctorModel
+        .find()
+        .limit(alldoctors.length > 5 ? 5 : alldoctors.length)
+        .sort({
+            dateCreated: -1
+        })
+        
+    console.log(doctors);
+    res.json({
+        doctors
+    })
+})
+
 
 
 router.post('/editlanguage/:language', AuthMiddleware, async (req, res) => {

@@ -21,10 +21,6 @@ const AppointmentSchema = new Schema({
         type: String,
         required: true,
     },
-    service__includes__label: {
-        type: String,
-        required: true,
-    },
     chack_in: {
         type: Boolean,
         required: true,
@@ -50,9 +46,9 @@ async function allAppointmentModel(){
     return await db.find({})
 }
 
-async function addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label, email){
+async function addAppointmentModel(full_name, phone_number, filial, service__label, email){
     let db = await AppointmentModel()
-    return await db.create({full_name, phone_number, filial, service__label, service__includes__label, email})
+    return await db.create({full_name, phone_number, filial, service__label, email})
 }
 
 async function findAppointmentByEmail(email){

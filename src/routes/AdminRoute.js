@@ -42,6 +42,15 @@ const {
 } = require('../models/PhotosModel')
 
 const {
+    CategoryModel,
+    addCategory,
+    allCategorys,
+    updateCategory,
+    findCategoryById,
+    deleteOneCategoryById
+} = require('../models/CategorysModel')
+
+const {
     allVideos,
     addVideo,
     deleteOneVideoById
@@ -349,6 +358,88 @@ router.post('/contacts', async (req, res) => {
             error: error + ""
         })
     }
+})
+// Categorys
+
+router.get('/categorys', async (req, res) => {
+    const categorys = await allCategorys()
+    res.render('adminCategory', {
+        categorys
+    })
+})
+router.post('/categorys', async (req, res) => {
+    try {
+        const categorys = await allCategorys()
+        const {
+            name_uz,
+            name_ru
+        } = req.body
+        if (!(name_uz, name_ru)) {
+            throw new Error('Bo\'shliqlarni to\'lding!')
+        }
+
+        const category = addCategory(name_uz, name_ru)
+        res.render('adminCategory', {
+            message: "Muvoffaqiyatli qo'shildi!",
+            categorys
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+})
+router.get('/categorys/edite/:id', async (req, res) => {
+    try {
+        const CategoryItem = await findCategoryById(new ObjectId(req.params.id))
+        const categorys = await allCategorys()
+        if (!CategoryItem) {
+            res.render('adminCategory', {
+                title: 'Admin panel',
+                error: "Bunday blog mavjud emas",
+                categorys
+            })
+        }
+        res.render('editCategory', {
+            title: CategoryItem.name,
+            categorys: CategoryItem
+        })
+    } catch (error) {
+        console.log(error);
+    }
+})
+router.post('/categorys/edite', async (req, res) => {
+    try {
+        const {
+            name_uz,
+            name_ru,
+            id
+        } = req.body
+
+        const updateCategorys = await updateCategory(name_uz,
+            name_ru, id)
+        
+
+        res.redirect('/admin/categorys')
+    } catch (error) {
+        console.log(error);
+    }
+})
+router.delete('/categorys/delete/:id', async (req, res) => {
+    try {
+        const deleteOne = await deleteOneCategoryById(req.params.id)
+
+        if (deleteOne) {
+            res.json({
+                message: 'Category deleted'
+            })
+        }
+
+    } catch (error) {
+        res.json({
+            error: error
+        })
+    }
+
 })
 
 

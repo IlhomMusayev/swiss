@@ -2,6 +2,7 @@
 <% var user
    var error
    var status
+   var category = category || []
 %> 
 <!--MAKE APPOINTMENT SECTION-->
 <main class="make-appointment">
@@ -52,45 +53,17 @@
          <fieldset class="service__labels__fieldset">
             <legend><%= appointmentLanguages.appointment.form.service_header[language] %></legend>
             <div class="service__labels">
-               <label class="service__label" for="treatment">
-                  <input id="treatment" value="Лечение" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Лечение</span>
-               </label>
-               <label class="service__label" for="orthopedics">
-                  <input id="orthopedics" value="Ортопедия" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Ортопедия</span>
-               </label>
-               <label class="service__label" for="therapeutic">
-                  <input id="therapeutic" value="Терапевтическая" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Терапевтическая</span>
-               </label>
-               <label class="service__label" for="implantation">
-                  <input id="implantation" value="Имплонтация" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Имплонтация</span>
-               </label>
-               <label class="service__label" for="orthodontics">
-                  <input id="orthodontics" value="Ортодонтия" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Ортодонтия</span>
-               </label>
-               <label class="service__label" for="children">
-                  <input id="children" value="Детская" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Детская</span>
-               </label>
-               <label class="service__label" for="cosmetic">
-                  <input id="cosmetic" value="Косметическая" name="service__label" type="checkbox">
-                  <span></span>
-                  <span>Косметическая</span>
-               </label>
+               <% categorys.forEach(category => { %>
+                  <label class="service__label" for="<%= category.name_uz %>">
+                     <input id="<%= category.name_uz %>" value="<%= category.name_ru %>" name="service__label" type="checkbox">
+                     <span></span>
+                     <span><% if(language === 'uz') {%><%= category.name_uz %> <% } else {%> <%= category.name_ru %> <% } %>   </span>
+                  </label>
+               <% }) %>  
             </div>
          </fieldset>
          <div class="service__includes__wrapper">
-            <div class="service__includes">
+            <!-- <div class="service__includes">
                <h4>Ортопедия</h4>
                <label class="service__includes__label" for="1">
                   <input id="1" type="checkbox" name="service__includes__label" value="Лечение">
@@ -120,7 +93,7 @@
                   <img src="img/icons/cancelicon.svg" alt="" width="5" height="5">
                </span>
                </label>
-            </div>
+            </div> -->
             <!-- <div class="service__includes">
                <h4>Косметическая</h4>
                <label class="service__includes__label" for="5">
@@ -153,6 +126,7 @@
                </label>
             </div> -->
          </div>
+         
          <div class="appointment-saving">
             <button type="submit">
                <img src="img/icons/bell.svg" alt="bell icon">

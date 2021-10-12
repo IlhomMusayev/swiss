@@ -52,7 +52,7 @@
                   </div>
                </header>
                <main class="tabs__appointments__card__main">
-                  <%= appointment.service__includes__label %>
+                  <%= appointment.service__label %>
                </main>
                <footer class="tabs__appointments__card__footer">
                   <span>
@@ -123,11 +123,12 @@
 </section>
 <% } %>
 <script src="scripts/masked-phone.js"></script>
-<script src="scripts/main.js"></script>
+<!-- <script src="scripts/main.js"></script> -->
 <script src="scripts/tabs.js"></script>
 
 
 <script>
+
    const deleteAppointmentBtnElement = document.querySelectorAll('.cancel-appointment')
    deleteAppointmentBtnElement.forEach((button) => {
       button.addEventListener("click", async (evt) => {
