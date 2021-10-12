@@ -11,9 +11,8 @@ router.get('/:id', async (req, res) => {
     res.render('index', {
         user: user,
         blogs,
-        language: req.language,
+        language: req.language.toString() == "uz" ? "uz" : "ru",
         contacts: contacts[0]
-
     })
 })
 

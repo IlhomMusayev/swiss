@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         cosmeticLanguages,
         navbarLanguages,
         footerLanguages,
-        language: req.language,
+        language: req.language.toString() == "uz" ? "uz" : "ru",
         allCosmetics: allCosmetics[0],
         contacts: contacts[0]
     })

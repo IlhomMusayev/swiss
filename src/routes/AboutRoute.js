@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
         aboutLanguages: aboutLanguages,
         navbarLanguages,
         footerLanguages,
-        language: req.language,
+        language: req.language.toString() == "uz" ? "uz" : "ru",
         allAbouts: allAbouts[0],
         photos: allPhotoss,
         videos,

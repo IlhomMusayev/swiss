@@ -1,3 +1,4 @@
+
 class PhoneField {
    constructor(a, b = '+7(___)___-____', c = '_') {
       this.handler = a, this.mask = b, this.placeholder = c, this.setLength(), this.setValue(), this.start = this.placeHolderPosition() - 1, this.handler.addEventListener('focusin', () => {

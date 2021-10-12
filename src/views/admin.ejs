@@ -136,28 +136,7 @@
                 console.error(error);
             });
     </script>
-    <script>
-        const delete_buttons = document.querySelectorAll(".delete_btn");
-        delete_buttons.forEach((button) => {
-            button.addEventListener("click", async (evt) => {
-                console.log(evt);
-                const response = await fetch(
-                    "admin/delete/" + evt.target.dataset.id, {
-                        method: "DELETE",
-                    }
-                );
-
-                const json = await response.json();
-                console.log(json.message);
-                if (response.status === 200) {
-                    alert(json.message);
-                    evt.target.parentNode.parentNode.remove();
-                } else {
-                    alert(json.error);
-                }
-            });
-        });
-    </script>
+    
 </body>
 
 </html>

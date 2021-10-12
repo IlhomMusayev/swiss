@@ -20,13 +20,12 @@ router.get('/', async (req, res) => {
         appointmentLanguages,
         navbarLanguages,
         footerLanguages,
-        language: req.language,
+        language: req.language.toString() == "uz" ? "uz" : "ru",
         contacts: contacts[0]
-
     })
 })
 router.post('/', AuthMiddleware, async (req, res) => {
-
+    const contacts = await allContacts()
     try {
         let {
             full_name,
@@ -41,9 +40,12 @@ router.post('/', AuthMiddleware, async (req, res) => {
             res.render('appointment', {
                 status: 'error',
                 error: 'Iltimos bo\'shliqlarni o\'ldiring',
-                navbarLanguages,
+                user: req.user,
                 appointmentLanguages,
-                language: req.language
+                navbarLanguages,
+                footerLanguages,
+                language: req.language.toString() == "uz" ? "uz" : "ru",
+                contacts: contacts[0]
             })
             return;
         }
@@ -60,12 +62,13 @@ router.post('/', AuthMiddleware, async (req, res) => {
         const addAppointment = await addAppointmentModel(full_name, phone_number, filial, service__label, service__includes__label, email)
         if (addAppointment) {
             res.render('appointment', {
-                user: req.user,
-
                 status: 'ok',
-                navbarLanguages,
+                user: req.user,
                 appointmentLanguages,
-                language: req.language
+                navbarLanguages,
+                footerLanguages,
+                language: req.language.toString() == "uz" ? "uz" : "ru",
+                contacts: contacts[0]
             })
         }
 

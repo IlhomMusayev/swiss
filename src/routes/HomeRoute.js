@@ -46,7 +46,7 @@ router.get('/', async (req, res) => {
         homeLanguages: homeLanguages.languages,
         navbarLanguages,
         footerLanguages,
-        language: req.language.toString(),
+        language: req.language.toString() == "uz" ? "uz" : "ru",
         photos,
         videoItem,
         contacts: contacts[0]
@@ -66,6 +66,12 @@ router.post('/appointmenthome', AuthMiddleware, async (req, res) => {
         navbarLanguages,
         language: "uz"
     })
+})
+
+
+router.post('/editlanguage/:language', AuthMiddleware, async (req, res) => {
+    console.log(req.params.language);
+    res.cookie('language', req.params.language).redirect('/')
 })
 
 

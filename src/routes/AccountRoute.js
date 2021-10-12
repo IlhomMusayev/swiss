@@ -26,7 +26,7 @@ router.get('/', AuthMiddleware, async (req, res) => {
     res.render('account', { 
         user: user, 
         date: date,
-        language: req.language,
+        language: req.language.toString() == "uz" ? "uz" : "ru",
         navbarLanguages,
         footerLanguages,
         accountLanguages,

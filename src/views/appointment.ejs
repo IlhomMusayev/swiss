@@ -18,12 +18,12 @@
             </div>
          <% } %> 
       </div>
-      <h2>Хотите записатся на приём</h2>
+      <h2><%= appointmentLanguages.appointment.title[language] %></h2>
       <form class="make-appointment__form" method="post" action="/appointment">
          <fieldset class="contact__info__fieldset">
-            <legend>Пожалуйста, заполните все поля</legend>
+            <legend><%= appointmentLanguages.appointment.sup_title[language] %></legend>
             <label class="settings-form__field__label" for="full_name">
-               <span>Имя Фамилия</span>
+               <span><%= appointmentLanguages.appointment.form.name_input[language] %></span>
                <input id="full_name" type="text" name="full_name"
                <% if(user){ %>
                   value="<%= user.full_name %>"
@@ -31,7 +31,7 @@
                >
             </label>
             <label class="settings-form__field__label" for="phone_number">
-               <span>Телефон номер</span>
+               <span><%= appointmentLanguages.appointment.form.phone_number_input[language] %></span>
                <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
                       data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"/
                       <% if(user){ %>
@@ -41,7 +41,7 @@
             </label>
             <div class="custom-select">
                <select id="filial" name="filial">
-                  <option value="0">Выберите филиал</option>
+                  <option value="0"><%= appointmentLanguages.appointment.form.filial[language] %></option>
                   <option value="Юнсобоадиский филиал">Юнсобоадиский филиал</option>
                   <option value="Чиланзарский филиал">Чиланзарский филиал</option>
                   <option value="Мирабадский филиал">Мирабадский филиал</option>
@@ -50,7 +50,7 @@
             </div>
          </fieldset>
          <fieldset class="service__labels__fieldset">
-            <legend>Отметьте одну или несколько наших услуг!</legend>
+            <legend><%= appointmentLanguages.appointment.form.service_header[language] %></legend>
             <div class="service__labels">
                <label class="service__label" for="treatment">
                   <input id="treatment" value="Лечение" name="service__label" type="checkbox">
@@ -153,52 +153,13 @@
                </label>
             </div> -->
          </div>
-         <!-- <div class="appointment-payment">
-            <div class="appointment-payment__cost">
-               <h3>Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту.
-                  Вы можете сохранить
-                  это!</h3>
-               <ul class="appointment-payment__list">
-                  <li class="appointment-payment__list__item">
-                     <span>Ортопедия лечение:</span>
-                     <span>30 000 <small>uzs</small></span>
-                  </li>
-                  <li class="appointment-payment__list__item">
-                     <span>Ортопедия пломба:</span>
-                     <span>15 000 <small>uzs</small></span>
-                  </li>
-                  <li class="appointment-payment__list__item">
-                     <span>Косметическая лечение:</span>
-                     <span>45 000 <small>uzs</small></span>
-                  </li>
-               </ul>
-               <div class="appointment-payment__total-cost">
-                  <div>Общее</div>
-                  <div>90 000 <small>uzs</small></div>
-               </div>
-            </div>
-            <div class="appointment-payment__services">
-               <h3>Записавшись на прием к врачу, вы также можете произвести оплату через наши онлайн-платежи.</h3>
-               <div class="appointment-payment__services__buttons">
-                  <button type="button">
-                     <img src="img/logos/clicklogo.png" alt="click logo" width="70" height="27">
-                  </button>
-                  <button type="button">
-                     <img src="img/logos/payme.png" alt="payme logo" width="70" height="21">
-                  </button>
-                  <button type="button">
-                     <img src="img/logos/upaylogo.png" alt="upay logo" width="70" height="46">
-                  </button>
-               </div>
-            </div>
-         </div> -->
          <div class="appointment-saving">
             <button type="submit">
                <img src="img/icons/bell.svg" alt="bell icon">
-               <span>Записатся</span>
+               <span><%= appointmentLanguages.appointment.form.submit_btn[language] %></span>
             </button>
             <button type="button">
-               <span>Сохранить на «Мои записи»</span>
+               <!-- <span>Сохранить на «Мои записи»</span> -->
             </button>
          </div>
       </form>
