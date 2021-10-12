@@ -1,12 +1,9 @@
-const {
-    model,
-    Schema
-} = require('mongoose')
+const { Schema, model } = require('mongoose')
+const mongoose = require('mongoose')
 const client = require('../modules/mongo')
-
 const ContactSchema = new Schema({
     phone_number: {
-        type: 'number',
+        type: 'string',
         required: true,
         trim: true
     },
@@ -50,7 +47,7 @@ const ContactSchema = new Schema({
 
 
 const ContactModel = async function () {
-    const db = await client()
+    let db = await client()
     return await db.model('contacts', ContactSchema)
 }
 

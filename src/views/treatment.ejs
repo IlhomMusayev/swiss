@@ -39,7 +39,7 @@
          <section class="article__description">
             <h2><%if(language === 'uz'){%> <%= allTreatments.title_uz %> <% }else {%> <%= allTreatments.title_ru %> <% } %> </h2>
             <p>
-               <%if(language === 'uz'){%> <%- allTreatments.content1_uz %> <% } else {%> <%= allTreatments.content1_ru %> <% } %> 
+               <%if(language === 'uz'){%> <%- allTreatments.content1_uz %> <% } else {%> <%- allTreatments.content1_ru %> <% } %> 
             </p>
             <div class="article__description__gallery">
                <figure>
@@ -56,7 +56,7 @@
                </figure>
             </div>
             <p>
-               <%if(language === 'uz'){%> <%- allTreatments.content2_uz %> <% } else {%> <%= allTreatments.content2_ru %> <% } %>
+               <%if(language === 'uz'){%> <%- allTreatments.content2_uz %> <% } else {%> <%- allTreatments.content2_ru %> <% } %>
             </p>
          </section>
       </article>

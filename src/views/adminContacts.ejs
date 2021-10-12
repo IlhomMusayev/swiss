@@ -58,39 +58,57 @@
         <div class="row mb-5">
             <div class="col-md-12">
                 <h2>About clincs text</h2>
-                <form action="/admin/contacts" method='POST' enctype="multipart/form-data">
+                <% var message, error%> 
+                <% if(message) {%>
+                <div class="alert alert-success" style="margin: 20px 0px;">
+                    <%= message %>
+                </div>
+                <% } %>
+                <% if(error) {%>
+                <div class="alert alert-danger" style="margin: 20px 0px;">
+                    <%= error %>
+                </div>
+                <% } %>
+                <form action="/admin/contacts" method='POST'>
                     <div class="form-group">
                         <label for="phone_number" class="mt-3">Phone Number</label>
-                        <input type="text" class="form-control my-1" id="phone_number" name="phone_number" required value="<%if(allContact){%><%=allContact.phone_number %> <% } %>">
-                        
+                        <input type="text" class="form-control my-1" id="phone_number" name="phone_number" required
+                            value="<%if(allContact){%><%=allContact.phone_number %> <% } %>">
+
                         <label for="email" class="mt-3">Email</label>
-                        <input type="email" class="form-control my-1" id="email" name="email" required value="<%if(allContact){%><%=allContact.email %> <% } %>">
+                        <input type="email" class="form-control my-1" id="email" name="email" required
+                            value="<%if(allContact){%><%=allContact.email %> <% } %>">
 
                         <label for="address" class="mt-3">Address</label>
-                        <input type="text" class="form-control my-1" id="address" name="address" required value="<%if(allContact){%><%=allContact.address %> <% } %>">
+                        <input type="text" class="form-control my-1" id="address" name="address" required
+                            value="<%if(allContact){%><%=allContact.address %> <% } %>">
 
                         <label for="facebook" class="mt-3">Facebook</label>
-                        <input type="text" class="form-control my-1" id="facebook" name="facebook" required value="<%if(allContact){%><%=allContact.facebook %> <% } %>" placeholder="Username">
+                        <input type="text" class="form-control my-1" id="facebook" name="facebook" required
+                            value="<%if(allContact){%><%=allContact.facebook %> <% } %>" placeholder="Username">
 
                         <label for="instagram" class="mt-3">Instagram</label>
-                        <input type="text" class="form-control my-1" id="instagram" name="instagram" required value="<%if(allContact){%><%=allContact.instagram %> <% } %>" placeholder="Username">
+                        <input type="text" class="form-control my-1" id="instagram" name="instagram" required
+                            value="<%if(allContact){%><%=allContact.instagram %> <% } %>" placeholder="Username">
 
                         <label for="telegram" class="mt-3">Telegram</label>
-                        <input type="text" class="form-control my-1" id="telegram" name="telegram" required value="<%if(allContact){%><%=allContact.telegram %> <% } %>" placeholder="Username">
+                        <input type="text" class="form-control my-1" id="telegram" name="telegram" required
+                            value="<%if(allContact){%><%=allContact.telegram %> <% } %>" placeholder="Username">
 
                         <label for="twitter" class="mt-3">Twitter</label>
-                        <input type="text" class="form-control my-1" id="twitter" name="twitter" required value="<%if(allContact){%><%=allContact.twitter %> <% } %>" placeholder="Username">
+                        <input type="text" class="form-control my-1" id="twitter" name="twitter" required
+                            value="<%if(allContact){%><%=allContact.twitter %> <% } %>" placeholder="Username">
 
                         <label for="text" class="my-2">Uzbek About</label>
                         <textarea name="aboutuz" id="editoruz" class="my-2"
                             placeholder="Shu yerga blog so'zlarini kiriting..." required>
-                            <%if(allContact){%><%-allContact.aboutuz %> <% } %> 
+                                <%if(allContact){%><%-allContact.aboutuz %> <% } %> 
                         </textarea>
 
                         <label for="text" class="my-2">Rus About</label>
                         <textarea name="aboutru" id="editorru" class="my-2"
                             placeholder="Shu yerga blog so'zlarini kiriting..." required>
-                            <%if(allContact){%><%-allContact.aboutru %> <% } %>
+                                <%if(allContact){%><%-allContact.aboutru %> <% } %> 
                         </textarea>
 
                         <input type="hidden" name='id' value="<%if(allContact){%><%=allContact._id %><%}%>">

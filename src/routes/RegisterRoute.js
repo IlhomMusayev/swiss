@@ -6,6 +6,8 @@ const { genereteToken } = require('../modules/jwt')
 
 const registerLanguages = require('../public/languages/registerLanguages.json')
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
+const footerLanguages = require('../public/languages/footerLanguage.json')
+const { allContacts } = require('../models/ContactsModel')
 
 const RegisterValidation = Joi.object({
     full_name: Joi.string()
@@ -36,13 +38,16 @@ const RegisterValidation = Joi.object({
 
 router.get('/', async (req, res) => {
         let users = await allUsers()
-    console.log(users);
+    const contacts = await allContacts()
+
     res.render('register',{
         title: "Register",
         user: req.user,
         registerLanguages,
         navbarLanguages,
-        language: req.language
+        footerLanguages,
+        language: req.language,
+        contacts: contacts[0]
     })
 })
 

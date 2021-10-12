@@ -13,6 +13,8 @@ const {
 
 const loginLanguages = require('../public/languages/loginLanguages.json')
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
+const footerLanguages = require('../public/languages/footerLanguage.json')
+const { allContacts } = require('../models/ContactsModel')
 
 
 // router.use(AuthMiddleware)
@@ -34,12 +36,15 @@ const LoginValidation = Joi.object({
 })
 
 router.get('/', async (req, res) => {
+    const contacts = await allContacts()
     res.render('login', {
         title: "Login",
         user: req.user,
         loginLanguages,
         navbarLanguages,
-        language: req.language
+        footerLanguages,
+        language: req.language,
+        contacts: contacts[0]
     })
 })
 

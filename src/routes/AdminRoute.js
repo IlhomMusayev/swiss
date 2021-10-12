@@ -309,9 +309,9 @@ router.get('/contacts', async (req, res) => {
     })
 })
 router.post('/contacts', async (req, res) => {
+    console.log(req.body);
+    const allContact = await allContacts()
     try {
-        const allContact = await allContacts()
-
         const {
             phone_number,
             email,
@@ -325,7 +325,7 @@ router.post('/contacts', async (req, res) => {
             id
         } = req.body
 
-        if (!(phone_number || email || address || facebook || instagram || telegram || twitter || aboutuz, aboutru)) {
+        if (!(phone_number || email || address || facebook || instagram || telegram || twitter || aboutuz || aboutru)) {
             res.render('adminContacts', {
                 allContact,
                 error: "Hamma maydonlarni to'ldiring"
@@ -333,17 +333,21 @@ router.post('/contacts', async (req, res) => {
         }
 
         if (allContact.length <= 0) {
-            await addTreatment(
+            await addContact(
                 phone_number, email, address, facebook, instagram, telegram, twitter, aboutuz, aboutru
             )
             res.redirect('/admin/contacts')
         }
-        await updateTreatment(
+        await updateContact(
             phone_number, email, address, facebook, instagram, telegram, twitter, aboutuz, aboutru, id.trim())
 
         res.redirect('/admin/contacts')
     } catch (error) {
         console.log(error);
+        res.render('adminContacts', {
+            allContact,
+            error: error + ""
+        })
     }
 })
 

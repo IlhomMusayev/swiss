@@ -5,17 +5,24 @@ const {
 } = require('../models/Appointment')
 const appointmentLanguages = require('../public/languages/appointmentLanguages.json')
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
+const footerLanguages = require('../public/languages/footerLanguage.json')
 const AuthMiddleware = require('../middlewares/authMiddleware')
+const { allContacts } = require('../models/ContactsModel')
+
 
 
 
 
 router.get('/', async (req, res) => {
+    const contacts = await allContacts()
     res.render('appointment', {
         user: req.user,
         appointmentLanguages,
         navbarLanguages,
-        language: req.language
+        footerLanguages,
+        language: req.language,
+        contacts: contacts[0]
+
     })
 })
 router.post('/', AuthMiddleware, async (req, res) => {

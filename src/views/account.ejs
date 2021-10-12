@@ -13,16 +13,18 @@
       <aside class="tabs__menu">
          <ul class="tabs__menu__ul">
             <li class="tabs__menu__li">
-               Мои записи
+               <%= accountLanguages.sub_menu.menu_item1[language] %> 
             </li>
             <!-- <li class="tabs__menu__li">
                Оплата
             </li> -->
             <li class="tabs__menu__li">
-               Настройка
+               <%= accountLanguages.sub_menu.menu_item2[language] %> 
             </li>
             <li class="tabs__menu__li">
-               <a href="/logout">Logout</a>
+               <a href="/logout">
+                  <%= accountLanguages.sub_menu.menu_item3[language] %> 
+               </a>
             </li>
          </ul>
       </aside>
@@ -54,10 +56,10 @@
                </main>
                <footer class="tabs__appointments__card__footer">
                   <span>
-                     <b>Филиал:</b> <%= appointment.filial %>
+               <b><%= accountLanguages.filial[language] %> :</b> <%= appointment.filial %>
                   </span>
                   <button data-id = "<%= appointment._id %>" class="cancel-appointment">
-                     Отменить запись
+                     <%= accountLanguages.cancel_btn[language] %> 
                   </button>
                </footer>
             </div>
@@ -65,64 +67,33 @@
             <% }) %>
             
             <% } else{%>
-               <span>Sizda Appontmentlar yo'q</span>     
+               <span><%= accountLanguages.notification[language] %></span>     
             <% } %> 
          </section>
-         <!-- <section class="tabs__content__item tabs__payment">
-            <div class="tabs__payment__card">
-               <div class="tabs__payment__card__status">
-                  <p>Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту. Вы можете
-                     сохранить это!</p>
-                  <div class="payment-status paid">Оплачено</div>
-               </div>
-               <div class="tabs__payment__card__amount">
-                  <div class="treatment-name">Ортопедия лечение:</div>
-                  <div class="treatment-cost">
-                     <span>30 000</span> <small>uzs</small>
-                  </div>
-               </div>
-               <button class="download-check">
-                  <img src="img/icons/download.svg" alt="">
-                  <span>Скачать чек</span>
-               </button>
-            </div>
-            <div class="tabs__payment__card">
-               <div class="tabs__payment__card__status">
-                  <p>Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту. Вы можете
-                     сохранить это!</p>
-                  <div class="payment-status expectation">Ожидание</div>
-               </div>
-               <div class="tabs__payment__card__amount">
-                  <div class="treatment-name">Ортопедия лечение:</div>
-                  <div class="treatment-cost">
-                     <span>30 000</span> <small>uzs</small>
-                  </div>
-               </div>
-            </div>
-         </section> -->
+
          <section class="tabs__content__item tabs__settings">
             <header class="tabs__settings__header">
-               <h2>Настройка аккаунта</h2>
-               <p>Проста нажав на поле вы можете изменить ваше данные! Не забудие Сохранить</p>
+               <h2><%= accountLanguages.settings.title[language] %></h2>
+               <p><%= accountLanguages.settings.span[language] %></p>
             </header>
             <main class="tabs__settings__main">
                <div class="account-info">
                   <div class="account-data">
                      <h3><%=user.name%></h3>
                      <div class="account-registration-date">
-                        <span>Регистрирован в:</span>
+                        <span><%= accountLanguages.settings.register_date[language] %>:</span>
                         <span><%=date%></span>
                      </div>
                   </div>
                </div>
-               <form class="settings-form" action="/account" method="POST">
+               <form class="settings-form">
                   <div class="settings-form__field">
                      <label class="settings-form__field__label" for="full_name">
-                        <span>Имя Фамилия</span>
+                        <span><%= accountLanguages.settings.form.name[language] %></span>
                         <input id="full_name" type="text" name="name" value="<%=user.name%>">
                      </label>
                      <label class="settings-form__field__label" for="phone_number">
-                        <span>Телефон номер</span>
+                        <span><%= accountLanguages.settings.form.phone_number[language] %></span>
                         <input class="masked-phone" id="phone_number" type="tel" disabled
                            data-phonemask="+ <%= user.phone.toString().split('').join(' ')%>" />
                      </label>
@@ -134,19 +105,17 @@
                      </label>
                   </div>
                   <div class="tabs__settings__status">
-                     Введенные вами логин и пароль, вероятно, будут отправлены на вашу электронную почту. Вы можете
-                     сохранить это!
+                     <%= accountLanguages.settings.form.span[language] %>
                   </div>
                   <div class="tabs__settings__saving">
-                     <button class="tabs__settings__save">
-                        Сохранить
+                     <button type="submit" class="tabs__settings__save">
+                        <%= accountLanguages.settings.form.submit_btn[language] %>
                      </button>
                      <button class="tabs__settings__cancel">
-                        Отменить
+                        <%= accountLanguages.settings.form.cancel_btn[language] %>
                      </button>
                   </div>
                </form>
-
             </main>
          </section>
       </section>

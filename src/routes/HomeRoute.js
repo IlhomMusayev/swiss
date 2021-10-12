@@ -7,12 +7,14 @@ const {
 
 const homeLanguages = require('../public/languages/homeLanguages.json')
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
+const footerLanguages = require('../public/languages/footerLanguage.json')
 const {
     PhotosModel
 } = require('../models/PhotosModel')
 const {
     VideosModel
 } = require('../models/VideoModel')
+const { allContacts } = require('../models/ContactsModel')
 
 
 moment.locale('ru-Ru')
@@ -20,9 +22,10 @@ moment.locale('ru-Ru')
 // router.use(AuthMiddleware)
 
 router.get('/', async (req, res) => {
+    
     const photosModel = await PhotosModel()
     const videoModel = await VideosModel()
-
+    const contacts = await allContacts()
     const photos = await photosModel
         .find()
         .limit(5)
@@ -42,9 +45,11 @@ router.get('/', async (req, res) => {
         blogs,
         homeLanguages: homeLanguages.languages,
         navbarLanguages,
+        footerLanguages,
         language: req.language.toString(),
         photos,
-        videoItem
+        videoItem,
+        contacts: contacts[0]
     })
 })
 
