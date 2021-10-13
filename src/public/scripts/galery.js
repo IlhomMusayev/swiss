@@ -1,5 +1,4 @@
 let modalId = $('#image-gallery');
-console.log('salom');
 
 $(document)
   .ready(function () {

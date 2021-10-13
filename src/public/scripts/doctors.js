@@ -56,14 +56,14 @@ document.addEventListener('DOMContentLoaded', async() => {
 
    function doctorsListRender() {
       doctorsListWrapper.innerHTML = ' ';
-      doctors.forEach(({id, name, filename}) => {
+      doctors.forEach(({_id, name, filename}) => {
          const doctorElement = document.createElement('div'),
             doctorImg = document.createElement('img');
 
          doctorElement.classList.add('doctor');
-         doctorElement.id = id;
+         doctorElement.id = _id;
          doctorElement.addEventListener('click', () => {
-            doctorInfoRender(id)
+            doctorInfoRender(_id)
          })
          doctorImg.src = "/files/doctors/"+filename;
          doctorImg.alt = name + ' image';
@@ -76,11 +76,11 @@ document.addEventListener('DOMContentLoaded', async() => {
 
    let doctorInfoClose;
 
-   function doctorInfoRender(id) {
+   function doctorInfoRender(_id) {
       let selectedDoctor;
 
       doctors.forEach(doctor => {
-         if (doctor.id === id)
+         if (doctor._id === _id)
             selectedDoctor = doctor
       })
 

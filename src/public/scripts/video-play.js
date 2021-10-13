@@ -38,13 +38,11 @@ document.addEventListener('DOMContentLoaded', async function(){
 
    tabsVideos.forEach(video => {
       video.addEventListener('click', e => {
-         console.log(e.currentTarget);
          const target = e.currentTarget;    
         openVideoModal(target.getAttribute('data-index'))
       })   })
 
    function openVideoModal(index) {
-      console.log('salom');
       document.body.style.overflow = 'hidden';
       videoModal.classList.remove('hide');
          

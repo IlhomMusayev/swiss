@@ -35,9 +35,6 @@ document.addEventListener('DOMContentLoaded', () => {
    }
   
    document.addEventListener("click", closeAllSelect);
-   // console.log(document.querySelector('.same-as-selected'));
-
-   console.log(document.querySelector('.select-items').getElementsByTagName('div'));
 
    const options = document.querySelector('.select-items').getElementsByTagName('div')
    const selectSelected = document.querySelector('.select-selected')
@@ -51,7 +48,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
       return res
     }
-   console.log(getCookie("language"));
     if(getCookie("language") === 'uz'){
       selectSelected.textContent = options[0].textContent
     }else{
@@ -60,9 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
    let language
    for (let index = 0; index < options.length; index++) {
-      // console.log(options[index]);
       options[index].addEventListener('click', async(e) => {
-         console.log(options[index].textContent);
          if(options[index].textContent === 'Узбекский'){
             const response = await fetch('/editlanguage/uz', {
                method: "POST"

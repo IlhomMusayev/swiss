@@ -26,10 +26,6 @@ const AboutScheme = new Schema({
         required: true,
         trim: true,
     },
-    filename: {
-        type: 'string',
-        required: true,
-    },
     dateCreated: {
         type: Date,
         default: Date.now()
@@ -47,19 +43,18 @@ async function allAbout() {
 }
 
 
-async function addAbout(title_uz, title_ru, content_uz, content_ru, filename) {
+async function addAbout(title_uz, title_ru, content_uz, content_ru) {
     let db = await AboutModel()
     return await db.create({
         title_uz,
         title_ru,
         content_uz,
-        content_ru,
-        filename
+        content_ru
     })
 }
 
 
-async function updateAbout(title_uz, title_ru, content_uz, content_ru, filename, id) {
+async function updateAbout(title_uz, title_ru, content_uz, content_ru, id) {
     let db = await AboutModel()
     return await db.updateOne({
         _id: id
@@ -68,8 +63,7 @@ async function updateAbout(title_uz, title_ru, content_uz, content_ru, filename,
             title_uz: title_uz,
             title_ru: title_ru,
             content_uz: content_uz,
-            content_ru: content_ru,
-            filename: filename
+            content_ru: content_ru
         }
     })
 }

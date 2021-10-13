@@ -7,27 +7,27 @@ const client = require('../modules/mongo')
 
 const DoctorsSchema = new Schema({
     name: {
-        type: 'string',
+        type: String,
         required: true,
         trim: true,
     },
     specials: {
-        type: 'string',
+        type: String,
         required: true,
         trim: true,
     },
     about: {
-        type: 'string',
+        type: String,
         required: true,
         trim: true,
     },
     phone_number: {
-        type: 'number',
+        type: String,
         required: true,
         trim: true,
     },
     filename: {
-        type: 'string',
+        type: String,
         required: true,
     },
     dateCreated: {

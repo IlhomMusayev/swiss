@@ -1,6 +1,8 @@
 <%- include('parts/header') %>
 <% var language = language || "ru" %>
-
+<% function pad(n) {
+   return n<10 ? '0'+n : n;
+} %>
 <h1>Bu shunchaki sarlavha</h1>
 <!--SLIDER SECTION-->
 <section class="slider">
@@ -162,47 +164,47 @@
          <div class="services__list">
             <div class="row">
                <% for(let i = 0; i <= 2; i++) {%>
-                  <% if(categorys[i]) {%>
-                     <div class="services__card">
-                        <img src="img/services/tooth.png" alt="tooth image">
-                        <h3><%= categorys[i].name_uz %></h3>
-                        <p></p>
-                        <div class="decoration-discs">
-                           <div class="outer">
-                              <div class="medium">
-                                 <div class="inner">
-                                    <a href="#">
-                                       <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                                    </a>
-                                 </div>
-                              </div>
+               <% if(categorys[i]) {%>
+               <div class="services__card">
+                  <img src="img/services/tooth.png" alt="tooth image">
+                  <h3><%= categorys[i].name_uz %></h3>
+                  <p></p>
+                  <div class="decoration-discs">
+                     <div class="outer">
+                        <div class="medium">
+                           <div class="inner">
+                              <a href="#">
+                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
+                              </a>
                            </div>
                         </div>
                      </div>
-                  <% } %>  
-               <% } %> 
+                  </div>
+               </div>
+               <% } %>
+               <% } %>
             </div>
             <div class="row">
                <% for(let i = 3; i <= 5; i++) {%>
-                  <% if(categorys[i]) {%>
-                     <div class="services__card">
-                        <img src="img/services/tooth.png" alt="tooth image">
-                        <h3><%= categorys[i].name_uz %></h3>
-                        <p></p>
-                        <div class="decoration-discs">
-                           <div class="outer">
-                              <div class="medium">
-                                 <div class="inner">
-                                    <a href="#">
-                                       <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                                    </a>
-                                 </div>
-                              </div>
+               <% if(categorys[i]) {%>
+               <div class="services__card">
+                  <img src="img/services/tooth.png" alt="tooth image">
+                  <h3><%= categorys[i].name_uz %></h3>
+                  <p></p>
+                  <div class="decoration-discs">
+                     <div class="outer">
+                        <div class="medium">
+                           <div class="inner">
+                              <a href="#">
+                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
+                              </a>
                            </div>
                         </div>
                      </div>
-                  <% } %>  
-               <% } %> 
+                  </div>
+               </div>
+               <% } %>
+               <% } %>
             </div>
          </div>
       </div>
@@ -294,21 +296,19 @@
                <div class="tabs__card__body">
                   <time>
                      <img src="img/icons/clock.svg" alt="clock icon">
-                     <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
+                     <span><%= pad(blog.dateCreated.getHours()) %>:<%= pad(blog.dateCreated.getMinutes())%> </span>
                   </time>
-                  <h3><%= blog.title %></h3>
+                  <h3><% if(language === 'uz') {%><%= blog.title_uz %> <% }else {%> <%= blog.title_ru %> <% } %> </h3>
                </div>
                <div class="tabs__card__link">
                   <time>
                      <img src="img/icons/clock.svg" alt="clock icon">
-                     <span><%= blog.dateCreated.getHours()%>:<%= blog.dateCreated.getMinutes()%> </span>
+                     <span><%= pad(blog.dateCreated.getHours()) %>:<%= pad(blog.dateCreated.getMinutes())%></span>
                   </time>
                   <h3>
-                     <a href="#"><%= blog.title %></a>
+                     <a href="#"><% if(language === 'uz') {%><%= blog.title_uz %> <% }else {%> <%= blog.title_ru %>
+                        <% } %></a>
                   </h3>
-                  <p>
-                     <a href="#">Врачи общей практики станут семейными врачами – президент</a>
-                  </p>
                </div>
             </div>
          </div>
@@ -332,8 +332,12 @@
          </div>
          <form class="sign__form" action='/appointment' method='get'>
             <div class="sign__form__fields">
-               <input type="text" placeholder="<%= homeLanguages.sign_doctors.section_title.sign_form.name_input[language] %>" name="full_name" required class="full_name">
-               <input type="number" placeholder="<%= homeLanguages.sign_doctors.section_title.sign_form.phone_number_input[language] %>" name="phone_number" required class="phone_number">
+               <input type="text"
+                  placeholder="<%= homeLanguages.sign_doctors.section_title.sign_form.name_input[language] %>"
+                  name="full_name" required class="full_name">
+               <input type="number"
+                  placeholder="<%= homeLanguages.sign_doctors.section_title.sign_form.phone_number_input[language] %>"
+                  name="phone_number" required class="phone_number">
             </div>
             <button type="submit" class="send_appointment_btn">
                <%= homeLanguages.sign_doctors.section_title.sign_form.submit_btn[language] %>
@@ -556,34 +560,34 @@
 </div>
 
 <div class="video-modal hide">
-   
+
 </div>
 
 <%- include('parts/footer') %>
-
+<script src="/scripts/doctors.js"></script>
 <script>
    let tabsVideos = document.querySelector('.video-wrapper__video'),
       videoModal = document.querySelector('.video-modal'),
       closeVideoModalBtn;
    const playVideo = document.querySelector('.video-wrapper')
-      
+
    const shereBtn = document.querySelector('.share')
 
-shereBtn.addEventListener('click', () => {
-   navigator.clipboard.writeText("https://swissdental.uz");
-   alert("Copied the text: " + "https://swissdental.uz");
-})
+   shereBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText("https://swissdental.uz");
+      alert("Copied the text: " + "https://swissdental.uz");
+   })
 
 
    tabsVideos.addEventListener('click', e => {
-         const target = e.currentTarget;    
-        openVideoModal(target.getAttribute('data-index'))
-      }) 
-      
+      const target = e.currentTarget;
+      openVideoModal(target.getAttribute('data-index'))
+   })
+
    function openVideoModal(index) {
       document.body.style.overflow = 'hidden';
       videoModal.classList.remove('hide');
-         
+
       videoModal.innerHTML = `<iframe width="800" height="450" src='${index}' frameborder="0" allow="accelerometer; autoplay;
       clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <button>&times;</button>`

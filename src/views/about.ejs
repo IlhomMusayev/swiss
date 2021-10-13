@@ -1,5 +1,7 @@
 <%- include('parts/header')%>
-
+<% function pad(n) {
+   return n<10 ? '0'+n : n;
+} %>
 <h1>Bu shunchaki sarlavha</h1>
 
 <!--SECTION TABS-->
@@ -84,22 +86,25 @@
                <% for (let item of news) {%>
                <div class="tabs__card">
                   <div class="tabs__card__header">
-                     <img src="files/<%= item.filename %>" alt="">
+                     <img src="files/<%= item.filename %>" alt="" width="280" height="190"
+                        style="width:280px; height: 190px; object-fit: cover">
                   </div>
                   <div class="tabs__card__body">
                      <time>
                         <img src="img/icons/clock.svg" alt="clock icon">
-                        <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
+                        <span><%= pad(item.dateCreated.getHours()) %>:<%= pad(item.dateCreated.getMinutes())%> </span>
                      </time>
-                     <h3><%=  item.title %></h3>
+                     <h3><% if(language === 'uz') {%><%= item.title_uz %> <% }else {%> <%= item.title_ru %> <% } %>
+                     </h3>
                   </div>
                   <div class="tabs__card__link">
                      <time>
                         <img src="img/icons/clock.svg" alt="clock icon">
-                        <span><%= item.dateCreated.getHours()%>:<%= item.dateCreated.getMinutes()%> </span>
+                        <span><%= pad(item.dateCreated.getHours()) %>:<%= pad(item.dateCreated.getMinutes())%></span>
                      </time>
                      <h3>
-                        <a href="#" tabindex="-1"><%=  item.title %></a>
+                        <a href="#"><% if(language === 'uz') {%><%= item.title_uz %> <% }else {%> <%= item.title_ru %>
+                           <% } %></a>
                      </h3>
                   </div>
                </div>
@@ -145,14 +150,14 @@
             <% } %>
 
          </section>
-        <section  id="video_galery">
-         <div class="section__title" style="margin-bottom: 10px;">
-            <h2> <%= aboutLanguages.menu.item4[language] %></h2>
-         </div>
-         <section class="tabs__content__item tabs__videos">
+         <section id="video_galery">
+            <div class="section__title" style="margin-bottom: 10px;">
+               <h2> <%= aboutLanguages.menu.item4[language] %></h2>
+            </div>
+            <section class="tabs__content__item tabs__videos">
 
+            </section>
          </section>
-        </section>
       </section>
    </div>
 </section>
@@ -188,3 +193,11 @@
 <div class="video-modal hide"></div>
 <%- include('parts/footer')%>
 <script src="/scripts/video-play.js"></script>
+<script>
+   const shereBtn = document.querySelector('.share')
+
+   shereBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText("https://swissdental.uz");
+      alert("Copied the text: " + "https://swissdental.uz");
+   })
+</script>

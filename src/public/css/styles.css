@@ -1110,7 +1110,10 @@ input[type=number] {
   box-shadow: 0 84px 94px rgba(7, 79, 82, 0.2);
 }
 .doctor img {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
+  object-fit: cover;
 }
 .doctor:nth-child(1) {
   top: 40px;
@@ -1167,7 +1170,9 @@ input[type=number] {
   margin-right: 35px;
 }
 .doctor-info__img img {
-  width: 100%;
+  width: 80%;
+  height: 80%;
+  object-fit: cover;
   border-radius: 50%;
 }
 
@@ -1809,6 +1814,10 @@ input[type=number] {
   margin-right: 7px;
 }
 .tabs__card__body h3 {
+  overflow: hidden;
+  white-space:pre-wrap;
+  text-overflow: ellipsis;
+  height: 75px;
   font-weight: 400;
   font-size: 20px;
   line-height: 25px;
@@ -1843,6 +1852,10 @@ input[type=number] {
   margin-right: 7px;
 }
 .tabs__card__link h3 {
+  overflow: hidden;
+  white-space:pre-wrap;
+  text-overflow: ellipsis;
+  height: 250px;
   margin-bottom: 15px;
   font-weight: 400;
   font-size: 20px;

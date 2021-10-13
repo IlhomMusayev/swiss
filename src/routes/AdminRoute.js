@@ -118,9 +118,11 @@ router.get('/about', async (req, res) => {
         videos: allVideoss
     })
 })
-router.post('/about', expressFileUpload(), async (req, res) => {
+router.post('/about', async (req, res) => {
     try {
         const allAbouts = await allAbout()
+        const allPhotoss = await allPhotos()
+        const allVideoss = await allVideos()
         const {
             title_uz,
             title_ru,
@@ -128,28 +130,33 @@ router.post('/about', expressFileUpload(), async (req, res) => {
             content_ru,
             id
         } = req.body
-        console.log(id);
-
-        const imgName = req.files.image.name.split(".")
-
-        const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
 
         if (!(title_uz || title_ru || content_uz || content_ru)) {
-            throw new Error('Title yoki Blog kiritmadingiz!')
+            res.render('adminAbout', {
+                error: "Заполните все поля!",
+                allAbouts: allAbouts[0],
+                photos: allPhotoss,
+                videos: allVideoss
+            })
         }
 
         if (allAbouts.length <= 0) {
-            await addAbout(title_uz, title_ru, content_uz, content_ru, filename)
-            req.files.image.mv(
-                path.join(__dirname, '..', 'public', 'files', filename),
-            )
-            res.redirect('/about')
+            await addAbout(title_uz, title_ru, content_uz, content_ru)
+            res.render('adminAbout', {
+                message: "Информация о нас будет добавлена",
+                allAbouts: allAbouts[0],
+                photos: allPhotoss,
+                videos: allVideoss
+            })
+            return;
         }
-        await updateAbout(title_uz, title_ru, content_uz, content_ru, filename, id.trim())
-        req.files.image.mv(
-            path.join(__dirname, '..', 'public', 'files', filename),
-        )
-        res.redirect('/about')
+        await updateAbout(title_uz, title_ru, content_uz, content_ru, id.trim())
+        res.render('adminAbout', {
+            message: "Информация о нас изменилась",
+            allAbouts: allAbouts[0],
+            photos: allPhotoss,
+            videos: allVideoss
+        })
     } catch (error) {
         console.log(error);
 
@@ -318,7 +325,6 @@ router.get('/contacts', async (req, res) => {
     })
 })
 router.post('/contacts', async (req, res) => {
-    console.log(req.body);
     const allContact = await allContacts()
     try {
         const {
@@ -470,7 +476,7 @@ router.post('/news', expressFileUpload(), async (req, res) => {
             .skip(skipblog * 10)
             .limit(10)
         const allBlogsCount = await allblogs.length
-    
+
         const {
             title_uz,
             title_ru,
@@ -486,8 +492,8 @@ router.post('/news', expressFileUpload(), async (req, res) => {
             res.render('adminNews', {
                 error: "Пожалуйста, заполните все поля",
                 skipblog,
-        allBlogsPog,
-        allBlogsCount,
+                allBlogsPog,
+                allBlogsCount,
             })
         }
 
@@ -495,7 +501,7 @@ router.post('/news', expressFileUpload(), async (req, res) => {
             title_uz,
             title_ru,
             content_uz,
-            content_ru, 
+            content_ru,
             filename)
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
@@ -504,8 +510,8 @@ router.post('/news', expressFileUpload(), async (req, res) => {
         res.render('adminNews', {
             message: "Новости добавлены",
             skipblog,
-        allBlogsPog,
-        allBlogsCount,
+            allBlogsPog,
+            allBlogsCount,
         })
 
     } catch (error) {
@@ -551,7 +557,7 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
             title_uz,
             title_ru,
             content_uz,
-            content_ru, 
+            content_ru,
             filename, id)
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
@@ -583,33 +589,57 @@ router.delete('/delete/:id', async (req, res) => {
 
 // Photo galery
 router.post('/addphotos', expressFileUpload(), async (req, res) => {
-    const photos = req.files.photos
-    console.log(photos);
-    if (photos.length > 1) {
-        for (let photo of photos) {
-            const imgName = photo.name.split(".")
-            const filename = photo.md5 + '.' + imgName[imgName.length - 1]
-            photo.mv(
-                path.join(__dirname, '..', 'public', 'photogalery', filename),
-            )
-            const addPhotos = await addPhoto(filename)
-            res.redirect('/admin/about')
-            return;
+    try {
+        const photos = req.files.photos
+        const allAbouts = await allAbout()
+        const allPhotoss = await allPhotos()
+        const allVideoss = await allVideos()
+        if (photos.length > 1) {
+            for (let photo of photos) {
+                const imgName = photo.name.split(".")
+                const filename = photo.md5 + '.' + imgName[imgName.length - 1]
+                photo.mv(
+                    path.join(__dirname, '..', 'public', 'photogalery', filename),
+                )
+                const addPhotos = await addPhoto(filename)
+                res.render('adminAbout', {
+                    message: "Фотографии сохранены!",
+                    allAbouts: allAbouts[0],
+                    photos: allPhotoss,
+                    videos: allVideoss
+                })
+                return;
+            }
         }
+        const imgName = photos.name.split(".")
+        const filename = photos.md5 + '.' + imgName[imgName.length - 1]
+        photos.mv(
+            path.join(__dirname, '..', 'public', 'photogalery', filename),
+        )
+        const addPhotos = await addPhoto(filename)
+        res.render('adminAbout', {
+            message: "Фотографии сохранены!",
+            allAbouts: allAbouts[0],
+            photos: allPhotoss,
+            videos: allVideoss
+        })
+    } catch (error) {
+        console.log(error);
     }
-    const imgName = photos.name.split(".")
-    const filename = photos.md5 + '.' + imgName[imgName.length - 1]
-    photos.mv(
-        path.join(__dirname, '..', 'public', 'photogalery', filename),
-    )
-    const addPhotos = await addPhoto(filename)
-    res.redirect('/admin/about')
 
 })
 router.get('/deletephoto/:id', async (req, res) => {
     try {
         await deleteOnePhotoById(req.params.id)
-        res.redirect('/admin/about')
+        const allAbouts = await allAbout()
+        const allPhotoss = await allPhotos()
+        const allVideoss = await allVideos()
+        res.render('adminAbout', {
+            message: "Изображение было удалено!",
+            allAbouts: allAbouts[0],
+            photos: allPhotoss,
+            videos: allVideoss
+        })
     } catch (error) {
         console.log(error);
         res.redirect('/admin')
@@ -622,6 +652,10 @@ router.post('/addvideo', expressFileUpload(), async (req, res) => {
             video_link,
             caption
         } = req.body
+
+        const allAbouts = await allAbout()
+        const allPhotoss = await allPhotos()
+        const allVideoss = await allVideos()
 
         function getId(url) {
             const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -642,7 +676,12 @@ router.post('/addvideo', expressFileUpload(), async (req, res) => {
         req.files.videoimg.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
-        res.redirect('/admin/about')
+        res.render('adminAbout', {
+            message: "Ссылка на видео сохранена!",
+            allAbouts: allAbouts[0],
+            photos: allPhotoss,
+            videos: allVideoss
+        })
     } catch (error) {
         console.log(error);
     }
@@ -650,7 +689,15 @@ router.post('/addvideo', expressFileUpload(), async (req, res) => {
 router.get('/deletevideo/:id', async (req, res) => {
     try {
         await deleteOneVideoById(req.params.id)
-        res.redirect('/admin/about')
+        const allAbouts = await allAbout()
+        const allPhotoss = await allPhotos()
+        const allVideoss = await allVideos()
+        res.render('adminAbout', {
+            message: "Видео было удалено!",
+            allAbouts: allAbouts[0],
+            photos: allPhotoss,
+            videos: allVideoss
+        })
     } catch (error) {
         console.log(error);
         res.redirect('/admin')
@@ -658,7 +705,6 @@ router.get('/deletevideo/:id', async (req, res) => {
 })
 router.get('/allvideos', async (req, res) => {
     const videos = await allVideos()
-
     res.json({
         videos
     })
@@ -682,17 +728,22 @@ router.post('/doctor', expressFileUpload(), async (req, res) => {
         const doctors = await allDoctors()
 
 
+
+        if (!(name || special || phone_number || about || req.files.image)) {
+            res.render('adminDoctor', {
+                error: "Пожалуйста, заполните все поля",
+                doctors
+            })
+            return;
+        }
+
         const imgName = req.files.image.name.split(".")
 
         const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
 
-        if (!(name || special || phone_number || about)) {
-            throw new Error('Bo\'shliqlarni to\'ldiring')
-        }
-
         if (!(about.length <= 2048)) {
             res.render('adminDoctor', {
-                error: "Iltimos 2048 ta belgidan kamroq ma'lumot kiriting!",
+                error: "Невозможно ввести более 2048 знаков информации о специалисте.",
                 doctors
             })
             return;
@@ -702,7 +753,7 @@ router.post('/doctor', expressFileUpload(), async (req, res) => {
             path.join(__dirname, '..', 'public', 'files', 'doctors', filename),
         )
         res.render('adminDoctor', {
-            message: "Muvoffaqiyatli qo'shildi!",
+            message: "Добавлен специалист",
             doctors
         })
 
@@ -717,7 +768,7 @@ router.delete('/doctor/delete/:id', async (req, res) => {
 
         if (deleteOne) {
             res.json({
-                message: 'Docktor deleted'
+                message: 'Специалист удален'
             })
         }
 
@@ -729,11 +780,12 @@ router.delete('/doctor/delete/:id', async (req, res) => {
 })
 router.get('/doctor/edite/:id', async (req, res) => {
     try {
+        const doctors = await allDoctors()
         const doctor = await findDoctorById(new ObjectId(req.params.id))
         if (!doctor) {
             res.render('adminDoctor', {
-                title: 'Admin panel',
-                error: "Bunday doctor mavjud emas"
+                error: "Пожалуйста, проверьте еще раз, если такой специалист недоступен",
+                doctors
             })
         }
         res.render('editDoctor', {
@@ -764,7 +816,7 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
 
         if (!(about.length <= 2048)) {
             res.render('adminDoctor', {
-                error: "Iltimos 2048 ta belgidan kamroq ma'lumot kiriting!",
+                error: "Невозможно ввести более 2048 знаков информации о специалисте.",
                 doctors
             })
             return;
