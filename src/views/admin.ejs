@@ -23,7 +23,7 @@
     %>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container container-fluid">
-            <a class="navbar-brand" href="/admin">Admin Panel</a>
+            <a class="navbar-brand" href="/admin">Панель администратора</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -32,28 +32,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/admin">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                        <a class="nav-link" aria-current="page" href="/admin/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Cosmetic</a>
+                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Косметика</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/contacts">Contact</a>
+                        <a class="nav-link" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Appointments</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/news">News</a>
+                        <a class="nav-link" aria-current="page" href="/admin/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/doctor">Doctor</a>
+                        <a class="nav-link" aria-current="page" href="/admin/doctor">Врач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/categorys">Categorys</a>
+                        <a class="nav-link" aria-current="page" href="/admin/categorys">Категории</a>
                     </li>
                 </ul>
             </div>
@@ -65,17 +65,19 @@
         <div class="row appointment-section">
             <div class="col-md-12 text-center my-5">
                 <div class="title">
-                    <h2>Appointments</h2>
+                    <h2>Назначения</h2>
                 </div>
             </div>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Phone Number</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Check</th>
+                        <th scope="col">Имя и фамилия</th>
+                        <th scope="col">Номер телефона</th>
+                        <th scope="col">Тип сервиса</th>
+                        <th scope="col">Филиалы</th>
+                        <th scope="col">Время</th>
+                        <th scope="col">Проверять</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -83,10 +85,13 @@
                     <tr>
                         <th scope="row"><%= a_num ++ %> </th>
                         <td><%= appointment.full_name %> </td>
-                        <td><%= appointment.phone %> </td>
+                        <td><%= appointment.phone_number %> </td>
+                        <td><%= appointment.service__label %> </td>
+                        <td><%= appointment.filial %> </td>
                         <td><%= appointment.dateCreated.toGMTString()
                                 %>
                         </td>
+                        <td><button class="btn btn-success" >Проверять</button></td>
                     </tr>
                     <% }) %>
 
@@ -96,7 +101,7 @@
                 <nav class="" aria-label="Page navigation example">
                     <ul class="pagination">
                         <li class="page-item">
-                            <a class="page-link" href="/admin?skipappontment=<%= skipappontment - 1%>">Previous</a>
+                            <a class="page-link" href="/admin?skipappontment=<%= skipappontment - 1%>">Предыдущий</a>
                         </li>
 
                         <% for(let i = 0; i < Math.ceil(allAppointmentCount / 10); i++){%>
@@ -109,7 +114,7 @@
                             <a
                                 class="page-link"
                                 href="/admin?skipappontment=<%= skipappontment + 1%>"
-                        >Next</a>
+                        >Предыдущий</a>
                         </li>
                     </ul>
                 </nav>

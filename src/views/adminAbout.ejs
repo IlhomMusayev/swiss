@@ -15,7 +15,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container container-fluid">
-            <a class="navbar-brand" href="/admin">Admin Panel</a>
+            <a class="navbar-brand" href="/admin">Панель администратора</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -24,28 +24,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                        <a class="nav-link" aria-current="page" href="/admin">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/about">About</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Cosmetic</a>
+                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Косметика</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/contacts">Contact</a>
+                        <a class="nav-link" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Appointments</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/news">News</a>
+                        <a class="nav-link" aria-current="page" href="/admin/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/doctor">Doctor</a>
+                        <a class="nav-link" aria-current="page" href="/admin/doctor">Врач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/categorys">Categorys</a>
+                        <a class="nav-link" aria-current="page" href="/admin/categorys">Категории</a>
                     </li>
                 </ul>
             </div>
@@ -54,64 +54,73 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center my-4">
-                <h2>About page</h2>
+                <h2>О нас</h2>
                 <hr>
             </div>
         </div>
 
         <div class="row mb-5">
             <div class="col-md-12">
-                <h2>About clincs text</h2>
+                <h2>Информация о Кленике</h2>
+                <span>Заполните все поля!</span>
                 <form action="/admin/about" method='POST' enctype="multipart/form-data">
                     <div class="form-group">
-                        <label for="title" class="mt-3">Uzbek Title</label>
+                        <label for="title" class="mt-3">Узбекское название</label>
                         <input type="text" class="form-control my-1" id="title" name="title_uz" required
                             value="<% if(allAbouts){ %> <%= allAbouts.title_uz %> <% } %>  ">
 
-                        <label for="title" class="mt-3">Russion Title</label>
+                        <label for="title" class="mt-3">Русское название</label>
                         <input type="text" class="form-control my-1" id="title" name="title_ru" required
                             value="<% if(allAbouts){ %> <%= allAbouts.title_ru %> <% } %>  ">
 
-                        <label for="text" class="my-2">Uzbek Text</label>
+                        <label for="text" class="my-2">О нас на узбекском языке</label>
                         <textarea name="content_uz" id="editoruz" class="my-2"
                             placeholder="Shu yerga blog so'zlarini kiriting..." required>
                             &lt;p&gt;<% if(allAbouts){ %> <%= allAbouts.content_uz %> <% } %> &lt;/p&gt;
                         </textarea>
 
-                        <label for="text" class="my-2">Rus Text</label>
+                        <label for="text" class="my-2">О нас на русском языке</label>
                         <textarea name="content_ru" id="editorru" class="my-2"
                             placeholder="Shu yerga blog so'zlarini kiriting..." required>
                             &lt;p&gt;<% if(allAbouts){ %> <%= allAbouts.content_ru %> <% } %> &lt;/p&gt;
                         </textarea>
-                        <label for="image" class="mt-2">Image</label>
+                        <label for="image" class="mt-2">Выберите изображение для нашей страницы «О нас»</label>
                         <input type="file" class="form-control my-2" style="display: block" id="image" name="image"
                             required>
 
                         <input type="hidden" name='id' value="<%if(allAbouts){%><%=allAbouts._id %><%}%>">
 
-                        <input type="submit" class="btn btn-primary w-100 mt-3" value="Ma'lumot qo'shish">
+                        <input type="submit" class="btn btn-primary w-100 mt-3" value="Сохранить">
                     </div>
                 </form>
             </div>
 
             <div class="col-md-12">
-                <h2 class="my-5">Photo galery</h2>
+                <div class="row">
+                    <div class="col-md-12 text-center my-5">
+                        <h2>Фотогалерея</h2>
+                        <hr>
+                    </div>
+                </div>
                 <form action="/admin/addphotos" method="post" enctype="multipart/form-data">
-                    <label for="photos">Select photos</label>
+                    <label for="photos">Выбрать картинки</label><span> (Вы можете выбрать несколько изображений)</span>
                     <input type="file" name="photos" id="photos" style="display: block" class="form-control my-2" multiple>
-                    <input type="submit" value="Saqlash" class="btn btn-primary w-100 mt-3">
+                    <input type="submit" value="Сохранить" class="btn btn-primary w-100 mt-3">
                 </form>
             </div>
              <div class="col-md-12 mt-5">
             <div class="title">
-                <h4>Photo galery</h4>
+                <h2>Фотогалерея:</h2>
                 <hr>
+               
+
+                </div>
                 <ul class="gallery_photoss">
                     <% for(let photo of photos) {%>
                         <div class=" gallery-admin">
                         <img src="/photogalery/<%= photo.filename %>" width="600" height="400">
                         <div class="desc">
-                            <a href="/admin/deletephoto/<%= photo._id %>" class="btn btn-danger">Delete</a>
+                            <a href="/admin/deletephoto/<%= photo._id %>" class="btn btn-danger">Удалить</a>
                         </div>
                     </div>
                     <% } %>
@@ -120,9 +129,14 @@
 
             <% var num = 1 %>
             <div class="col-md-12">
-                <h2 class="my-5">Video galery</h2>
+                <div class="row">
+                    <div class="col-md-12 text-center my-5">
+                        <h2>Видео галерея</h2>
+                        <hr>
+                    </div>
+                </div>
                 <form action="/admin/addvideo" method="post" enctype="multipart/form-data">
-                    <label for="video_link">Youtube video link</label>
+                    <label for="video_link">Ссылка на YouTube</label>
                     <input type="link" name="video_link" id="video_link" style="display: block"
                         class="form-control my-2" placeholder="Youtube video link" required>
 
@@ -133,7 +147,7 @@
                     <label for="caption">Youtube video cover image</label>
                     <input type="text" name="caption" id="caption" style="display: block" class="form-control my-2"
                         placeholder="Video caption" required>
-                    <input type="submit" value="Saqlash" class="btn btn-primary w-100 mt-3">
+                    <input type="submit" value="Сохранить" class="btn btn-primary w-100 mt-3">
                 </form>
             </div>
 
@@ -152,7 +166,7 @@
                         <td scope="row"><%= num ++ %> </td>
                         <td scope="row"><a _blank="true" href="<%= video.video_link %>"><%= video.video_link %></a></td>
                         <td scope="row">
-                            <a href="/admin/deletevideo/<%= video._id %>" class="btn btn-danger">Delete</a>
+                            <a href="/admin/deletevideo/<%= video._id %>" class="btn btn-danger">Удалить</a>
                         </td>
                     </tr>
                     <% }) %>

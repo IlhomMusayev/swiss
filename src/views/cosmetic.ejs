@@ -27,10 +27,10 @@
       </article>
       <aside class="appointment">
          <h2><%= cosmeticLanguages.appointment.title[language] %></h2>
-         <form class="appointment__form" action="#" method="get">
-            <input id="full-name" type="text" name="full_name" placeholder="<%= cosmeticLanguages.appointment.form.name[language] %>">
+         <form class="appointment__form" action="/appointment" method="get">
+            <input id="full-name" type="text" name="full_name" placeholder="<%= cosmeticLanguages.appointment.form.name[language] %>" required>
             <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
-                   data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"  placeholder="<%= cosmeticLanguages.appointment.form.phone_number[language] %>"/>
+                   data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"  placeholder="<%= cosmeticLanguages.appointment.form.phone_number[language] %>" required/>
             <button type="submit">
                <img src="img/icons/bell.svg" alt="">
                <span><%= cosmeticLanguages.appointment.form.submit_btn[language] %></span>

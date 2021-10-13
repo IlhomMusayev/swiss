@@ -62,9 +62,9 @@
       </article>
       <aside class="appointment">
          <h2><%= treatmentLanguages.appointment.header[language] %></h2>
-         <form class="appointment__form" action="/appointmenthome" method="post">
-            <input id="full-name" type="text" name="full_name" placeholder="<%= treatmentLanguages.appointment.form.name[language] %>">
-            <input class="masked-phone" id="phone_number" type="tel" name="phone_number" data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _" placeholder="<%= treatmentLanguages.appointment.form.phone_number[language] %>"/>
+         <form class="appointment__form" action="/appointment" method="get">
+            <input id="full-name" type="text" name="full_name" placeholder="<%= treatmentLanguages.appointment.form.name[language] %>" required>
+            <input class="masked-phone" id="phone_number" type="tel" name="phone_number" data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _" placeholder="<%= treatmentLanguages.appointment.form.phone_number[language] %>" required/>
             <button type="submit">
                <img src="img/icons/bell.svg" alt="">
                <span><%= treatmentLanguages.appointment.form.submit_btn[language] %></span>
