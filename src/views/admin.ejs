@@ -82,7 +82,7 @@
                 </thead>
                 <tbody>
                     <% allAppointmentPog.forEach(function(appointment) {%>
-                    <tr>
+                    <tr class="<% if(appointment.chack_in) {%> table-success <% } %> ">
                         <th scope="row"><%= a_num ++ %> </th>
                         <td><%= appointment.full_name %> </td>
                         <td><%= appointment.phone_number %> </td>
@@ -91,7 +91,7 @@
                         <td><%= appointment.dateCreated.toGMTString()
                                 %>
                         </td>
-                        <td><button class="btn btn-success chack-btn" >Проверять</button></td>
+                        <td><button class="btn btn-success chack-btn" data-id = "<%= appointment._id %>" >Проверять</button></td>
                     </tr>
                     <% }) %>
 
@@ -146,7 +146,29 @@
     </script>
 
     <script>
+        const chackBtnELement = document.querySelectorAll('.chack-btn')
+        console.log(chackBtnELement);
+
         
+        chackBtnELement.forEach(btn => {
+            btn.addEventListener("click", async (e) => {
+            const id = e.target.getAttribute("data-id")
+            console.log(id);
+            const response = await fetch(`/admin/chackAppointment/${id}`, {
+                method: "POST",
+            })
+            console.log(response);
+
+            const json = await response.json()
+
+            if (response.status === 200) {
+                alert(json.message);
+                e.target.parentNode.parentNode.classList.add("table-success");
+            } else {
+                alert(json.error);
+            }   
+        })
+        });
     </script>
     
 </body>

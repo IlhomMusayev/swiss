@@ -75,7 +75,9 @@ const ObjectId = require('mongodb').ObjectId
 const {
     AppointmentModel,
     allAppointmentModel,
-    findTodayAppointments
+    findTodayAppointments,
+    updateOneAppointment,
+    findAppointmentById
 } = require('../models/Appointment')
 
 
@@ -106,8 +108,13 @@ router.get('/', async (req, res) => {
     })
 })
 
-router.post('/chackAppointment', async (req, res) => {
-    
+router.post('/chackAppointment/:id', async (req, res) => {
+    const id = req.params.id
+    const appointmentItem = await findAppointmentById(id)
+    console.log(appointmentItem);
+    console.log(id);
+    const update = await updateOneAppointment(true, id)
+    console.log(update);
     res.json({
         message: "Было подтверждено, что вы связались с пациентом"
     })

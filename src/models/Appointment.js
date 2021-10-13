@@ -51,6 +51,14 @@ async function addAppointmentModel(full_name, phone_number, filial, service__lab
     return await db.create({full_name, phone_number, filial, service__label, email})
 }
 
+async function findAppointmentById(id) {
+    let db = await AppointmentModel()
+    return await db.findOne({
+        _id: id
+    })
+}
+
+
 async function findAppointmentByEmail(email){
     let db = await AppointmentModel()
     return await db.find({ email: email })
@@ -62,12 +70,22 @@ async function deleteOneAppointmentById(id) {
         _id: id
     })
 }
-async function findTodayAppointments(){
 
+async function findTodayAppointments(){
     let db = await AppointmentModel()
     return await db.find({dateCreated: {$gte: startOfToday}})
 }
 
+async function updateOneAppointment(chack, id){
+    let db = await AppointmentModel()
+    return await db.updateOne({
+        _id: id
+    }, {
+        $set: {
+            chack_in: chack,
+        }
+    })
+}
 
 
 module.exports = {
@@ -76,5 +94,7 @@ module.exports = {
     addAppointmentModel,
     findAppointmentByEmail,
     deleteOneAppointmentById,
-    findTodayAppointments
+    findTodayAppointments,
+    updateOneAppointment,
+    findAppointmentById
 }

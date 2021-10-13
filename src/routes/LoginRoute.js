@@ -49,7 +49,9 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const contacts = await allContacts()
     try {
+
         const {
             login: email,
             password
@@ -70,7 +72,14 @@ router.post('/', async (req, res) => {
 
     } catch (e) {
         res.render('login', {
-            error: e + ''
+            error: e + '',
+            title: "Login",
+            user: req.user,
+            loginLanguages,
+            navbarLanguages,
+            footerLanguages,
+            language: req.language.toString() == "uz" ? "uz" : "ru",
+            contacts: contacts[0]
         })
     }
 })
