@@ -15,7 +15,7 @@
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container container-fluid">
-            <a class="navbar-brand" href="/admin">Admin Panel</a>
+            <a class="navbar-brand" href="/admin">Панель администратора</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -24,28 +24,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                        <a class="nav-link" aria-current="page" href="/admin">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                        <a class="nav-link" aria-current="page" href="/admin/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Cosmetic</a>
+                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Косметика</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/contacts">Contact</a>
+                        <a class="nav-link" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Appointments</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/news">News</a>
+                        <a class="nav-link" aria-current="page" href="/admin/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/category">category</a>
+                        <a class="nav-link" aria-current="page" href="/admin/doctor">Врач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/categorys">Categorys</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/categorys">Категории</a>
                     </li>
                 </ul>
             </div>
@@ -55,9 +55,13 @@
         <% var message, error %>
         <div class="row mb-5">
             <div class="col-md-12">
-                <div class="title mt-5">
-                    <h2>Categorys</h2>
+                <div class="row">
+                    <div class="col-md-12 text-center my-4">
+                        <h2>Услуги(Категории)</h2>
+                        <hr>
+                    </div>
                 </div>
+
 
                 <% if(message) {%>
                 <div class="alert alert-success" style="margin: 20px 0px;">
@@ -70,15 +74,16 @@
                     </div>
                     <% } %>
             </div>
+            <h3>Введите виды услуг в клинике</h3>
             <form action="/admin/categorys" method="POST">
                 <div class="form-group">
-                    <label for="name" class="mt-5">Name uzbek </label>
-                    <input type="text" class="form-control my-2" id="name" name="name_uz" placeholder="Category name" required>
+                    <label for="name" class="mt-5">Тип названия услуги - узбекский. </label>
+                    <input type="text" class="form-control my-2" id="name" name="name_uz" placeholder="Тип названия услуги - узбекский" required>
 
-                    <label for="name" class="">Name Russion</label>
-                    <input type="text" class="form-control my-2" id="name" name="name_ru" placeholder="Category name" required>
+                    <label for="name" class="">Название типа услуги - русское.</label>
+                    <input type="text" class="form-control my-2" id="name" name="name_ru" placeholder="Название типа услуги - русское" required>
 
-                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Qo'shish">
+                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Добавлять">
                 </div>
             </form>
         </div>
@@ -91,8 +96,8 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Edit/Delete</th>
+                        <th scope="col">Название категории</th>
+                        <th scope="col">Изменять/Удалить</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -101,12 +106,12 @@
                         <th scope="row"><%= num ++ %> </th>
                         <td><%= category.name_ru %> </td>
                         <td>
-                            <a class="btn btn-primary edite_btn" href="/admin/categorys/edite/<%= category._id %>">Edit</a>
+                            <a class="btn btn-primary edite_btn" href="/admin/categorys/edite/<%= category._id %>">Изменять</a>
                             <button data-id="<%= category._id%>" class="
                                 btn btn-danger
                                 delete_btn
                             ">
-                                Delete
+                            Удалить
                             </button>
                         </td>
                     </tr>
