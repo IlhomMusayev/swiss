@@ -9,13 +9,25 @@ const slug = require('mongoose-slug-generator')
 mongoose.plugin(slug)
 
 const BlogsScheme = new Schema({
-    title: {
+    title_uz: {
         type: 'string',
         required: true,
         minLength: 5,
         trim: true,
     },
-    content: {
+    title_ru: {
+        type: 'string',
+        required: true,
+        minLength: 5,
+        trim: true,
+    },
+    content_uz: {
+        type: 'string',
+        required: true,
+        minLength: 100,
+        trim: true,
+    },
+    content_ru: {
         type: 'string',
         required: true,
         minLength: 100,
@@ -29,19 +41,11 @@ const BlogsScheme = new Schema({
         type: Date,
         default: Date.now()
     },
-    slug: {
-        type: String,
-        slug: ["title", "subtitle"],
-        slug_padding_size: 4,
-        unique: true
-    }
-
-
 })
 
 async function BlogModel() {
     let db = await client()
-    return await db.model('blogs', BlogsScheme)
+    return await db.model('news', BlogsScheme)
 }
 
 async function allBlogs() {
@@ -50,11 +54,13 @@ async function allBlogs() {
 }
 
 
-async function addBlog(title, content, filename) {
+async function addBlog(title_uz, title_ru, content_uz, content_ru, filename) {
     let db = await BlogModel()
     return await db.create({
-        title,
-        content,
+        title_uz,
+        title_ru,
+        content_uz,
+        content_ru,
         filename
     })
 }
@@ -66,14 +72,16 @@ async function findBlogById(id) {
     })
 }
 
-async function updateOneBlogModel(title, content, filename, id) {
+async function updateOneBlogModel(title_uz, title_ru, content_uz, content_ru, filename, id) {
     let db = await BlogModel()
     return await db.updateOne({
         _id: id
     }, {
         $set: {
-            title: title,
-            content: content,
+            title_uz: title_uz,
+            title_ru: title_ru,
+            content_uz: content_uz,
+            content_ru: content_ru,
             filename: filename
         }
     })

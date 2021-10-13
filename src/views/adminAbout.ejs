@@ -140,24 +140,26 @@
                     <input type="link" name="video_link" id="video_link" style="display: block"
                         class="form-control my-2" placeholder="Youtube video link" required>
 
-                    <label for="videoimg">Youtube video cover image</label>
+                    <label for="videoimg">Картинка для постера Youtube видео</label>
                     <input type="file" name="videoimg" id="videoimg" style="display: block" class="form-control my-2"
                         required>
 
-                    <label for="caption">Youtube video cover image</label>
+                    <label for="caption">Заголовок видео</label>
                     <input type="text" name="caption" id="caption" style="display: block" class="form-control my-2"
                         placeholder="Video caption" required>
                     <input type="submit" value="Сохранить" class="btn btn-primary w-100 mt-3">
                 </form>
             </div>
 
-            <h4 class="my-4">Video galery</h4>
+            <h4 class="my-4">Видео галерея</h4>
             <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Video links</th>
-                        <th scope="col">Delete</th>
+                        <th scope="col">Ссылка на видео</th>
+                        <th scope='col'>Заголовок</th>
+                        <th scope='col'>Постер</th>
+                        <th scope="col">Удалить</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -165,6 +167,10 @@
                     <tr>
                         <td scope="row"><%= num ++ %> </td>
                         <td scope="row"><a _blank="true" href="<%= video.video_link %>"><%= video.video_link %></a></td>
+                        <td scope="row"><%= video.caption%></td>
+                        <td scope="row">
+                            <img src="/files/<%= video.filename %>" alt="Video caption" width="200" height="200">
+                        </td>
                         <td scope="row">
                             <a href="/admin/deletevideo/<%= video._id %>" class="btn btn-danger">Удалить</a>
                         </td>

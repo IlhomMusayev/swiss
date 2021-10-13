@@ -9,13 +9,13 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Admin panel</title>
+    <title>Контакт</title>
 </head>
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container container-fluid">
-            <a class="navbar-brand" href="/admin">Admin Panel</a>
+            <a class="navbar-brand" href="/admin">Панель администратора</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -24,28 +24,28 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                        <a class="nav-link" aria-current="page" href="/admin">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                        <a class="nav-link" aria-current="page" href="/admin/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Cosmetic</a>
+                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Косметика</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/contacts">Contact</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Appointments</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/news">News</a>
+                        <a class="nav-link" aria-current="page" href="/admin/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/doctor">Doctor</a>
+                        <a class="nav-link" aria-current="page" href="/admin/doctor">Врач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/categorys">Categorys</a>
+                        <a class="nav-link" aria-current="page" href="/admin/categorys">Категории</a>
                     </li>
                 </ul>
             </div>
@@ -54,13 +54,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center my-4">
-                <h2>Contacts page</h2>
+                <h2>Контакт</h2>
                 <hr>
             </div>
         </div>
         <div class="row mb-5">
             <div class="col-md-12">
-                <h2>About clincs text</h2>
+                <h3>Контактная информация на странице</h3>
                 <% var message, error%> 
                 <% if(message) {%>
                 <div class="alert alert-success" style="margin: 20px 0px;">
@@ -74,41 +74,41 @@
                 <% } %>
                 <form action="/admin/contacts" method='POST'>
                     <div class="form-group">
-                        <label for="phone_number" class="mt-3">Phone Number</label>
+                        <label for="phone_number" class="mt-3">Номер телефона</label>
                         <input type="text" class="form-control my-1" id="phone_number" name="phone_number" required
                             value="<%if(allContact){%><%=allContact.phone_number %> <% } %>">
 
-                        <label for="email" class="mt-3">Email</label>
+                        <label for="email" class="mt-3">Эл. адрес</label>
                         <input type="email" class="form-control my-1" id="email" name="email" required
                             value="<%if(allContact){%><%=allContact.email %> <% } %>">
 
-                        <label for="address" class="mt-3">Address</label>
+                        <label for="address" class="mt-3">Адрес</label>
                         <input type="text" class="form-control my-1" id="address" name="address" required
                             value="<%if(allContact){%><%=allContact.address %> <% } %>">
 
-                        <label for="facebook" class="mt-3">Facebook</label>
+                        <label for="facebook" class="mt-3">Имя пользователя на Facebook</label>
                         <input type="text" class="form-control my-1" id="facebook" name="facebook" required
-                            value="<%if(allContact){%><%=allContact.facebook %> <% } %>" placeholder="Username">
+                            value="<%if(allContact){%><%=allContact.facebook %> <% } %>" placeholder="Имя пользователя">
 
-                        <label for="instagram" class="mt-3">Instagram</label>
+                        <label for="instagram" class="mt-3">Имя пользователя на Instagram</label>
                         <input type="text" class="form-control my-1" id="instagram" name="instagram" required
-                            value="<%if(allContact){%><%=allContact.instagram %> <% } %>" placeholder="Username">
+                            value="<%if(allContact){%><%=allContact.instagram %> <% } %>" placeholder="Имя пользователя">
 
-                        <label for="telegram" class="mt-3">Telegram</label>
+                        <label for="telegram" class="mt-3">Имя пользователя на Telegram</label>
                         <input type="text" class="form-control my-1" id="telegram" name="telegram" required
-                            value="<%if(allContact){%><%=allContact.telegram %> <% } %>" placeholder="Username">
+                            value="<%if(allContact){%><%=allContact.telegram %> <% } %>" placeholder="Имя пользователя">
 
-                        <label for="twitter" class="mt-3">Twitter</label>
+                        <label for="twitter" class="mt-3">Имя пользователя на Twitter</label>
                         <input type="text" class="form-control my-1" id="twitter" name="twitter" required
-                            value="<%if(allContact){%><%=allContact.twitter %> <% } %>" placeholder="Username">
+                            value="<%if(allContact){%><%=allContact.twitter %> <% } %>" placeholder="Имя пользователя">
 
-                        <label for="text" class="my-2">Uzbek About</label>
+                        <label for="text" class="my-2">Узбекский текст о нас</label>
                         <textarea name="aboutuz" id="editoruz" class="my-2"
                             placeholder="Shu yerga blog so'zlarini kiriting..." required>
                                 <%if(allContact){%><%-allContact.aboutuz %> <% } %> 
                         </textarea>
 
-                        <label for="text" class="my-2">Rus About</label>
+                        <label for="text" class="my-2">Русский текст о нас</label>
                         <textarea name="aboutru" id="editorru" class="my-2"
                             placeholder="Shu yerga blog so'zlarini kiriting..." required>
                                 <%if(allContact){%><%-allContact.aboutru %> <% } %> 
@@ -116,7 +116,7 @@
 
                         <input type="hidden" name='id' value="<%if(allContact){%><%=allContact._id %><%}%>">
 
-                        <input type="submit" class="btn btn-primary w-100 mt-3" value="Ma'lumot qo'shish">
+                        <input type="submit" class="btn btn-primary w-100 mt-3" value="Сохранить">
                     </div>
                 </form>
             </div>

@@ -8,42 +8,42 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Add blog panel</title>
+    <title>Новости</title>
 </head>
 
 <body>
     <% var num =1 %> 
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container container-fluid">
-              <a class="navbar-brand" href="#">Admin Panel</a>
+              <a class="navbar-brand" href="#">Панель администратора</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                        <a class="nav-link" aria-current="page" href="/admin">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                        <a class="nav-link" aria-current="page" href="/admin/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Cosmetic</a>
+                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Косметика</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/contacts">Contact</a>
+                        <a class="nav-link" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Appointments</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/news">News</a>
+                        <a class="nav-link active" aria-current="page" href="/admin/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/doctor">Doctor</a>
+                        <a class="nav-link" aria-current="page" href="/admin/doctor">Врач</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/categorys">Categorys</a>
+                        <a class="nav-link" aria-current="page" href="/admin/categorys">Категории</a>
                     </li>
                 </ul>
               </div>
@@ -53,8 +53,11 @@
         <% var message %> 
         <div class="row mb-5">
             <div class="col-md-12">
-                <div class="title mt-5">
-                    <h2>News qo'shish</h2>
+                <div class="row">
+                    <div class="col-md-12 text-center my-4">
+                        <h2>Новости</h2>
+                        <hr>
+                    </div>
                 </div>
 
                 <% if(message) {%>
@@ -63,21 +66,31 @@
                 </div>
                 <% } %>
             </div>
+            <h3>Вы можете добавить сюда новости</h3> <span> (Пожалуйста, заполните все поля)</span>
             <form action="/admin/news" method="POST" enctype="multipart/form-data">
                 <div class="form-group">
-                    <label for="title" class="mt-5">Title</label>
-                    <input type="text" class="form-control my-2" id="title" name="title">
+                    <label for="title" class="mt-3">Узбекское название</label>
+                    <input type="text" class="form-control my-1" id="title" name="title_uz" required>
 
-                    <label for="text" class="my-2">Text</label>
-                    <textarea name="content" id="editor" class="my-2"
-                        placeholder="Shu yerga blog so'zlarini kiriting...">
-                            &lt;p&gt;&lt;/p&gt;
-                        </textarea>
+                    <label for="title" class="mt-3">Русское название</label>
+                    <input type="text" class="form-control my-1" id="title" name="title_ru" required>
 
-                    <label for="image" class="mt-2">Image</label>
-                    <input type="file" class="form-control my-2" style="display: block" id="image" name="image">
+                    <label for="text" class="my-2">Текст для новостей на узбекском языке</label>
+                    <textarea name="content_uz" id="editoruz" class="my-2"
+                        placeholder="Текст для новостей" required>
+                        &lt;p&gt;&lt;/p&gt;
+                    </textarea>
 
-                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Blog qo'shish">
+                    <label for="text" class="my-2">Текст для новостей на русском языке</label>
+                    <textarea name="content_ru" id="editorru" class="my-2"
+                        placeholder="Текст для новостей" required>
+                        &lt;p&gt;&lt;/p&gt;
+                    </textarea>
+                    <label for="image" class="mt-2">Выберите картинку для новости</label>
+                    <input type="file" class="form-control my-2" style="display: block" id="image" name="image"
+                        required>
+
+                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Сохранить">
                 </div>
             </form>
         </div>
@@ -93,20 +106,20 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Title</th>
-                        <th scope="col">Blog</th>
-                        <th scope="col">Img</th>
-                        <th scope="col">E/D</th>
+                        <th scope="col">Русское название</th>
+                        <th scope="col">Текст для новостей на русском языке</th>
+                        <th scope="col">Kартинку для новости</th>
+                        <th scope="col">Изменять</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% allBlogsPog.forEach(function(blogItem) {%>
                     <tr>
                         <th scope="row"><%= num ++ %> </th>
-                        <td><%= blogItem.title %></td>
+                        <td><%= blogItem.title_ru %></td>
                         <td class="blog-post">
                             <div style="height:200px">
-                                <%- blogItem.content %>
+                                <%- blogItem.content_ru %>
                             </div>
                         </td>
                         <td>
@@ -114,13 +127,13 @@
                                 src="/files/<%= blogItem.filename %>" alt="">
                         </td>
                         <td>
-                            <a class="btn btn-primary edite_btn" href="/admin/edite/<%= blogItem._id %>">Edit</a>
+                            <a class="btn btn-primary edite_btn" href="/admin/edite/<%= blogItem._id %>">Изменять</a>
                             <hr>
                             <button data-id="<%= blogItem._id%>" class="
                                 btn btn-danger
                                 delete_btn
                             ">
-                                Delete
+                            Удалить
                             </button>
                         </td>
                     </tr>
@@ -139,7 +152,7 @@
                             <a
                                 class="page-link"
                                 href="/admin?skipblog=<%= skipblog - 1%>"
-                                >Previous</a
+                                >Предыдущий </a
                             >
                         </li>
 
@@ -157,7 +170,7 @@
                             <a
                                 class="page-link"
                                 href="/admin?skipblog=<%= skipblog + 1%>"
-                                >Next</a
+                                >Следующий</a
                             >
                         </li>
                     </ul>
@@ -182,11 +195,15 @@
     <script src="https://cdn.ckeditor.com/ckeditor5/11.0.1/classic/ckeditor.js"></script>
     <script>
         ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-
+        .create(document.querySelector('#editoruz'))
+        .catch(error => {
+            console.error(error);
+        });
+        ClassicEditor
+        .create(document.querySelector('#editorru'))
+        .catch(error => {
+            console.error(error);
+        });
             const successAlertElement = document.querySelector('.alert')
     setTimeout(function () {
         successAlertElement.parentNode.removeChild(successAlertElement);
@@ -199,7 +216,7 @@
             button.addEventListener("click", async (evt) => {
                 console.log(evt);
                 const response = await fetch(
-                    "admin/delete/" + evt.target.dataset.id, {
+                    "/admin/delete/" + evt.target.dataset.id, {
                         method: "DELETE",
                     }
                 );

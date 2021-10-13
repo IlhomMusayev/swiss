@@ -417,7 +417,7 @@ router.post('/categorys/edite', async (req, res) => {
 
         const updateCategorys = await updateCategory(name_uz,
             name_ru, id)
-        
+
 
         res.redirect('/admin/categorys')
     } catch (error) {
@@ -462,25 +462,50 @@ router.get('/news', async (req, res) => {
 })
 router.post('/news', expressFileUpload(), async (req, res) => {
     try {
+        const skipblog = req.query.skipblog * 1 || 0;
+        const BlogModele = await BlogModel()
+        const allblogs = await allBlogs()
+        const allBlogsPog = await BlogModele
+            .find()
+            .skip(skipblog * 10)
+            .limit(10)
+        const allBlogsCount = await allblogs.length
+    
         const {
-            title,
-            content
+            title_uz,
+            title_ru,
+            content_uz,
+            content_ru
         } = req.body
 
         const imgName = req.files.image.name.split(".")
 
         const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
 
-        if (!(title || content)) {
-            throw new Error('Title yoki Blog kiritmadingiz!')
+        if (!(title_uz || content_uz || title_ru || content_ru)) {
+            res.render('adminNews', {
+                error: "Пожалуйста, заполните все поля",
+                skipblog,
+        allBlogsPog,
+        allBlogsCount,
+            })
         }
 
-        const blog = addBlog(title, content, filename)
+        const news = addBlog(
+            title_uz,
+            title_ru,
+            content_uz,
+            content_ru, 
+            filename)
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
+
         res.render('adminNews', {
-            message: "Muvoffaqiyatli qo'shildi!"
+            message: "Новости добавлены",
+            skipblog,
+        allBlogsPog,
+        allBlogsCount,
         })
 
     } catch (error) {
@@ -491,10 +516,7 @@ router.get('/edite/:id', async (req, res) => {
     try {
         const blogItem = await findBlogById(new ObjectId(req.params.id))
         if (!blogItem) {
-            res.render('admin', {
-                title: 'Admin panel',
-                error: "Bunday blog mavjud emas"
-            })
+            res.redirect('/')
         }
         res.render('editblog', {
             title: blogItem.title,
@@ -507,8 +529,10 @@ router.get('/edite/:id', async (req, res) => {
 router.post('/edite', expressFileUpload(), async (req, res) => {
     try {
         const {
-            title,
-            content,
+            title_uz,
+            title_ru,
+            content_uz,
+            content_ru,
             id
         } = req.body
 
@@ -523,7 +547,12 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
             console.log(error);
         }
 
-        const updateOneBlog = await updateOneBlogModel(title, content, filename, id)
+        const updateOneBlog = await updateOneBlogModel(
+            title_uz,
+            title_ru,
+            content_uz,
+            content_ru, 
+            filename, id)
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', filename),
         )
@@ -540,7 +569,7 @@ router.delete('/delete/:id', async (req, res) => {
 
         if (deleteOne) {
             res.json({
-                message: 'Blog deleted'
+                message: 'Новости удалены'
             })
         }
 
