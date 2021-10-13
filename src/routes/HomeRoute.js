@@ -22,6 +22,12 @@ const {
     DoctorModel
 } = require('../models/DoctorModel')
 
+const {
+    CategoryModel,
+    allCategorys
+} = require('../models/CategorysModel')
+
+
 moment.locale('ru-Ru')
 
 // router.use(AuthMiddleware)
@@ -41,10 +47,13 @@ router.get('/', async (req, res) => {
     const videoItem = await videoModel.find().limit(1).sort({
         dateCreated: -1
     })
-
+    const allCategory = await allCategorys()
+    const categorysModel = await CategoryModel()
+    const categorys = await categorysModel.find().limit(allCategory.length >= 6 ? "6" : allCategory.length)
 
     const blogs = await allBlogs()
 
+    console.log(categorys);
     res.render('index', {
         user: req.user,
         blogs,
@@ -54,24 +63,16 @@ router.get('/', async (req, res) => {
         language: req.language.toString() == "uz" ? "uz" : "ru",
         photos,
         videoItem,
-        contacts: contacts[0]
+        contacts: contacts[0],
+        categorys
     })
 })
 
-router.post('/appointmenthome', AuthMiddleware, async (req, res) => {
-    const {
-        full_name,
-        phone_number
-    } = req.body
-    res.render('appointment', {
-        user: {
-            full_name,
-            phone_number
-        },
-        navbarLanguages,
-        language: req.language.toString() == "uz" ? "uz" : "ru"
-    })
-})
+// router.get('/appointment', AuthMiddleware, async (req, res) => {
+//     res.redirect('/appointment')    
+// })
+
+
 
 router.get('/alldoctorsusers', async (req, res) => {
     const doctorModel = await DoctorModel()

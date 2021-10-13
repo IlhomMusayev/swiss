@@ -3,21 +3,26 @@
    var error
    var status
    var category = category || []
-%> 
+   var mydate
+%>
 <!--MAKE APPOINTMENT SECTION-->
 <main class="make-appointment">
    <div class="container">
       <div class="alerts">
          <% if(status === 'ok') {%>
-            <div class="alert alert-success" style="margin: 0;">
-               Sizning so'rovnoma qabul qilindi!
-            </div>
-         <% } %> 
+         <div class="alert alert-success" style="margin: 0;">
+            <% if(language === 'uz') {%>
+               Сизнинг сўровингиз муваффақиятли қабул қилинди
+            <% } else{%>
+               Ваш запрос был успешно получен.
+            <% } %>
+         </div>
+         <% } %>
          <% if(error) {%>
-            <div class="alert alert-danger" style="margin: 0;">
-               <%= error %> 
-            </div>
-         <% } %> 
+         <div class="alert alert-danger" style="margin: 0;">
+            <%= error %>
+         </div>
+         <% } %>
       </div>
       <h2><%= appointmentLanguages.appointment.title[language] %></h2>
       <form class="make-appointment__form" method="post" action="/appointment">
@@ -25,24 +30,18 @@
             <legend><%= appointmentLanguages.appointment.sup_title[language] %></legend>
             <label class="settings-form__field__label" for="full_name">
                <span><%= appointmentLanguages.appointment.form.name_input[language] %></span>
-               <input id="full_name" type="text" name="full_name"
-               <% if(user){ %>
-                  value="<%= user.full_name %>"
-               <% } %>  
-               >
+               <input id="full_name" type="text" name="full_name" <% if(user){ %>
+                  value="<% if(mydate){%><%= mydate.name %><%}%>" <% } %>>
             </label>
             <label class="settings-form__field__label" for="phone_number">
                <span><%= appointmentLanguages.appointment.form.phone_number_input[language] %></span>
                <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
-                      data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"/
-                      <% if(user){ %>
-                        value="<%= user.phone_number %>"
-                     <% } %>  
-                      >
+                  data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"/ <% if(user){ %>
+                  value="<%if(mydate) {%><%= mydate.phone %><% } %>" <% } %>>
             </label>
             <div class="custom-select">
-               <select id="filial" name="filial">
-                  <option value="0"><%= appointmentLanguages.appointment.form.filial[language] %></option>
+               <select id="filial" name="filial" required>
+                  <option value=""><%= appointmentLanguages.appointment.form.filial[language] %></option>
                   <option value="Юнсобоадиский филиал">Юнсобоадиский филиал</option>
                   <option value="Чиланзарский филиал">Чиланзарский филиал</option>
                   <option value="Мирабадский филиал">Мирабадский филиал</option>
@@ -54,12 +53,14 @@
             <legend><%= appointmentLanguages.appointment.form.service_header[language] %></legend>
             <div class="service__labels">
                <% categorys.forEach(category => { %>
-                  <label class="service__label" for="<%= category.name_uz %>">
-                     <input id="<%= category.name_uz %>" value="<%= category.name_ru %>" name="service__label" type="checkbox">
-                     <span></span>
-                     <span><% if(language === 'uz') {%><%= category.name_uz %> <% } else {%> <%= category.name_ru %> <% } %>   </span>
-                  </label>
-               <% }) %>  
+               <label class="service__label" for="<%= category.name_uz %>">
+                  <input id="<%= category.name_uz %>" value="<%= category.name_ru %>" name="service__label"
+                     type="checkbox">
+                  <span></span>
+                  <span><% if(language === 'uz') {%><%= category.name_uz %> <% } else {%> <%= category.name_ru %>
+                     <% } %> </span>
+               </label>
+               <% }) %>
             </div>
          </fieldset>
          <div class="service__includes__wrapper">
@@ -126,7 +127,7 @@
                </label>
             </div> -->
          </div>
-         
+
          <div class="appointment-saving">
             <button type="submit">
                <img src="img/icons/bell.svg" alt="bell icon">
@@ -145,14 +146,13 @@
 
 
 <script>
-   // const shereBtn = document.querySelector('.share')
 
-   // shereBtn.addEventListener('click', () => {
-   //    navigator.clipboard.writeText("https://swissdental.uz");
-   //    alert("Copied the text: " + "https://swissdental.uz");
-   // })
-
-
+   const alerts = document.querySelector('.alerts')
+   if(alerts){
+      setTimeout(function () {
+         alerts.parentNode.removeChild(alerts);
+      }, 5000)
+   }
    // const sendAppointment = document.querySelector('.make-appointment__form')
    // const fullNameElement = document.querySelector('.full_name')
    // const phoneNumberElement = document.querySelector('.phone_number')
@@ -205,4 +205,4 @@
    //    }
 
    // })
-</script> 
+</script>

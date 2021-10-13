@@ -2,7 +2,6 @@
 <% var language = language || "ru" %>
 
 <h1>Bu shunchaki sarlavha</h1>
-
 <!--SLIDER SECTION-->
 <section class="slider">
    <div class="container">
@@ -162,104 +161,48 @@
          </div>
          <div class="services__list">
             <div class="row">
-               <div class="services__card">
-                  <img src="img/services/tooth.png" alt="tooth image">
-                  <h3>Ортопедия</h3>
-                  <p>Является искажённым отрывком из философского</p>
-                  <div class="decoration-discs">
-                     <div class="outer">
-                        <div class="medium">
-                           <div class="inner">
-                              <a href="#">
-                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                              </a>
+               <% for(let i = 0; i <= 2; i++) {%>
+                  <% if(categorys[i]) {%>
+                     <div class="services__card">
+                        <img src="img/services/tooth.png" alt="tooth image">
+                        <h3><%= categorys[i].name_uz %></h3>
+                        <p></p>
+                        <div class="decoration-discs">
+                           <div class="outer">
+                              <div class="medium">
+                                 <div class="inner">
+                                    <a href="#">
+                                       <img src="img/icons/arrowbig.svg" alt="arrow icon">
+                                    </a>
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-               </div>
-               <div class="services__card">
-                  <img src="img/services/tooth.png" alt="tooth image">
-                  <h3>Ортопедия</h3>
-                  <p>Является искажённым отрывком из философского</p>
-                  <div class="decoration-discs">
-                     <div class="outer">
-                        <div class="medium">
-                           <div class="inner">
-                              <a href="#">
-                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="services__card">
-                  <img src="img/services/tooth.png" alt="tooth image">
-                  <h3>Ортопедия</h3>
-                  <p>Является искажённым отрывком из философского</p>
-                  <div class="decoration-discs">
-                     <div class="outer">
-                        <div class="medium">
-                           <div class="inner">
-                              <a href="#">
-                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                  <% } %>  
+               <% } %> 
             </div>
             <div class="row">
-               <div class="services__card">
-                  <img src="img/services/tooth.png" alt="tooth image">
-                  <h3>Ортопедия</h3>
-                  <p>Является искажённым отрывком из философского</p>
-                  <div class="decoration-discs">
-                     <div class="outer">
-                        <div class="medium">
-                           <div class="inner">
-                              <a href="#">
-                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                              </a>
+               <% for(let i = 3; i <= 5; i++) {%>
+                  <% if(categorys[i]) {%>
+                     <div class="services__card">
+                        <img src="img/services/tooth.png" alt="tooth image">
+                        <h3><%= categorys[i].name_uz %></h3>
+                        <p></p>
+                        <div class="decoration-discs">
+                           <div class="outer">
+                              <div class="medium">
+                                 <div class="inner">
+                                    <a href="#">
+                                       <img src="img/icons/arrowbig.svg" alt="arrow icon">
+                                    </a>
+                                 </div>
+                              </div>
                            </div>
                         </div>
                      </div>
-                  </div>
-               </div>
-               <div class="services__card">
-                  <img src="img/services/tooth.png" alt="tooth image">
-                  <h3>Ортопедия</h3>
-                  <p>Является искажённым отрывком из философского</p>
-                  <div class="decoration-discs">
-                     <div class="outer">
-                        <div class="medium">
-                           <div class="inner">
-                              <a href="#">
-                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-               <div class="services__card">
-                  <img src="img/services/tooth.png" alt="tooth image">
-                  <h3>Ортопедия</h3>
-                  <p>Является искажённым отрывком из философского</p>
-                  <div class="decoration-discs">
-                     <div class="outer">
-                        <div class="medium">
-                           <div class="inner">
-                              <a href="#">
-                                 <img src="img/icons/arrowbig.svg" alt="arrow icon">
-                              </a>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+                  <% } %>  
+               <% } %> 
             </div>
          </div>
       </div>
@@ -387,14 +330,10 @@
          <div class="alerts">
 
          </div>
-         <form class="sign__form" action='/appointmenthome' method='post'>
+         <form class="sign__form" action='/appointment' method='get'>
             <div class="sign__form__fields">
-               <input type="text" placeholder="
-            <%= homeLanguages.sign_doctors.section_title.sign_form.name_input[language] %>
-            " name="full_name" required class="full_name">
-               <input type="number" placeholder="
-            <%= homeLanguages.sign_doctors.section_title.sign_form.phone_number_input[language] %>
-            " name="phone_number" required class="phone_number">
+               <input type="text" placeholder="<%= homeLanguages.sign_doctors.section_title.sign_form.name_input[language] %>" name="full_name" required class="full_name">
+               <input type="number" placeholder="<%= homeLanguages.sign_doctors.section_title.sign_form.phone_number_input[language] %>" name="phone_number" required class="phone_number">
             </div>
             <button type="submit" class="send_appointment_btn">
                <%= homeLanguages.sign_doctors.section_title.sign_form.submit_btn[language] %>
@@ -628,6 +567,13 @@
       closeVideoModalBtn;
    const playVideo = document.querySelector('.video-wrapper')
       
+   const shereBtn = document.querySelector('.share')
+
+shereBtn.addEventListener('click', () => {
+   navigator.clipboard.writeText("https://swissdental.uz");
+   alert("Copied the text: " + "https://swissdental.uz");
+})
+
 
    tabsVideos.addEventListener('click', e => {
          const target = e.currentTarget;    

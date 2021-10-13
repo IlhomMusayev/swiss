@@ -7,7 +7,9 @@ const appointmentLanguages = require('../public/languages/appointmentLanguages.j
 const navbarLanguages = require('../public/languages/navbarLanguage.json')
 const footerLanguages = require('../public/languages/footerLanguage.json')
 const AuthMiddleware = require('../middlewares/authMiddleware')
-const { allContacts } = require('../models/ContactsModel')
+const {
+    allContacts
+} = require('../models/ContactsModel')
 const {
     CategoryModel,
     allCategorys,
@@ -21,8 +23,14 @@ const {
 router.get('/', async (req, res) => {
     const contacts = await allContacts()
     const categorys = await allCategorys()
+    console.log(req.query.full_name);
+    const mydate = {
+        name: req.query.full_name,
+        phone: req.query.phone_number
+    }
     res.render('appointment', {
         user: req.user,
+        mydate: mydate ? mydate : {},
         appointmentLanguages,
         navbarLanguages,
         footerLanguages,
@@ -79,7 +87,17 @@ router.post('/', AuthMiddleware, async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error);
+        res.render('appointment', {
+            status: 'error',
+            error: error,
+            user: req.user,
+            appointmentLanguages,
+            navbarLanguages,
+            footerLanguages,
+            language: req.language.toString() == "uz" ? "uz" : "ru",
+            contacts: contacts[0],
+            categorys
+        })
     }
 })
 

@@ -42,7 +42,7 @@ router.delete('/delete/:id', async (req, res) => {
         
         if (deleteOne) {
             res.json({
-                message: 'Blog deleted'
+                message: req.language === 'uz' ? "Учрашувингиз бекор қилинди" : "Ваша встреча была отменена"
             })
         }
         
