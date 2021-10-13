@@ -62,6 +62,11 @@ async function deleteOneAppointmentById(id) {
         _id: id
     })
 }
+async function findTodayAppointments(){
+
+    let db = await AppointmentModel()
+    return await db.find({dateCreated: {$gte: startOfToday}})
+}
 
 
 
@@ -70,5 +75,6 @@ module.exports = {
     allAppointmentModel,
     addAppointmentModel,
     findAppointmentByEmail,
-    deleteOneAppointmentById
+    deleteOneAppointmentById,
+    findTodayAppointments
 }

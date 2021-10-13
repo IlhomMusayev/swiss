@@ -91,7 +91,7 @@
                         <td><%= appointment.dateCreated.toGMTString()
                                 %>
                         </td>
-                        <td><button class="btn btn-success" >Проверять</button></td>
+                        <td><button class="btn btn-success chack-btn" >Проверять</button></td>
                     </tr>
                     <% }) %>
 
@@ -143,6 +143,10 @@
             .catch(error => {
                 console.error(error);
             });
+    </script>
+
+    <script>
+        
     </script>
     
 </body>

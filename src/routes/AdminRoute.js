@@ -74,7 +74,8 @@ const fs = require('fs');
 const ObjectId = require('mongodb').ObjectId
 const {
     AppointmentModel,
-    allAppointmentModel
+    allAppointmentModel,
+    findTodayAppointments
 } = require('../models/Appointment')
 
 
@@ -83,27 +84,32 @@ router.use(adminMiddleware)
 
 
 router.get('/', async (req, res) => {
-
     // 
-    const skipappontment = req.query.skipappontment * 1 || 0;
+    var now = new Date();
+    var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
+    const skipappontment = req.query.skipappontment * 1 || 0;
     const AppointmentModels = await AppointmentModel()
     const allAppointments = await allAppointmentModel()
     const allAppointmentPog = await AppointmentModels
-        .find()
+        .find({dateCreated: {$gte: startOfToday}})
         .skip(skipappontment * 10)
         .limit(10)
         .sort({
             dateCreated: -1
         })
     const allAppointmentCount = await allAppointments.length
-
-
-
     res.render('admin', {
         skipappontment,
         allAppointmentPog,
         allAppointmentCount
+    })
+})
+
+router.post('/chackAppointment', async (req, res) => {
+    
+    res.json({
+        message: "Было подтверждено, что вы связались с пациентом"
     })
 })
 
