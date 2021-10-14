@@ -53,7 +53,6 @@ router.get('/', async (req, res) => {
 
     const blogs = await allBlogs()
 
-    console.log(categorys);
     res.render('index', {
         user: req.user,
         blogs,
@@ -84,7 +83,6 @@ router.get('/alldoctorsusers', async (req, res) => {
             dateCreated: -1
         })
         
-    console.log(doctors);
     res.json({
         doctors
     })
@@ -93,7 +91,6 @@ router.get('/alldoctorsusers', async (req, res) => {
 
 
 router.post('/editlanguage/:language', AuthMiddleware, async (req, res) => {
-    console.log(req.params.language);
     res.cookie('language', req.params.language).redirect('/')
 })
 
