@@ -24,4 +24,12 @@ module.exports = (app) => {
 	app.use(RegisterRouter.path, RegisterRouter.router);
 	app.use(TreatmentRouter.path, TreatmentRouter.router);
 	app.use(NewsRouter.path, NewsRouter.router);
+
+
+	app.use((req, res) => {
+		res.render("error", {
+			user:req.user,
+			language: req.language === 'uz' ? 'uz': "ru"
+		});
+	});
 };

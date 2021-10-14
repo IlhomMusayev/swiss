@@ -4080,6 +4080,14 @@ legend {
   height: 200px;
   -o-object-fit: cover;
      object-fit: cover;
+  padding-top: 4px;
+}
+.gallery-photos .middle .middle__bottom img:first-of-type{
+  padding-right: 2px;
+}
+
+.gallery-photos .middle .middle__bottom img:last-of-type{
+  padding-left: 2px;
 }
 
 .gallery-photos .right {
@@ -4137,6 +4145,14 @@ legend {
     height: 200px;
     -o-object-fit: cover;
        object-fit: cover;
+    padding-top: 0;
+  }
+  .gallery-photos .middle .middle__bottom img:first-of-type{
+    padding-right: 2px;
+  }
+  
+  .gallery-photos .middle .middle__bottom img:last-of-type{
+    padding-left: 2px;
   }
   .gallery-photos .right {
     padding-left: 0px;

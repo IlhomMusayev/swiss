@@ -1,0 +1,178 @@
+:root {
+    --white: #ededed;
+    --gray: #bfc0c0;
+    --dark: #585959;
+    --light: #d3deea;
+    --big: "Abril Fatface", serif;
+    --body: "Lato", sans-serif;
+}
+@font-face {
+    font-family: "Futura1";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/futura_normal.eot");
+    src: local(""), url("../fonts/futura_normal.eot?#iefix") format("embedded-opentype"), url("../fonts/futura_normal.woff2") format("woff2"), url("../fonts/futura_normal.woff") format("woff"), url("../fonts/futura_normal.ttf") format("truetype"), url("../fonts/futura_normal.svg#Montserrat") format("svg");
+  }
+  @font-face {
+    font-family: "Futura2";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/futura_bold.eot");
+    src: local(""), url("../fonts/futura_bold.eot?#iefix") format("embedded-opentype"), url("../fonts/futura_bold.woff2") format("woff2"), url("../fonts/futura_bold.woff") format("woff"), url("../fonts/futura_bold.ttf") format("truetype"), url("../fonts/futura_bold.svg#Montserrat") format("svg");
+  }
+@import url("https://fonts.googleapis.com/css?family=Abril+Fatface|Lato");
+
+
+
+.error {
+    background: none;
+}
+
+.top {
+    margin-top: 30px;
+}
+
+.ilustrations {
+    margin: 0 auto;
+    position: relative;
+    width: 250px;
+    height: 250px;
+    margin-top: -40px;
+}
+
+
+.shadow {
+    position: absolute;
+    width: 100%;
+    background: -var(--gray);
+    left: 0%;
+    top: -5%;
+    /* transform: translate(0, 10%); */
+    border-radius: 50%;
+    animation: float 2s infinite;
+}
+.shadow img{
+    width: 250px;
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    50% {
+        transform: translateY(15px);
+    }
+}
+
+.bottom {
+    margin-top: 10px;
+}
+
+/*text styling*/
+h1 {
+    font-family: "Futura1";
+    font-weight: 500;
+    color: #29295F;
+    text-align: center;
+    font-size: 9em;
+    margin: 0;
+}
+
+h3 {
+    font-family: "Futura1";
+    font-size: 2em;
+    text-transform: uppercase;
+    text-align: center;
+    color: #00B1B9;
+    margin-top: -20px;
+}
+
+p {
+    text-align: center;
+    font-family: "Futura";
+    color: var(--dark);
+    font-size: 0.6em;
+    margin-top: -20px;
+    text-transform: uppercase;
+}
+
+.search {
+    text-align: center;
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+/*search style*/
+
+
+.btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 150px;
+    height: 40px;
+    font-size: 16px;
+    line-height: 30px;
+    letter-spacing:1px;
+    background-color: #29295F;
+    color: #FFFFFF;
+}
+.btn:first-child {
+    background-color: #29295F;
+    color: #FFFFFF;
+    margin-right: 2px;
+}
+.btn:first-child:hover {
+    background-color: #2c2c66;
+  }
+.btn:last-child {
+    background-color: #00B1B9;
+    color:#fff;
+    margin-left: 2px;
+
+}
+
+.btn:hover {
+    background: var(--gray);
+    transition: all 0.4s ease-out;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    text-align: center;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    padding: 10px;
+    color: #ea7996;
+    letter-spacing: 3px;
+    font-family: var(--body);
+}
+footer a{
+    color: #ffffff;
+        text-decoration: none;
+}
+footer a:hover{
+    color: #7d7d7d;
+
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/errorstyle.css">
+    <title>Не найден</title>
+</head>
+
+<body>
+   <div class="error">
+    <div class="top">
+        <h1>404</h1>
+        <h3>
+            <% if(language === 'uz') {%> Саҳифа топилмади <% }else {%> Страница не найдена <% } %>   
+        </h3>
+    </div>
+        <div class="ilustrations">
+            <div class="shadow">
+                <img src="/img/error.png" alt="">
+            </div> 
+        </div>
+    <div class="bottom">
+        <p>Boo, looks like a ghost stole this page!</p>
+        <div class="buttons">
+            <a href="/about" class="btn">
+                <% if(language === 'uz') {%> Орқага <% }else {%> Назад <% }%>
+            </a>
+            <a href="/" class="btn">
+                <% if(language === 'uz') {%> Бош саҳифа <% }else {%> Главная <% }%>
+            </a>
+        </div>
+    </div>
+   </div>
+
+</body>
+
+</html>
