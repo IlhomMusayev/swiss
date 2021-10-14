@@ -50,7 +50,7 @@ async function BlogModel() {
 
 async function allBlogs() {
     let db = await BlogModel()
-    return await db.find()
+    return await db.find({}).sort({dateCreated: -1})
 }
 
 

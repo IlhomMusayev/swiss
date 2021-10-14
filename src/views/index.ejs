@@ -1,4 +1,6 @@
 <%- include('parts/header') %>
+<link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+
 <% var language = language || "ru" %>
 <% function pad(n) {
    return n<10 ? '0'+n : n;
@@ -306,7 +308,7 @@
                      <span><%= pad(blog.dateCreated.getHours()) %>:<%= pad(blog.dateCreated.getMinutes())%></span>
                   </time>
                   <h3>
-                     <a href="#"><% if(language === 'uz') {%><%= blog.title_uz %> <% }else {%> <%= blog.title_ru %>
+                     <a href="/news/<%= blog._id %>"><% if(language === 'uz') {%><%= blog.title_uz %> <% }else {%> <%= blog.title_ru %>
                         <% } %></a>
                   </h3>
                </div>
@@ -565,6 +567,7 @@
 
 <%- include('parts/footer') %>
 <script src="/scripts/doctors.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script>
    let tabsVideos = document.querySelector('.video-wrapper__video'),
       videoModal = document.querySelector('.video-modal'),
@@ -575,7 +578,14 @@
 
    shereBtn.addEventListener('click', () => {
       navigator.clipboard.writeText("https://swissdental.uz");
-      alert("Copied the text: " + "https://swissdental.uz");
+      // alert("Copied the text: " + "https://swissdental.uz");
+      Swal.fire({
+         position: 'top-end',
+         icon: 'success',
+         title: 'Link copyed',
+         showConfirmButton: false,
+         timer: 1500
+      })
    })
 
 

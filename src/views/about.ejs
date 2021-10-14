@@ -103,7 +103,7 @@
                         <span><%= pad(item.dateCreated.getHours()) %>:<%= pad(item.dateCreated.getMinutes())%></span>
                      </time>
                      <h3>
-                        <a href="#"><% if(language === 'uz') {%><%= item.title_uz %> <% }else {%> <%= item.title_ru %>
+                        <a href="/news/<%= item._id %>"><% if(language === 'uz') {%><%= item.title_uz %> <% }else {%> <%= item.title_ru %>
                            <% } %></a>
                      </h3>
                   </div>
@@ -192,7 +192,9 @@
 <!--VIDEO MODAL-->
 <div class="video-modal hide"></div>
 <%- include('parts/footer')%>
+
 <script src="/scripts/video-play.js"></script>
+
 <script>
    const shereBtn = document.querySelector('.share')
 

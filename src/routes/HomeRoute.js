@@ -26,6 +26,9 @@ const {
     CategoryModel,
     allCategorys
 } = require('../models/CategorysModel')
+const {
+    allVideos,
+} = require('../models/VideoModel')
 
 
 moment.locale('ru-Ru')
@@ -88,9 +91,15 @@ router.get('/alldoctorsusers', async (req, res) => {
     })
 })
 
+router.get('/allvideos', async (req, res) => {
+    const videos = await allVideos()
+    res.json({
+        videos
+    })
+})
 
 
-router.post('/editlanguage/:language', AuthMiddleware, async (req, res) => {
+router.post('/editlanguage/:language', async (req, res) => {
     res.cookie('language', req.params.language).redirect('/')
 })
 

@@ -716,12 +716,7 @@ router.get('/deletevideo/:id', async (req, res) => {
         res.redirect('/admin')
     }
 })
-router.get('/allvideos', async (req, res) => {
-    const videos = await allVideos()
-    res.json({
-        videos
-    })
-})
+
 
 // DOCTOR
 router.get('/doctor', async (req, res) => {
@@ -846,7 +841,7 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
 
 
 // Appointment
-router.get('/admin/apponitment', (req, res) => {
+router.get('/apponitment', (req, res) => {
     res.render('adminAppointment', {
         title: "Appointment"
     })

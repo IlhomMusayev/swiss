@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/muhammadyunusuz/swiss_dental#readme",
   "dependencies": {
+    "@sweetalert2/theme-minimal": "^5.0.5",
     "bcrypt": "^5.0.1",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -30,6 +31,7 @@
     "moment": "^2.29.1",
     "mongoose": "^5.12.5",
     "mongoose-slug-generator": "^1.0.4",
-    "pg": "^8.6.0"
+    "pg": "^8.6.0",
+    "sweetalert2": "^11.1.7"
   }
 }

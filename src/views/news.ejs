@@ -1,0 +1,38 @@
+<%- include('parts/header')%>
+
+<h1>Bu shunchaki sarlavha</h1>
+
+
+<!--SITE MAIN SECTION-->
+<main class="site-main">
+   <div class="container">
+      <article class="article">
+         <section class="article__description pt-0">
+            <h2><%if(language === 'uz'){%> <%= newItem.title_uz %> <% }else {%> <%= newItem.title_ru %> <% } %> </h2>
+            <p>
+               <%if(language === 'uz'){%> <%- newItem.content_uz %> <% } else {%> <%- newItem.content_ru %> <% } %> 
+            </p>
+            <div class="article__description__gallery">
+               <figure>
+                  <img src="/files/<%= newItem.filename %>" alt="" width="400" height="260">
+                  <figcaption><%if(language === 'uz'){%> <%= newItem.caption1_uz %> <% }else {%> <%= newItem.caption1_ru %> <% } %> </figcaption>
+               </figure>
+            </div>
+         </section>
+      </article>
+      <aside class="appointment">
+         <h2><%= newsLanguages.appointment.title[language] %></h2>
+         <form class="appointment__form" action="/appointment" method="get">
+            <input id="full-name" type="text" name="full_name" placeholder="<%= newsLanguages.appointment.form.name[language] %>" required>
+            <input class="masked-phone" id="phone_number" type="tel" name="phone_number"
+                   data-phonemask="+998 ( _ _ )  _ _ _  _ _  _ _"  placeholder="<%= newsLanguages.appointment.form.phone_number[language] %>" required/>
+            <button type="submit">
+               <img src="img/icons/bell.svg" alt="">
+               <span><%= newsLanguages.appointment.form.submit_btn[language] %></span>
+            </button>
+         </form>
+      </aside>
+   </div>
+</main>
+
+<%- include('parts/footer')%>

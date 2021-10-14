@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', async function(){
 
    const response = await fetch(
-      "/admin/allvideos", {
+      "/allvideos", {
       method: "GET"
    })
 

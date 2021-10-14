@@ -9,6 +9,7 @@ const LoginRouter = require('./LoginRoute');
 const LogoutRouter = require('./LogoutRoute');
 const RegisterRouter = require('./RegisterRoute');
 const TreatmentRouter = require('./Treatment');
+const NewsRouter = require('./NewsRoute');
 
 module.exports = (app) => {
 	app.use(HomeRoute.path, HomeRoute.router);
@@ -22,4 +23,5 @@ module.exports = (app) => {
 	app.use(LogoutRouter.path, LogoutRouter.router);
 	app.use(RegisterRouter.path, RegisterRouter.router);
 	app.use(TreatmentRouter.path, TreatmentRouter.router);
+	app.use(NewsRouter.path, NewsRouter.router);
 };
