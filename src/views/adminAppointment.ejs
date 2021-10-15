@@ -147,17 +147,14 @@
 
     <script>
         const chackBtnELement = document.querySelectorAll('.chack-btn')
-        console.log(chackBtnELement);
 
         
         chackBtnELement.forEach(btn => {
             btn.addEventListener("click", async (e) => {
             const id = e.target.getAttribute("data-id")
-            console.log(id);
             const response = await fetch(`/admin/chackAppointment/${id}`, {
                 method: "POST",
             })
-            console.log(response);
 
             const json = await response.json()
 

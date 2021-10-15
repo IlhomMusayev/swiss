@@ -21,7 +21,6 @@ const {
 router.get('/', async (req, res) => {
     const contacts = await allContacts()
     const categorys = await allCategorys()
-    console.log(req.query.full_name);
     const mydate = {
         name: req.query.full_name,
         phone: req.query.phone_number

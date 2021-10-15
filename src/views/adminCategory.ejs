@@ -152,7 +152,6 @@
     const delete_buttons = document.querySelectorAll(".delete_btn");
     delete_buttons.forEach((button) => {
         button.addEventListener("click", async (evt) => {
-            console.log(evt);
             const response = await fetch(
                 "categorys/delete/" + evt.target.dataset.id, {
                     method: "DELETE",

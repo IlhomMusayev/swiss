@@ -132,17 +132,13 @@
    const deleteAppointmentBtnElement = document.querySelectorAll('.cancel-appointment')
    deleteAppointmentBtnElement.forEach((button) => {
       button.addEventListener("click", async (evt) => {
-         console.log(evt);
          const response = await fetch(
             "account/delete/" + evt.target.dataset.id, {
                method: "DELETE",
             }
          );
-         console.log(evt.target);
-         console.log(evt.target.parentNode.parentNode);
 
          const json = await response.json();
-         console.log(json.message);
          if (response.status === 200) {
             alert(json.message);
             evt.target.parentNode.parentNode.remove();

@@ -18,7 +18,6 @@ router.get('/', async (req, res) => {
     const news = await allBlogs()
     const contacts = await allContacts()
 
-    console.log(allPhotoss);
     res.render('about', {
         title: "About",
         user: req.user,
