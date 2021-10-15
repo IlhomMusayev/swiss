@@ -14,11 +14,9 @@ const {
     CategoryModel,
     allCategorys,
 } = require('../models/CategorysModel')
-
-
-
-
-
+const {
+    allFilials
+} = require('../models/FilialsModel')
 
 router.get('/', async (req, res) => {
     const contacts = await allContacts()
@@ -28,6 +26,8 @@ router.get('/', async (req, res) => {
         name: req.query.full_name,
         phone: req.query.phone_number
     }
+
+    const filials = await allFilials()
     res.render('appointment', {
         user: req.user,
         mydate: mydate ? mydate : {},
@@ -36,7 +36,8 @@ router.get('/', async (req, res) => {
         footerLanguages,
         language: req.language.toString() == "uz" ? "uz" : "ru",
         contacts: contacts[0],
-        categorys
+        categorys,
+        filials
     })
 })
 router.post('/', AuthMiddleware, async (req, res) => {

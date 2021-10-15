@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
         photos,
         videoItem,
         contacts: contacts[0],
-        categorys
+        categorys,
     })
 })
 

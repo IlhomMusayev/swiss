@@ -5,17 +5,22 @@ const footerLanguages = require('../public/languages/footerLanguage.json')
 const {
     allContacts,
 } = require('../models/ContactsModel')
+const {
+    allFilials
+} = require('../models/FilialsModel')
+
 
 router.get('/', async (req, res) => {
     const contacts = await allContacts()
-    
+    const filials = await allFilials()
     res.render('contacts', {
         user: req.user,
         contactLanguages,
         navbarLanguages,
         footerLanguages,
         language: req.language.toString() == "uz" ? "uz" : "ru",
-        contacts: contacts[0]
+        contacts: contacts[0],
+        filials
     })
 })
 

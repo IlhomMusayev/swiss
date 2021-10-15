@@ -65,6 +65,13 @@ const {
     findDoctorById
 } = require('../models/DoctorModel')
 
+const {
+    FilialsModel,
+    deleteFilialById,
+    addFilial,
+    findFilialsById,
+    allFilials
+} = require('../models/FilialsModel')
 
 const adminMiddleware = require('../middlewares/adminMiddleware')
 const expressFileUpload = require('express-fileupload');
@@ -839,11 +846,78 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
     }
 })
 
+// Filial
+router.get('/filials', async (req, res) => {
+    const filials = await allFilials()
+    res.render('adminFilial', {
+        filials
+    })
+})
+router.post('/filials', async (req, res) => {
+    const filials = await allFilials()
+    try {
+        const {
+            name,
+            email,
+            phone_number
+        } = req.body
+
+
+        if (!(name || email || phone_number)) {
+            res.render('adminFilial', {
+                error: "Пожалуйста, заполните все поля",
+                filials
+            })
+            return;
+        }
+        const filial = addFilial(name, email, phone_number)
+
+        res.render('adminFilial', {
+            message: "Добавлен Филиалы",
+            filials
+        })
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+router.delete('/filials/delete/:id', async (req, res) => {
+    try {
+        const deleteOne = await deleteFilialById(req.params.id)
+
+        if (deleteOne) {
+            res.json({
+                message: 'Филиалы удален'
+            })
+        }
+
+    } catch (error) {
+        res.json({
+            error: error
+        })
+    }
+})
+
+
 
 // Appointment
-router.get('/apponitment', (req, res) => {
+router.get('/appointments', async (req, res) => {
+    const skipappontment = req.query.skipappontment * 1 || 0;
+    const AppointmentModels = await AppointmentModel()
+    const allAppointments = await allAppointmentModel()
+    const allAppointmentPog = await AppointmentModels
+        .find()
+        .skip(skipappontment * 10)
+        .limit(10)
+        .sort({
+            dateCreated: -1
+        })
+    const allAppointmentCount = await allAppointments.length
     res.render('adminAppointment', {
-        title: "Appointment"
+        skipappontment,
+        allAppointmentPog,
+        allAppointmentCount
     })
 })
 

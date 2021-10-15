@@ -8,14 +8,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/styles.css">
-    <title>Doctor</title>
+    <title>filial</title>
 </head>
 
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container container-fluid">
-            <a class="navbar-brand" href="/admin">Admin Panel</a>
+            <a class="navbar-brand" href="/admin">Панель администратора</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -24,28 +24,31 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin">Home</a>
+                        <a class="nav-link" aria-current="page" href="/admin">Главная</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/about">About</a>
+                        <a class="nav-link" aria-current="page" href="/admin/about">О нас</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Cosmetic</a>
+                        <a class="nav-link" aria-current="page" href="/admin/cosmetic">Косметика</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/contacts">Contact</a>
-                    </li>
-                    <li class="nav-item active">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Appointments</a>
+                        <a class="nav-link" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/news">News</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/admin/doctor">Doctor</a>
+                        <a class="nav-link" aria-current="page" href="/admin/news">Новости</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/categorys">Categorys</a>
+                        <a class="nav-link" aria-current="page" href="/admin/filial">Врач</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/admin/categorys">Категории</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/admin/filials">Филиалы </a>
                     </li>
                 </ul>
             </div>
@@ -55,8 +58,11 @@
         <% var message, error %>
         <div class="row mb-5">
             <div class="col-md-12">
-                <div class="title mt-5">
-                    <h2>Doctor</h2>
+                <div class="row">
+                    <div class="col-md-12 text-center my-4">
+                        <h2>Филиалы</h2>
+                        <hr>
+                    </div>
                 </div>
 
                 <% if(message) {%>
@@ -70,34 +76,26 @@
                     </div>
                     <% } %>
             </div>
-            <form action="/admin/doctor" method="POST" enctype="multipart/form-data">
+            <h3>Вы можете добавить Филиалы здесь</h3><span> (Пожалуйста, заполните все поля)</span>
+            <form action="/admin/filials" method="POST">
                 <div class="form-group">
-                    <label for="name" class="mt-5">Name</label>
-                    <input type="text" class="form-control my-2" id="name" name="name" placeholder="Doctor name" required>
+                    <label for="name" class="mt-5">Имя Филиалы</label>
+                    <input type="text" class="form-control my-2" id="name" name="name" placeholder="Имя Фамилия" required>
 
-                    <label for="specials" class="">Specials</label>
-                    <input type="text" class="form-control my-2" id="specials" name="special"
-                        placeholder="Doctor special" required>
+                    <label for="email" class="mt-2 ">Эл. почта</label>
+                    <input type="email" class="form-control my-2" id="email" name="email"
+                        placeholder="Эл. почта" required>
 
-                    <label for="text" class="my-2">About</label>
-                    <textarea name="about" id="editor" class="my-2" placeholder="Shu yerga blog so'zlarini kiriting..." required>
-                            &lt;p&gt;&lt;/p&gt;
-                        </textarea>
-
-                    <label for="phone_number" class="mt-4">Phone number</label>
+                    <label for="phone_number" class="mt-2">Номер телефона</label>
                     <input type="text" class="form-control my-2" id="phone_number" name="phone_number"
-                        placeholder="Phone number" required>
+                        placeholder="Номер телефона" required>
 
-
-                    <label for="image" class="mt-2">Image</label>
-                    <input type="file" class="form-control my-2" style="display: block" id="image" name="image" required>
-
-                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Blog qo'shish">
+                    <input type="submit" class="btn btn-primary w-100 mt-3" value="Добавлять">
                 </div>
             </form>
         </div>
         <% 
-        var doctors = doctors || [];
+        var filials = filials || [];
         var num = 1
         %>
         <div style="overflow-x: auto;">
@@ -105,37 +103,25 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Full Name</th>
-                        <th scope="col">Special</th>
-                        <th scope="col">About</th>
-                        <th scope="col">Phone number</th>
-                        <th scope="col">Photo</th>
-                        <th scope="col">Edit/Delete</th>
+                        <th scope="col">Имя Филиалы</th>
+                        <th scope="col">Эл. почта</th>
+                        <th scope="col">Номер телефона</th>
+                        <th scope="col">Изменять/Удалить</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% doctors.forEach(function(doctor) {%>
+                    <% filials.forEach(function(filial) {%>
                     <tr>
                         <th scope="row"><%= num ++ %> </th>
-                        <td><%= doctor.name %> </td>
-                        <td><%= doctor.specials %> </td>
-                        <td style="width:40%;">
-                            <div style="height:200px">
-                                <%- doctor.about %>
-                            </div>
-                        </td>
-                        <td><%= doctor.phone_number %> </td>
-                        <td><img style="width: 200px; height:200px; object-fit: contain"
-                                src="/files/doctors/<%= doctor.filename %>" alt=""> </td>
-
+                        <td><%= filial.name %> </td>
+                        <td><%= filial.email %> </td>
+                        <td><%= filial.phone_number %> </td>
                         <td>
-                            <a class="btn btn-primary edite_btn" href="/admin/doctor/edite/<%= doctor._id %>">Edit</a>
-                            <hr>
-                            <button data-id="<%= doctor._id%>" class="
+                            <button data-id="<%= filial._id%>" class="
                                 btn btn-danger
                                 delete_btn
                             ">
-                                Delete
+                            Удалить
                             </button>
                         </td>
                     </tr>
@@ -176,15 +162,13 @@
     const delete_buttons = document.querySelectorAll(".delete_btn");
     delete_buttons.forEach((button) => {
         button.addEventListener("click", async (evt) => {
-            console.log(evt);
             const response = await fetch(
-                "doctor/delete/" + evt.target.dataset.id, {
+                "filials/delete/" + evt.target.dataset.id, {
                     method: "DELETE",
                 }
             );
 
             const json = await response.json();
-            console.log(json.message);
             if (response.status === 200) {
                 alert(json.message);
                 evt.target.parentNode.parentNode.remove();

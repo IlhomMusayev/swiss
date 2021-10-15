@@ -1,5 +1,24 @@
 <%- include('parts/header')%>
 <% contacts = contacts || {} %>
+<style>
+   p {
+      line-height: 30px;
+   }
+
+   .our-address__list {
+      width: 100%;
+   }
+
+   @media (max-width: 1045px) {
+      .our-address__list {
+         width: 50%;
+      }
+
+      p {
+         margin-top: 10px;
+      }
+   }
+</style>
 
 
 <h1>Bu shunchaki sarlavha</h1>
@@ -41,46 +60,20 @@
                   <img src="img/icons/ftwitter.svg" alt="twitter icon">
                </a>
             </div>
-            <p class="about-us__text">
+            <p class="">
                <% if(language === 'uz') {%> <%- contacts.aboutuz %> <% } else { %> <%- contacts.aboutru %> <% } %>
             </p>
          </div>
          <div class="our-branch-address__list">
+            <% filials.forEach(filial => {%>
             <div class="our-branch-address__item branch__item">
                <div class="branch__item__heading">
-                  Юнсобоадиский филиал
+                  <%= filial.name %>
                </div>
-               <a href="tel: +998711234567 ">+998 71 123-45-67</a>
-               <a href="mailto: info@dental.com">info@dental.com</a>
+               <a href="tel: +998711234567 "><%= filial.phone_number %></a>
+               <a href="mailto: info@dental.com"><%= filial.email %></a>
             </div>
-            <div class="our-branch-address__item branch__item">
-               <div class="branch__item__heading">
-                  Чиланзарский филиал
-               </div>
-               <a href="tel: +998711234567 ">+998 71 123-45-67</a>
-               <a href="mailto: info@dental.com">info@dental.com</a>
-            </div>
-            <div class="our-branch-address__item branch__item">
-               <div class="branch__item__heading">
-                  Яшнабадский филиал
-               </div>
-               <a href="tel: +998711234567 ">+998 71 123-45-67</a>
-               <a href="mailto: info@dental.com">info@dental.com</a>
-            </div>
-            <div class="our-branch-address__item branch__item">
-               <div class="branch__item__heading">
-                  Мирабадский филиал
-               </div>
-               <a href="tel: +998711234567 ">+998 71 123-45-67</a>
-               <a href="mailto: info@dental.com">info@dental.com</a>
-            </div>
-            <div class="our-branch-address__item branch__item">
-               <div class="branch__item__heading">
-                  Яшнабадский филиал
-               </div>
-               <a href="tel: +998711234567 ">+998 71 123-45-67</a>
-               <a href="mailto: info@dental.com">info@dental.com</a>
-            </div>
+            <% }) %>
          </div>
       </div>
       <h2 class="map__heading">

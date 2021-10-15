@@ -42,10 +42,9 @@
             <div class="custom-select">
                <select id="filial" name="filial" required>
                   <option value=""><%= appointmentLanguages.appointment.form.filial[language] %></option>
-                  <option value="Юнсобоадиский филиал">Юнсобоадиский филиал</option>
-                  <option value="Чиланзарский филиал">Чиланзарский филиал</option>
-                  <option value="Мирабадский филиал">Мирабадский филиал</option>
-                  <option value="Яшнабадский филиал">Яшнабадский филиал</option>
+                  <% filials.forEach(filial => {%>
+                     <option value="<%= filial.name %>"><%= filial.name %></option>
+                  <% }) %> 
                </select>
             </div>
          </fieldset>
