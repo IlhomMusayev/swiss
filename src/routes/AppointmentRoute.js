@@ -42,6 +42,7 @@ router.get('/', async (req, res) => {
 router.post('/', AuthMiddleware, async (req, res) => {
     const contacts = await allContacts()
     const categorys = await allCategorys()
+    const filials = await allFilials()
     try {
         let {
             full_name,
@@ -54,14 +55,15 @@ router.post('/', AuthMiddleware, async (req, res) => {
         if (!(full_name && phone_number && filial)) {
             res.render('appointment', {
                 status: 'error',
-                error: 'Iltimos bo\'shliqlarni o\'ldiring',
+                error: 'Пожалуйста, заполните все поля',
                 user: req.user,
                 appointmentLanguages,
                 navbarLanguages,
                 footerLanguages,
                 language: req.language.toString() == "uz" ? "uz" : "ru",
                 contacts: contacts[0],
-                categorys
+                categorys,
+                filials
             })
             return;
         }
@@ -82,21 +84,23 @@ router.post('/', AuthMiddleware, async (req, res) => {
                 footerLanguages,
                 language: req.language.toString() == "uz" ? "uz" : "ru",
                 contacts: contacts[0],
-                categorys
+                categorys,
+                filials
             })
         }
 
     } catch (error) {
         res.render('appointment', {
             status: 'error',
-            error: error,
+            error: error + "",
             user: req.user,
             appointmentLanguages,
             navbarLanguages,
             footerLanguages,
             language: req.language.toString() == "uz" ? "uz" : "ru",
             contacts: contacts[0],
-            categorys
+            categorys,
+            filials
         })
     }
 })

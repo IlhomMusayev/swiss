@@ -26,13 +26,13 @@ const LoginValidation = Joi.object({
         .trim()
         .min(3)
         .max(40)
-        .error(new Error("Emailda xato bor")),
+        .error(new Error("Электронная почта недействительна")),
     password: Joi.string()
         .required()
         .trim()
         .min(4)
         .max(50)
-        .error(new Error("Parolda xato bor")),
+        .error(new Error("Неправильный пароль")),
 })
 
 router.get('/', async (req, res) => {
@@ -61,7 +61,7 @@ router.post('/', async (req, res) => {
    
         const validPassword = await compareCrypt(password, user.password)
 
-        if (!validPassword) throw new Error('Invalid email or password')
+        if (!validPassword) throw new Error('Неправильный адрес электронной почты или пароль')
 
         const token = genereteToken({
             name: user.name,
