@@ -96,7 +96,13 @@ router.get('/', async (req, res) => {
     // 
     var now = new Date();
     var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-
+    if(req.query.skipappontment <= 0){
+        res.render('error', {
+            user:req.user,
+			language: req.language === 'uz' ? 'uz': "ru"
+        })
+        return;
+    }
     const skipappontment = req.query.skipappontment * 1 || 0;
     const AppointmentModels = await AppointmentModel()
     const allAppointments = await allAppointmentModel()
@@ -190,8 +196,8 @@ router.get('/cosmetic', async (req, res) => {
     })
 })
 router.post('/cosmetic', expressFileUpload(), async (req, res) => {
-    try {
         const allCosmetics = await allCosmetic()
+    try {
 
         const {
             title_uz,
@@ -216,7 +222,7 @@ router.post('/cosmetic', expressFileUpload(), async (req, res) => {
         const filename2 = req.files.filename2.md5 + '.' + imgName2[imgName2.length - 1]
 
         if (!(title_uz || title_ru || content1_uz || content1_ru || content2_uz || content2_ru || caption1_ru || caption2_ru || caption1_uz || caption2_uz)) {
-            throw new Error('Maydonlarning hammasini to\'ldiring!!!')
+            throw new Error('Заполните все поля !!!')
         }
 
         if (allCosmetics.length <= 0) {
@@ -240,7 +246,11 @@ router.post('/cosmetic', expressFileUpload(), async (req, res) => {
             req.files.filename2.mv(
                 path.join(__dirname, '..', 'public', 'files', filename2),
             )
-            res.redirect('/admin/cosmetic')
+            res.render('adminCosmetic', {
+                status: ok,
+                message: "Информация добавлена ​​успешно.",
+                allCosmetics: allCosmetics[0]
+            })
         }
         await updateCosmetic(
             title_uz, title_ru, content1_uz, content1_ru, filename1, caption1_uz, caption1_ru, filename2, caption2_uz, caption2_ru, content2_uz, content2_ru, id.trim())
@@ -254,9 +264,17 @@ router.post('/cosmetic', expressFileUpload(), async (req, res) => {
         req.files.filename2.mv(
             path.join(__dirname, '..', 'public', 'files', filename2),
         )
-        res.redirect('/admin/cosmetic')
+        res.render('adminCosmetic', {
+            status: ok,
+            message: "Информация была успешно изменена.",
+            allCosmetics: allCosmetics[0]
+        })
     } catch (error) {
-        console.log(error);
+        res.render('adminCosmetic', {
+            status: false,
+            error: error + "",
+            allCosmetics: allCosmetics[0]
+        })
 
     }
 })

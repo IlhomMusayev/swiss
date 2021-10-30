@@ -39,7 +39,7 @@
                         <a class="nav-link" aria-current="page" href="/admin/contacts">Контакт</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="/admin/appointments">Назначения</a>
+                        <a class="nav-link" aria-current="page" href="/admin/appointments">Записы</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="/admin/news">Новости</a>
@@ -64,6 +64,17 @@
                 <hr>
             </div>
         </div>
+        <% var message, error %>
+        <% if(message) {%>
+        <div class="alert alert-success" style="margin: 20px 0px;">
+            <%= message %>
+        </div>
+        <% } %>
+        <% if(error) {%>
+        <div class="alert alert-danger" style="margin: 20px 0px;">
+            <%= error %>
+        </div>
+        <% } %>
         <div class="row mb-5">
             <div class="col-md-12">
                 <h2>Информация на странице косметики</h2>
@@ -91,7 +102,7 @@
 
                         <label for="filename1" class="mt-2">Первая картина</label>
                         <input type="file" class="form-control my-2" style="display: block" id="filename1" name="filename1"
-                            required>
+                            >
 
                         <label for="caption1_uz" class="mt-3">Узбекское название первой картины</label>
                         <input type="text" class="form-control my-1" id="caption1_uz" name="caption1_uz" required value="<%if(allCosmetics){%><%-allCosmetics.caption1_uz %> <% } %>  ">
@@ -103,7 +114,7 @@
 
                         <label for="filename2" class="mt-2">Вторая картина</label>
                         <input type="file" class="form-control my-2" style="display: block" id="filename2" name="filename2"
-                            required>
+                            >
 
                         <label for="caption2_uz" class="mt-3">Узбекское название второй картины</label>
                         <input type="text" class="form-control my-1" id="caption2_uz" name="caption2_uz" required
