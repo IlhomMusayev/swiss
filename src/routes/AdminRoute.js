@@ -96,10 +96,10 @@ router.get('/', async (req, res) => {
     // 
     var now = new Date();
     var startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    if(req.query.skipappontment <= 0){
+    if (req.query.skipappontment <= 0) {
         res.render('error', {
-            user:req.user,
-			language: req.language === 'uz' ? 'uz': "ru"
+            user: req.user,
+            language: req.language === 'uz' ? 'uz' : "ru"
         })
         return;
     }
@@ -107,7 +107,11 @@ router.get('/', async (req, res) => {
     const AppointmentModels = await AppointmentModel()
     const allAppointments = await allAppointmentModel()
     const allAppointmentPog = await AppointmentModels
-        .find({dateCreated: {$gte: startOfToday}})
+        .find({
+            dateCreated: {
+                $gte: startOfToday
+            }
+        })
         .skip(skipappontment * 10)
         .limit(10)
         .sort({
@@ -196,7 +200,7 @@ router.get('/cosmetic', async (req, res) => {
     })
 })
 router.post('/cosmetic', expressFileUpload(), async (req, res) => {
-        const allCosmetics = await allCosmetic()
+    const allCosmetics = await allCosmetic()
     try {
 
         const {
@@ -312,7 +316,7 @@ router.post('/treatment', expressFileUpload(), async (req, res) => {
         const filename2 = req.files.filename2.md5 + '.' + imgName2[imgName2.length - 1]
 
         if (!(title_uz || title_ru || content1_uz || content1_ru || content2_uz || content2_ru || caption1_ru || caption2_ru || caption1_uz || caption2_uz)) {
-            throw new Error('Maydonlarning hammasini to\'ldiring!!!')
+            throw new Error('Заполните все поля !!!')
         }
 
         if (allTreatments.length <= 0) {
@@ -336,7 +340,10 @@ router.post('/treatment', expressFileUpload(), async (req, res) => {
             req.files.filename2.mv(
                 path.join(__dirname, '..', 'public', 'files', filename2),
             )
-            res.redirect('/admin/treatment')
+            res.render('adminTreatment', {
+                message: "Информация добавлена ​​успешно.",
+                allTreatments: allTreatments[0]
+            })
         }
         await updateTreatment(
             title_uz, title_ru, content1_uz, content1_ru, filename1, caption1_uz, caption1_ru, filename2, caption2_uz, caption2_ru, content2_uz, content2_ru, id.trim())
@@ -350,7 +357,10 @@ router.post('/treatment', expressFileUpload(), async (req, res) => {
         req.files.filename2.mv(
             path.join(__dirname, '..', 'public', 'files', filename2),
         )
-        res.redirect('/admin/treatment')
+        res.render('adminTreatment', {
+            message: "Информация была успешно изменена.",
+            allTreatments: allTreatments[0]
+        })
     } catch (error) {
         console.log(error);
     }
@@ -381,7 +391,7 @@ router.post('/contacts', async (req, res) => {
         if (!(phone_number || email || address || facebook || instagram || telegram || twitter || aboutuz || aboutru)) {
             res.render('adminContacts', {
                 allContact,
-                error: "Hamma maydonlarni to'ldiring"
+                error: "Заполните все поля !!!"
             })
         }
 
@@ -389,12 +399,18 @@ router.post('/contacts', async (req, res) => {
             await addContact(
                 phone_number, email, address, facebook, instagram, telegram, twitter, aboutuz, aboutru
             )
-            res.redirect('/admin/contacts')
+            res.render('adminContacts', {
+                message: "Информация добавлена ​​успешно.",
+                allContact: allContact[0]
+            })
         }
         await updateContact(
             phone_number, email, address, facebook, instagram, telegram, twitter, aboutuz, aboutru, id.trim())
 
-        res.redirect('/admin/contacts')
+        res.render('adminContacts', {
+            message: "Информация была успешно изменена.",
+            allContact: allContact[0]
+        })
     } catch (error) {
         console.log(error);
         res.render('adminContacts', {
@@ -412,24 +428,27 @@ router.get('/categorys', async (req, res) => {
     })
 })
 router.post('/categorys', async (req, res) => {
+    const categorys = await allCategorys()
     try {
-        const categorys = await allCategorys()
         const {
             name_uz,
             name_ru
         } = req.body
         if (!(name_uz, name_ru)) {
-            throw new Error('Bo\'shliqlarni to\'lding!')
+            throw new Error('Заполните все поля !!!"')
         }
 
         const category = addCategory(name_uz, name_ru)
         res.render('adminCategory', {
-            message: "Muvoffaqiyatli qo'shildi!",
+            message: "Информация добавлена ​​успешно.",
             categorys
         })
 
     } catch (error) {
-        console.log(error);
+        res.render('adminCategory', {
+            error: error + "",
+            categorys
+        })
     }
 })
 router.get('/categorys/edite/:id', async (req, res) => {
@@ -452,6 +471,7 @@ router.get('/categorys/edite/:id', async (req, res) => {
     }
 })
 router.post('/categorys/edite', async (req, res) => {
+    const categorys = await allCategorys()
     try {
         const {
             name_uz,
@@ -461,9 +481,11 @@ router.post('/categorys/edite', async (req, res) => {
 
         const updateCategorys = await updateCategory(name_uz,
             name_ru, id)
+        res.render('adminCategory', {
+            message: "Информация была успешно изменена.",
+            categorys
+        })
 
-
-        res.redirect('/admin/categorys')
     } catch (error) {
         console.log(error);
     }
@@ -474,7 +496,7 @@ router.delete('/categorys/delete/:id', async (req, res) => {
 
         if (deleteOne) {
             res.json({
-                message: 'Category deleted'
+                message: 'Информация была успешно удалена.'
             })
         }
 
@@ -602,7 +624,21 @@ router.post('/edite', expressFileUpload(), async (req, res) => {
         )
         // delete img file for id in express app
 
-        res.redirect('/admin')
+        const skipblog = req.query.skipblog * 1 || 0;
+        const BlogModele = await BlogModel()
+        const allblogs = await allBlogs()
+        const allBlogsPog = await BlogModele
+            .find()
+            .skip(skipblog * 10)
+            .limit(10)
+        const allBlogsCount = await allblogs.length
+    
+        res.render('adminNews', {
+            message: "Информация была успешно изменена.",
+            skipblog,
+            allBlogsPog,
+            allBlogsCount,
+        })
     } catch (error) {
         console.log(error);
     }
@@ -613,7 +649,7 @@ router.delete('/delete/:id', async (req, res) => {
 
         if (deleteOne) {
             res.json({
-                message: 'Новости удалены'
+                message: 'Новости была успешно удалена.'
             })
         }
 
@@ -830,6 +866,7 @@ router.get('/doctor/edite/:id', async (req, res) => {
     }
 })
 router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
+    const doctors = await allDoctors()
     try {
         const {
             name,
@@ -844,7 +881,7 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
         const filename = req.files.image.md5 + '.' + imgName[imgName.length - 1]
 
         if (!(name || special || phone_number || about)) {
-            throw new Error('Bo\'shliqlarni to\'ldiring')
+            throw new Error('Пожалуйста, заполните все поля!')
         }
 
         if (!(about.length <= 2048)) {
@@ -855,10 +892,15 @@ router.post('/doctor/edite', expressFileUpload(), async (req, res) => {
             return;
         }
         const doctor = updateDoctor(name, special, about, phone_number, filename, id)
+
         req.files.image.mv(
             path.join(__dirname, '..', 'public', 'files', 'doctors', filename),
         )
-        res.redirect('/admin/doctor')
+
+        res.render('adminDoctor', {
+            message: "Информация была успешно изменена.",
+            doctors
+        })
     } catch (error) {
         console.log(error);
     }
@@ -906,7 +948,7 @@ router.delete('/filials/delete/:id', async (req, res) => {
 
         if (deleteOne) {
             res.json({
-                message: 'Филиалы удален'
+                message: 'Филиалы удаленa'
             })
         }
 
