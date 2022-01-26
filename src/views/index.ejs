@@ -425,17 +425,20 @@
                <img src="img/icons/bluearrowr.svg" alt="">
             </a>
          </header>
+         <% var videoItem = videoItem[0]%> 
+         <% if(videoItem) {%> 
          <div class="tabs__video">
             <div class="video-wrapper">
-               <div class="video-wrapper__video" data-index="<%= videoItem[0].video_link %>">
-                  <img src='/files/<%= videoItem[0].filename %>' alt="">
+               <div class="video-wrapper__video" data-index="<%= videoItem.video_link %>">
+                  <img src='/files/<%= videoItem.filename %>' alt="">
                   <button>
                      <img src="img/icons/play.svg" alt="" style="max-width: 25%;">
                   </button>
                </div>
-               <h3><%= videoItem[0].caption %></h3>
+               <h3><%= videoItem.caption %></h3>
             </div>
          </div>
+         <% } %> 
       </section>
       <section class="gallery__section">
          <header class="gallery__section__header">
@@ -451,6 +454,8 @@
                <img src="img/icons/bluearrowr.svg" alt="">
             </a>
          </header>
+
+         <% if(photos[0]) {%> 
          <div class="gallery_photos">
             <div class="photos__left">
                <img src="/photogalery/<%=photos[0].filename%>" alt="">
@@ -465,6 +470,7 @@
                </div>
             </div>
          </div>
+         <% } %> 
          <!-- <div class="photos">
             <div class="photos__left">
                <img src="img/gallery/1.png" alt="">

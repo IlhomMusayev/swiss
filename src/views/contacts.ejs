@@ -70,8 +70,8 @@
                <div class="branch__item__heading">
                   <%= filial.name %>
                </div>
-               <a href="tel: +998711234567 "><%= filial.phone_number %></a>
-               <a href="mailto: info@dental.com"><%= filial.email %></a>
+               <a href="tel: <%= filial.phone_number %> "><%= filial.phone_number %></a>
+               <a href="mailto: <%= filial.email %>"><%= filial.email %></a>
             </div>
             <% }) %>
          </div>
