@@ -86,11 +86,22 @@
                      </div>
                   </div>
                </div>
-               <form class="settings-form">
+               <% var error, message %>
+               <form class="settings-form" method="post" action="/account">
+                  <% if(error) {%>
+                     <div class="tabs__settings__status" style="background-color: rgb(175, 43, 9); color: white">
+                           <%= error %>
+                     </div>
+                     <% } %>
+                     <% if(message) {%>
+                        <div class="tabs__settings__status" style="background-color: rgb(75, 155, 72); color: white">
+                              <%= message %>
+                        </div>
+                        <% } %>
                   <div class="settings-form__field">
                      <label class="settings-form__field__label" for="full_name">
                         <span><%= accountLanguages.settings.form.name[language] %></span>
-                        <input id="full_name" type="text" name="name" value="<%=user.name%>">
+                        <input id="full_name" type="text" name="name" required value="<%=user.name%>">
                      </label>
                      <label class="settings-form__field__label" for="phone_number">
                         <span><%= accountLanguages.settings.form.phone_number[language] %></span>
@@ -101,7 +112,21 @@
                   <div class="settings-form__field">
                      <label class="settings-form__field__label" for="full_name">
                         <span>E-mail</span>
-                        <input id="email" type="email" disabled value="<%=user.email%>">
+                        <input id="email" type="email" required disabled value="<%=user.email%>">
+                     </label>
+                  </div>
+                  
+
+                  <input id="email" type="hidden" name="email" value="<%=user.email%>">
+
+                  <div class="settings-form__field">
+                     <label class="settings-form__field__label" for="full_name">
+                        <span>Password</span>
+                        <input name="password" required type="password">
+                     </label>
+                     <label class="settings-form__field__label" for="full_name">
+                        <span>New Password</span>
+                        <input name="new_password" required type="password">
                      </label>
                   </div>
                   <div class="tabs__settings__status">

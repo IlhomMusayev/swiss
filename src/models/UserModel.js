@@ -65,10 +65,24 @@ async function findUser(email, phone){
     return await db.findOne({ $or: [{ phone: phone }, {email: email}]})
 }
 
+async function editUser(email, name, new_password){
+    let db = await UserModel()
+    return await db.updateOne({
+        email: email
+    }, {
+        $set: {
+            name: name,
+            password: new_password,
+        }
+    })
+}
+
+
 module.exports = {
     addUser,
     findUserByPhone,
     findUserByEmail,
     findUser,
-    allUsers
+    allUsers,
+    editUser
 }
